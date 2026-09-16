@@ -1,4 +1,4 @@
-WAINWRIGHTS WALK PLANNER - PWA v12
+WAINWRIGHTS WALK PLANNER - PWA v13
 
 This folder is ready to deploy to any static HTTPS host (GitHub Pages, Netlify, Cloudflare Pages, Vercel static hosting, etc.).
 
@@ -20,3 +20,10 @@ QUICK TEST
 - Open a fell and draw a route.
 - Tap Start live guidance.
 - Android should show a location permission prompt instead of the content:// geolocation error.
+
+V13 CHANGES
+- Mobile walk information is split into collapsible sections.
+- Live navigation controls stay visible while planning sections can be collapsed.
+- Turn-by-turn directions open automatically when a route is drawn or live guidance starts.
+- Navigation distances under 0.1 mile are shown in feet; longer distances are shown in miles.
+- Larger touch targets improve one-handed outdoor use.
