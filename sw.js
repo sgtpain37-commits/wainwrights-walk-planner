@@ -1,4 +1,4 @@
-const VERSION='wainwrights-v13-1';
+const VERSION='wainwrights-v14';
 const APP_CACHE=`${VERSION}-app`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
 const APP_SHELL=['./','./index.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'];

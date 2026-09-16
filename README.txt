@@ -1,4 +1,4 @@
-WAINWRIGHTS WALK PLANNER - PWA v13
+WAINWRIGHTS WALK PLANNER - PWA v14
 
 This folder is ready to deploy to any static HTTPS host (GitHub Pages, Netlify, Cloudflare Pages, Vercel static hosting, etc.).
 
@@ -21,9 +21,12 @@ QUICK TEST
 - Tap Start live guidance.
 - Android should show a location permission prompt instead of the content:// geolocation error.
 
-V13 CHANGES
-- Mobile walk information is split into collapsible sections.
-- Live navigation controls stay visible while planning sections can be collapsed.
-- Turn-by-turn directions open automatically when a route is drawn or live guidance starts.
-- Navigation distances under 0.1 mile are shown in feet; longer distances are shown in miles.
-- Larger touch targets improve one-handed outdoor use.
+V14 CHANGES
+- Starting live guidance now switches to a compact outdoor navigation panel over the map.
+- The large summit popup closes while navigating so more of the map stays visible.
+- The navigation panel shows the next instruction, distance to the next manoeuvre, estimated route distance remaining and route status.
+- Voice and Stop controls remain available in the compact panel.
+- The summit effort legend, source box and online badge are hidden during live navigation to reduce screen clutter.
+- Published route distance-to-summit now uses miles only; ascent continues to show feet and metres.
+- Short navigation distances remain in feet, switching to miles from 0.1 mile upward.
+
