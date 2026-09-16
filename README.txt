@@ -1,4 +1,4 @@
-WAINWRIGHTS WALK PLANNER - PWA v11
+WAINWRIGHTS WALK PLANNER - PWA v12
 
 This folder is ready to deploy to any static HTTPS host (GitHub Pages, Netlify, Cloudflare Pages, Vercel static hosting, etc.).
 
