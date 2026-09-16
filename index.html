@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wainwrights Walk Planner</title>
+<meta name="theme-color" content="#13211e" />
+<meta name="description" content="Interactive planner for all 214 Wainwrights with routes, turn-by-turn guidance and live navigation." />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/icon-192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="preconnect" href="https://unpkg.com">
+<link rel="preconnect" href="https://server.arcgisonline.com">
+<style id="leaflet-critical-css">
+/* Leaflet 1.9.x critical layout CSS, inlined so ChatGPT/browser previews do not depend on CDN CSS. */
+.leaflet-pane,.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-tile-container,.leaflet-pane>svg,.leaflet-pane>canvas,.leaflet-zoom-box,.leaflet-image-layer,.leaflet-layer{position:absolute;left:0;top:0}
+.leaflet-container{overflow:hidden;-webkit-tap-highlight-color:transparent;background:#ddd;outline:0}
+.leaflet-tile,.leaflet-marker-icon,.leaflet-marker-shadow{-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-user-drag:none}
+.leaflet-tile::selection{background:transparent}
+.leaflet-safari .leaflet-tile{image-rendering:-webkit-optimize-contrast}
+.leaflet-safari .leaflet-tile-container{width:1600px;height:1600px;-webkit-transform-origin:0 0}
+.leaflet-marker-icon,.leaflet-marker-shadow{display:block}
+.leaflet-container .leaflet-overlay-pane svg{max-width:none!important;max-height:none!important}
+.leaflet-container .leaflet-marker-pane img,.leaflet-container .leaflet-shadow-pane img,.leaflet-container .leaflet-tile-pane img,.leaflet-container img.leaflet-image-layer,.leaflet-container .leaflet-tile{max-width:none!important;max-height:none!important;width:auto;padding:0}
+.leaflet-container img.leaflet-tile{mix-blend-mode:plus-lighter}
+.leaflet-container.leaflet-touch-zoom{-ms-touch-action:pan-x pan-y;touch-action:pan-x pan-y}
+.leaflet-container.leaflet-touch-drag{-ms-touch-action:pinch-zoom;touch-action:none;touch-action:pinch-zoom}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom{-ms-touch-action:none;touch-action:none}
+.leaflet-container{-webkit-user-select:none;-moz-user-select:none;user-select:none}
+.leaflet-tile{filter:inherit;visibility:hidden}
+.leaflet-tile-loaded{visibility:inherit}
+.leaflet-zoom-box{width:0;height:0;-moz-box-sizing:border-box;box-sizing:border-box;z-index:800}
+.leaflet-overlay-pane svg{-moz-user-select:none}
+.leaflet-pane{z-index:400}.leaflet-tile-pane{z-index:200}.leaflet-overlay-pane{z-index:400}.leaflet-shadow-pane{z-index:500}.leaflet-marker-pane{z-index:600}.leaflet-tooltip-pane{z-index:650}.leaflet-popup-pane{z-index:700}
+.leaflet-map-pane canvas{z-index:100}.leaflet-map-pane svg{z-index:200}
+.leaflet-vml-shape{width:1px;height:1px}.lvml{behavior:url(#default#VML);display:inline-block;position:absolute}
+.leaflet-control{position:relative;z-index:800;pointer-events:visiblePainted;pointer-events:auto}.leaflet-top,.leaflet-bottom{position:absolute;z-index:1000;pointer-events:none}.leaflet-top{top:0}.leaflet-right{right:0}.leaflet-bottom{bottom:0}.leaflet-left{left:0}.leaflet-control{float:left;clear:both}.leaflet-right .leaflet-control{float:right}.leaflet-top .leaflet-control{margin-top:10px}.leaflet-bottom .leaflet-control{margin-bottom:10px}.leaflet-left .leaflet-control{margin-left:10px}.leaflet-right .leaflet-control{margin-right:10px}
+.leaflet-fade-anim .leaflet-popup{opacity:0;transition:opacity .2s linear}.leaflet-fade-anim .leaflet-map-pane .leaflet-popup{opacity:1}.leaflet-zoom-animated{transform-origin:0 0}.leaflet-zoom-anim .leaflet-zoom-animated{transition:transform .25s cubic-bezier(0,0,.25,1)}.leaflet-zoom-anim .leaflet-tile,.leaflet-pan-anim .leaflet-tile{transition:none}.leaflet-zoom-anim .leaflet-zoom-hide{visibility:hidden}
+.leaflet-interactive{cursor:pointer}.leaflet-grab{cursor:-webkit-grab;cursor:grab}.leaflet-crosshair,.leaflet-crosshair .leaflet-interactive{cursor:crosshair}.leaflet-popup-pane,.leaflet-control{cursor:auto}.leaflet-dragging .leaflet-grab,.leaflet-dragging .leaflet-grab .leaflet-interactive{cursor:move;cursor:-webkit-grabbing;cursor:grabbing}
+.leaflet-marker-icon,.leaflet-marker-shadow,.leaflet-image-layer,.leaflet-pane>svg path,.leaflet-tile-container{pointer-events:none}.leaflet-marker-icon.leaflet-interactive,.leaflet-image-layer.leaflet-interactive,.leaflet-pane>svg path.leaflet-interactive,svg.leaflet-image-layer.leaflet-interactive path{pointer-events:auto}
+.leaflet-bar{box-shadow:0 1px 5px rgba(0,0,0,.65);border-radius:4px}.leaflet-bar a{background-color:#fff;border-bottom:1px solid #ccc;width:30px;height:30px;line-height:30px;display:block;text-align:center;text-decoration:none;color:#000;font:bold 18px 'Lucida Console',Monaco,monospace}.leaflet-bar a:hover,.leaflet-bar a:focus{background-color:#f4f4f4}.leaflet-bar a:first-child{border-top-left-radius:4px;border-top-right-radius:4px}.leaflet-bar a:last-child{border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-bottom:none}.leaflet-bar a.leaflet-disabled{cursor:default;background-color:#f4f4f4;color:#bbb}
+.leaflet-touch .leaflet-bar a{width:30px;height:30px;line-height:30px}.leaflet-control-zoom-in,.leaflet-control-zoom-out{font: bold 18px 'Lucida Console',Monaco,monospace;text-indent:1px}.leaflet-control-zoom-out{font-size:20px}
+.leaflet-control-attribution{background:rgba(255,255,255,.8);margin:0;font-size:11px;padding:0 5px;color:#333}.leaflet-control-attribution a{text-decoration:none}.leaflet-control-attribution a:hover{text-decoration:underline}.leaflet-container .leaflet-control-attribution{background:rgba(255,255,255,.8)}
+.leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px}.leaflet-popup-content{margin:13px 24px 13px 20px;line-height:1.3;font-size:13px;min-height:1px}.leaflet-popup-content p{margin:1.3em 0}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-top:-1px;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:white;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:transparent;z-index:2}.leaflet-container a.leaflet-popup-close-button:hover,.leaflet-container a.leaflet-popup-close-button:focus{color:#585858}.leaflet-popup-scrolled{overflow:auto;border-bottom:1px solid #ddd;border-top:1px solid #ddd}.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;margin:0 auto;filter:progid:DXImageTransform.Microsoft.Matrix(M11=.70710678,M12=.70710678,M21=-.70710678,M22=.70710678)}
+.leaflet-div-icon{background:#fff;border:1px solid #666}
+.leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}
+</style>
+<style>
+:root{--bg:#0c1513;--panel:#13211e;--panel2:#192a26;--text:#eef7f2;--muted:#a9bdb5;--line:#294039;--accent:#d7ff73;--easy:#57c785;--moderate:#f3bd4b;--hard:#ed6a5a;--shadow:0 10px 30px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+.app{height:100%;display:grid;grid-template-columns:370px 1fr}.sidebar{background:linear-gradient(180deg,var(--panel),#0f1a18);border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0;z-index:1000}.head{padding:18px 18px 12px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px}.brand-mark{width:38px;height:38px;border-radius:12px;background:var(--accent);color:#102016;display:grid;place-items:center;font-weight:900;font-size:19px;box-shadow:var(--shadow)}h1{font-size:20px;margin:0;letter-spacing:-.02em}.subtitle{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.45}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:13px}.stat{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:9px}.stat b{display:block;font-size:17px}.stat span{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.controls{padding:12px 14px;border-bottom:1px solid var(--line);display:grid;gap:9px}.search{display:flex;gap:8px}.search input,.controls select{width:100%;background:#0e1a17;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:10px 11px;outline:none}.search input:focus,.controls select:focus{border-color:#6a857b}
+.filter-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:#0e1a17;color:var(--muted);border-radius:999px;padding:7px 10px;font-size:11px;cursor:pointer}.chip.active{color:#102016;background:var(--accent);border-color:var(--accent);font-weight:800}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:9px 10px;font-size:11px;cursor:pointer}.btn:hover{border-color:#5a756c}
+.list{overflow:auto;flex:1;padding:8px}.fell{display:grid;grid-template-columns:10px 1fr auto;gap:10px;align-items:center;padding:10px;border-radius:12px;cursor:pointer;border:1px solid transparent}.fell:hover{background:var(--panel2);border-color:var(--line)}.dot{width:9px;height:9px;border-radius:50%}.fell h3{font-size:13px;margin:0 0 4px}.meta{font-size:11px;color:var(--muted)}.bag{font-size:10px;color:var(--muted);text-align:right}.bag input{accent-color:var(--accent)}
+.map-wrap{position:relative;min-width:0}.map{height:100%;width:100%}.legend{position:absolute;z-index:600;left:14px;bottom:14px;background:rgba(14,26,23,.94);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);font-size:11px}.legend-row{display:flex;align-items:center;gap:7px;margin:4px 0;color:var(--muted)}.legend .dot{width:8px;height:8px}.source{position:absolute;z-index:600;right:12px;bottom:12px;background:rgba(14,26,23,.9);border:1px solid var(--line);border-radius:9px;padding:6px 8px;color:var(--muted);font-size:9px;max-width:310px}
+.marker{width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 2px 9px rgba(0,0,0,.45)}.marker.easy{background:var(--easy)}.marker.moderate{background:var(--moderate)}.marker.hard{background:var(--hard)}.marker.climbed{box-shadow:0 0 0 4px rgba(215,255,115,.55),0 2px 9px rgba(0,0,0,.45)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#12201d;color:var(--text)}.leaflet-popup-content-wrapper{border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.leaflet-popup-content{margin:14px 14px 12px;min-width:245px}.popup-title{font-size:17px;font-weight:850;letter-spacing:-.02em;margin-bottom:3px}.popup-grade{display:inline-block;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:900;color:#111;margin:6px 0 10px}.grade-easy{background:var(--easy)}.grade-moderate{background:var(--moderate)}.grade-hard{background:var(--hard)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}.tile{background:#0d1815;border:1px solid var(--line);border-radius:9px;padding:8px}.tile span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.06em}.tile b{font-size:12px}.popup-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.popup-actions a,.popup-actions button{display:block;text-decoration:none;text-align:center;background:var(--accent);color:#142019;border:0;border-radius:9px;padding:8px;font-size:10px;font-weight:900;cursor:pointer}.popup-actions a.secondary,.popup-actions button.secondary{background:#20342e;color:var(--text);border:1px solid var(--line)}.warning{font-size:9px;color:var(--muted);line-height:1.35;margin-top:9px}.empty{color:var(--muted);padding:24px;text-align:center;font-size:13px}
+.mobile-toggle{display:none;position:absolute;z-index:700;top:12px;left:12px;border:0;border-radius:10px;background:var(--accent);color:#112018;font-weight:900;padding:9px 11px;box-shadow:var(--shadow)}
+@media(max-width:820px){.app{grid-template-columns:1fr}.sidebar{position:absolute;left:0;top:0;bottom:0;width:min(88vw,370px);transform:translateX(-102%);transition:.2s ease;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}.mobile-toggle{display:block}.source{display:none}}
+
+.route-card{margin-top:10px;padding:10px;border:1px solid var(--line);background:#f7faf8;border-radius:10px;color:#203029}
+.route-card h4{margin:0 0 7px;font-size:13px}.route-card .small{font-size:11px;line-height:1.45;color:#52655d}.route-card .parking-list{display:grid;gap:5px;margin:7px 0}.route-card .parking-item{display:flex;justify-content:space-between;gap:8px;font-size:11px;padding:6px 7px;border-radius:7px;background:#eef4f0}.route-card .parking-item b{font-size:11px}.route-card .route-tags{display:flex;gap:5px;flex-wrap:wrap;margin:7px 0}.route-card .tag{font-size:10px;padding:4px 6px;border-radius:999px;background:#e3ede7;color:#304b40}.route-links{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}.route-links a{display:block;text-align:center;text-decoration:none;padding:7px 6px;border-radius:8px;background:#193028;color:#fff;font-size:10px}.route-links a.alt{background:#e6eee9;color:#193028;border:1px solid #cad8d0}.route-note{margin-top:7px;padding:7px;border-left:3px solid #e3a532;background:#fff8e7;font-size:10px;line-height:1.4;color:#554621}
+.route-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:8px 0}.route-stat{background:#eef4f0;border-radius:8px;padding:7px;text-align:center}.route-stat span{display:block;font-size:9px;color:#65776f;text-transform:uppercase;letter-spacing:.05em}.route-stat b{font-size:11px;color:#1b3027}.route-name{font-size:11px;line-height:1.4;margin:6px 0;color:#31463d}.route-source{font-size:9px;color:#71827a;margin-top:5px}.no-route{padding:8px;border-radius:8px;background:#eef4f0;font-size:10px;line-height:1.4;color:#52655d;margin:7px 0}
+.route-picker{margin:8px 0 6px}.route-picker-label{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:#65776f;margin-bottom:5px}.route-choice{display:flex;gap:5px;flex-wrap:wrap}.route-choice button{border:1px solid #cad8d0;background:#fff;color:#294239;border-radius:999px;padding:5px 7px;font-size:9px;cursor:pointer}.route-choice button.active{background:#193028;color:#fff;border-color:#193028;font-weight:800}.route-character{margin:6px 0;padding:6px 7px;background:#fff8e7;border-left:3px solid #e3a532;border-radius:5px;font-size:9px;line-height:1.35;color:#554621}.route-start-link{display:inline-block;margin-top:5px;font-size:9px;color:#244f3c;text-decoration:underline}.route-count{font-size:9px;color:#71827a;margin-left:4px}
+.route-map-tools{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}.route-map-tools button{border:0;border-radius:8px;padding:8px 6px;font-size:10px;font-weight:800;cursor:pointer;background:#193028;color:#fff}.route-map-tools button.secondary{background:#e6eee9;color:#193028;border:1px solid #cad8d0}.route-map-tools button:disabled{opacity:.55;cursor:wait}.route-map-status{min-height:16px;margin:4px 0 7px;font-size:9px;line-height:1.35;color:#52655d}.route-map-status.ok{color:#285f45}.route-map-status.warn{color:#775514}.route-map-status.error{color:#8b2e2e}.route-map-legend{display:flex;align-items:center;gap:6px;font-size:9px;color:#65776f;margin-bottom:6px}.route-map-line{width:24px;border-top:4px solid #e56b3f;border-radius:3px}.route-map-start{width:10px;height:10px;border-radius:50%;background:#fff;border:3px solid #193028}.route-map-end{width:10px;height:10px;border-radius:50%;background:#e56b3f;border:2px solid #fff;box-shadow:0 0 0 1px #e56b3f}
+.nav-tools{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:7px 0}.nav-tools button{border:0;border-radius:8px;padding:8px 5px;font-size:9px;font-weight:800;cursor:pointer;background:#244f3c;color:#fff}.nav-tools button.secondary{background:#e6eee9;color:#193028;border:1px solid #cad8d0}.nav-tools button:disabled{opacity:.45;cursor:not-allowed}.turn-panel{margin-top:8px;border-top:1px solid #d7e2dc;padding-top:8px}.turn-panel h5{margin:0 0 6px;font-size:11px;color:#213a30}.turn-summary{font-size:9px;color:#63746d;margin-bottom:6px}.turn-list{max-height:230px;overflow:auto;display:grid;gap:5px}.turn-step{display:grid;grid-template-columns:24px 1fr auto;gap:7px;align-items:start;padding:7px;border-radius:8px;background:#eef4f0;font-size:9px;line-height:1.35;color:#31463d}.turn-step.active{outline:2px solid #e56b3f;background:#fff8e7}.turn-icon{font-size:15px;text-align:center;line-height:1.2}.turn-meta{white-space:nowrap;color:#72827b;font-size:8px}.nav-live{margin-top:6px;padding:7px;border-radius:8px;background:#eef4f0;font-size:9px;line-height:1.4;color:#40554c}.nav-live.active{background:#e8f4ec;color:#24553c}.nav-live.warn{background:#fff4d8;color:#74561f;border:1px solid #e8c56b}.nav-live.error{background:#fdecec;color:#862e2e}.offroute-actions{display:none;grid-template-columns:1fr 1fr;gap:6px;margin:6px 0}.offroute-actions.show{display:grid}.offroute-actions button{border:0;border-radius:8px;padding:8px 6px;font-size:9px;font-weight:800;cursor:pointer;background:#9a4c2d;color:#fff}.offroute-actions button.secondary{background:#e6eee9;color:#193028;border:1px solid #cad8d0}.offroute-meter{font-weight:800}
+
+.pwa-status{position:absolute;top:10px;right:10px;z-index:1100;display:flex;gap:6px;align-items:center}.pwa-pill{border:1px solid rgba(255,255,255,.22);background:rgba(12,21,19,.9);color:#eef7f2;border-radius:999px;padding:7px 10px;font-size:11px;backdrop-filter:blur(7px)}.pwa-pill.offline{background:rgba(120,55,30,.92)}.install-btn{display:none;border:0;background:var(--accent);color:#102016;font-weight:900;cursor:pointer}.install-btn.show{display:inline-block}.secure-note{font-size:10px;color:var(--muted);line-height:1.35;margin-top:7px}.secure-note strong{color:var(--text)}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="head">
+      <div class="brand"><div class="brand-mark">W</div><div><h1>Wainwrights Explorer</h1><p class="subtitle">All 214 Lakeland fells. Click a summit for route choices, mapped paths, turn-by-turn directions, stats, starts and parking.</p></div></div>
+      <div class="stats"><div class="stat"><b id="shownCount">—</b><span>shown</span></div><div class="stat"><b id="climbedCount">0</b><span>climbed</span></div><div class="stat"><b id="progressPct">0%</b><span>progress</span></div></div>
+    </div>
+    <div class="controls">
+      <div class="search"><input id="search" placeholder="Search a fell…" autocomplete="off" /></div>
+      <div class="chips" id="gradeChips"><button class="chip active" data-grade="all">All</button><button class="chip" data-grade="easy">Easy</button><button class="chip" data-grade="moderate">Moderate</button><button class="chip" data-grade="hard">Hard</button></div>
+      <div class="filter-row"><select id="heightFilter"><option value="all">Any height</option><option value="under500">Under 500m</option><option value="500to749">500–749m</option><option value="750plus">750m+</option></select><select id="sort"><option value="name">Sort: A–Z</option><option value="heightDesc">Height: high–low</option><option value="heightAsc">Height: low–high</option></select></div>
+      <div class="actions"><button class="btn" id="nearestBtn">📍 Nearest summit</button><button class="btn" id="randomBtn">🎲 Random fell</button></div><button class="btn install-btn" id="installBtn">⬇ Install app</button><div class="secure-note" id="secureNote"><strong>GPS:</strong> live guidance works when this app is served over HTTPS and location permission is allowed.</div>
+    </div>
+    <div class="list" id="fellList"><div class="empty">Loading all 214 summits…</div></div>
+  </aside>
+  <main class="map-wrap">
+    <div class="pwa-status"><span class="pwa-pill" id="networkPill">Online</span></div>
+    <button class="mobile-toggle" id="mobileToggle">☰ Fells</button>
+    <div id="map" class="map"></div>
+    <div class="legend"><b>Summit effort guide</b><div class="legend-row"><span class="dot" style="background:var(--easy)"></span>Lower fell</div><div class="legend-row"><span class="dot" style="background:var(--moderate)"></span>Mid-height fell</div><div class="legend-row"><span class="dot" style="background:var(--hard)"></span>High mountain</div></div>
+    <div class="source">Summit data: Wainwright Peaks / Database of British and Irish Hills (CC BY 4.0). Route statistics and route variants: Wainwright Routes (published ascent figures). Route links: Wainwright Routes / Wainroutes. Suggested starts are planning aids, not live parking availability. Basemap © Esri and contributors. Routing/directions: Valhalla + OpenStreetMap. Live navigation includes off-route detection and rerouting. Installable PWA: app shell is available offline after first load; fresh routing and map tiles still require a data connection.</div>
+  </main>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+const DATA_URL='https://raw.githubusercontent.com/thomaswilsonxyz/wainwright-peaks/main/wainwrights.csv';
+const FALLBACK=[
+{name:'Scafell Pike',heightMetres:978,gridReference:'NY215072',latitude:54.454219,longitude:-3.211511},
+{name:'Helvellyn',heightMetres:950,gridReference:'NY342151',latitude:54.527001,longitude:-3.017514},
+{name:'Skiddaw',heightMetres:931,gridReference:'NY260290',latitude:54.6514,longitude:-3.147761},
+{name:'Great Gable',heightMetres:899,gridReference:'NY211103',latitude:54.482084,longitude:-3.219296},
+{name:'Catbells',heightMetres:451,gridReference:'NY244198',latitude:54.568316,longitude:-3.1707},
+{name:'Latrigg',heightMetres:368,gridReference:'NY279246',latitude:54.612291,longitude:-3.117565}
+];
+let fells=[], filtered=[], markers=new Map(), currentGrade='all';
+const climbed=new Set(JSON.parse(localStorage.getItem('wainwrights-climbed')||'[]'));
+const map=L.map('map',{zoomControl:true}).setView([54.51,-3.08],10);
+setTimeout(()=>map.invalidateSize(),50); window.addEventListener('resize',()=>map.invalidateSize());
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:17,attribution:'Tiles &copy; Esri &mdash; Sources: Esri, HERE, Garmin, FAO, NOAA, USGS, and contributors'}).addTo(map);
+const layer=L.layerGroup().addTo(map);
+
+function parseCSV(text){
+  const lines=text.trim().split(/\r?\n/); const headers=lines.shift().split(',');
+  return lines.map(line=>{
+    const cols=[]; let cur='',q=false; for(let i=0;i<line.length;i++){const c=line[i]; if(c==='"'){if(q&&line[i+1]==='"'){cur+='"';i++;}else q=!q;}else if(c===','&&!q){cols.push(cur);cur='';}else cur+=c;} cols.push(cur);
+    const o={}; headers.forEach((h,i)=>o[h]=cols[i]); o.heightMetres=Number(o.heightMetres); o.latitude=Number(o.latitude); o.longitude=Number(o.longitude); return o;
+  }).filter(x=>Number.isFinite(x.latitude)&&Number.isFinite(x.longitude));
+}
+function grade(f){return f.heightMetres<500?'easy':f.heightMetres<750?'moderate':'hard'}
+function gradeLabel(g){return g[0].toUpperCase()+g.slice(1)}
+function cleanName(name){return name.replace(/-Hallsfell Top/g,' — Hallsfell Top').replace(/\s*\(Wainwright summit\)/g,'').replace(/\(([^()]*)\)/g,'($1)')}
+function markerIcon(f){const g=grade(f),c=climbed.has(f.name)?' climbed':'';return L.divIcon({className:'',html:`<div class="marker ${g}${c}"></div>`,iconSize:[14,14],iconAnchor:[7,7]})}
+
+const ROUTE_STATS={"Arnison Crag":{"route":"From Patterdale via the north ridge","miles":1.0,"ascentFt":880,"time":"0h 50m"},"Birkhouse Moor":{"route":"From Glenridding via the north-east ridge","miles":2.0,"ascentFt":1860,"time":"1h 40m"},"Birks":{"route":"From Patterdale via Thornhow End","miles":1.8,"ascentFt":1590,"time":"1h 30m"},"Catstycam":{"route":"From Glenridding via the north west ridge","miles":3.7,"ascentFt":2450,"time":"2h 40m"},"Clough Head":{"route":"From Lowthwaite via Fisher's Wife's Rake","miles":2.0,"ascentFt":1900,"time":"1h 45m"},"Dollywaggon Pike":{"route":"From Patterdale via The Tongue","miles":4.2,"ascentFt":2495,"time":"2h 50m"},"Dove Crag":{"route":"From Cow Bridge via Houndshope Cove","miles":3.3,"ascentFt":2200,"time":"2h 25m"},"Fairfield":{"route":"From Mill Bridge via Grisedale Hause","miles":2.6,"ascentFt":2550,"time":"2h 20m"},"Glenridding Dodd":{"route":"From Glenridding via The Rake","miles":1.0,"ascentFt":950,"time":"0h 50m"},"Gowbarrow Fell":{"route":"From Park Brow Foot via the Kirkstyle path","miles":2.5,"ascentFt":1290,"time":"1h 35m"},"Great Dodd":{"route":"From High Row via Randerside","miles":3.0,"ascentFt":1520,"time":"1h 55m"},"Great Mell Fell":{"route":"Direct from Brownrigg Farm","miles":1.0,"ascentFt":900,"time":"0h 50m"},"Great Rigg":{"route":"From Grasmere via Greenhead Gill","miles":2.5,"ascentFt":2300,"time":"2h 10m"},"Hart Crag":{"route":"From Bridgend via Link Cove","miles":3.6,"ascentFt":2280,"time":"2h 30m"},"Hart Side":{"route":"From Park Brow via Glencoyne Park","miles":3.0,"ascentFt":1860,"time":"2h 05m"},"Hartsop above How":{"route":"From Bridgend","miles":2.2,"ascentFt":1440,"time":"1h 30m"},"Helvellyn":{"route":"From Swirls via the edge of Browncove Crags","miles":2.3,"ascentFt":2475,"time":"2h 10m"},"Heron Pike":{"route":"From Grasmere via Alcock Tarn","miles":2.5,"ascentFt":1860,"time":"1h 55m"},"High Hartsop Dodd":{"route":"From Cow Bridge via the north ridge","miles":2.0,"ascentFt":1275,"time":"1h 25m"},"High Pike":{"route":"From Ambleside via High Sweden Bridge","miles":3.3,"ascentFt":2080,"time":"2h 15m"},"Little Hart Crag":{"route":"From Kirkstonefoot via Caiston Glen","miles":2.0,"ascentFt":1535,"time":"1h 35m"},"Little Mell Fell":{"route":"Direct from The Hause","miles":0.4,"ascentFt":400,"time":"0h 25m"},"Low Pike":{"route":"From Ambleside via Low Sweden Bridge","miles":2.5,"ascentFt":1480,"time":"1h 40m"},"Middle Dodd":{"route":"Direct from Kirkstonefoot","miles":1.25,"ascentFt":1550,"time":"1h 20m"},"Nab Scar":{"route":"Direct from Rydal","miles":1.0,"ascentFt":1275,"time":"1h 00m"},"Nethermost Pike":{"route":"From Patterdale via the east ridge","miles":4.8,"ascentFt":2880,"time":"3h 15m"},"Raise":{"route":"From Glenridding via Stang","miles":3.3,"ascentFt":2425,"time":"2h 30m"},"Red Screes":{"route":"From the summit of the Kirkstone Pass","miles":0.7,"ascentFt":1050,"time":"0h 45m"},"St. Sunday Crag":{"route":"From Bridgend via the east ridge","miles":2.8,"ascentFt":2260,"time":"2h 15m"},"Seat Sandal":{"route":"From Dunmail Raise via Raise Beck","miles":1.5,"ascentFt":1620,"time":"1h 25m"},"Sheffield Pike":{"route":"From Glencoyne via Heron Pike","miles":1.9,"ascentFt":1710,"time":"2h 05m"},"Stone Arthur":{"route":"Direct from Grasmere","miles":1.5,"ascentFt":1450,"time":"1h 10m"},"Stybarrow Dodd":{"route":"From Legburthwaite via Sticks Pass","miles":2.3,"ascentFt":2220,"time":"2h 00m"},"Watson's Dodd":{"route":"Direct from Legburthwaite","miles":1.6,"ascentFt":2060,"time":"1h 40m"},"White Side":{"route":"From Thirlspot via Brown Crags","miles":2.2,"ascentFt":2220,"time":"2h 00m"},"Angletarn Pikes":{"route":"From Bridgend via Boredale Hause","miles":2.3,"ascentFt":1400,"time":"1h 35m"},"Arthur's Pike":{"route":"From Askham via Moor Divock","miles":3.8,"ascentFt":1142,"time":"2h 00m"},"Beda Fell":{"route":"From St. Martin's Church via Winter Crag","miles":1.5,"ascentFt":1120,"time":"1h 10m"},"Bonscale Pike":{"route":"From Martindale Hause via the west flank","miles":1.75,"ascentFt":1290,"time":"1h 20m"},"Branstree":{"route":"From Haweswater via the north ridge","miles":1.5,"ascentFt":1430,"time":"1h 20m"},"Brock Crags":{"route":"From Hartsop via Hayeswater Gill","miles":1.9,"ascentFt":1340,"time":"1h 25m"},"Caudale Moor":{"route":"From the Kirkstone Pass via St. Raven's Edge","miles":2.0,"ascentFt":1200,"time":"1h 20m"},"Froswick":{"route":"From Town End via Scot Rake","miles":4.0,"ascentFt":1970,"time":"2h 30m"},"Gray Crag":{"route":"From Hartsop via the north ridge","miles":1.7,"ascentFt":1740,"time":"1h 35m"},"Hallin Fell":{"route":"From Martindale Hause","miles":0.5,"ascentFt":490,"time":"0h 25m"},"Hartsop Dodd":{"route":"From Hartsop via the north ridge","miles":1.0,"ascentFt":1430,"time":"1h 10m"},"Ill Bell":{"route":"From Kentmere via the north-east ridge","miles":4.0,"ascentFt":2330,"time":"3h 00m"},"The Knott":{"route":"From Hartsop via Hayeswater Gill","miles":2.0,"ascentFt":1850,"time":"1h 45m"},"Loadpot Hill":{"route":"From Askham via Moor Divock","miles":5.1,"ascentFt":1520,"time":"2h 40m"},"The Nab":{"route":"From Bridgend via Satura Crag","miles":4.5,"ascentFt":2000,"time":"2h 55m"},"Place Fell":{"route":"From Patterdale via Boredale Hause","miles":2.0,"ascentFt":1720,"time":"1h 40m"},"Rampsgill Head":{"route":"From Hartsop via Hayeswater Gill","miles":2.5,"ascentFt":2075,"time":"2h 00m"},"Rest Dodd":{"route":"From Hartsop via Satura Crag","miles":3.0,"ascentFt":1825,"time":"2h 05m"},"Sallows":{"route":"From Church Bridge via the Garburn Road","miles":2.7,"ascentFt":1325,"time":"1h 40m"},"Selside Pike":{"route":"From Haweswater via Selside End","miles":2.0,"ascentFt":1266,"time":"1h 25m"},"Sour Howes":{"route":"From Church Bridge via Backstone Barrow","miles":1.5,"ascentFt":1190,"time":"1h 10m"},"Steel Knotts":{"route":"From Martindale Hause via Birkie Knott","miles":1.0,"ascentFt":660,"time":"0h 40m"},"Thornthwaite Crag":{"route":"From Hartsop via Threshthwaite Mouth","miles":2.8,"ascentFt":2060,"time":"2h 05m"},"Troutbeck Tongue":{"route":"From Troutbeck via the south ridge","miles":2.3,"ascentFt":825,"time":"1h 05m"},"Wansfell":{"route":"From Church Bridge via Nanny Lane","miles":2.8,"ascentFt":1380,"time":"1h 45m"},"Wether Hill":{"route":"From Burnbanks via Low Kop","miles":4.5,"ascentFt":1615,"time":"2h 30m"},"Yoke":{"route":"From Church Bridge via the Garburn Pass","miles":3.9,"ascentFt":1990,"time":"2h 30m"},"Armboth Fell":{"route":"From Armboth via Fisher Gill","miles":1.25,"ascentFt":960,"time":"1h 00m"},"Bleaberry Fell":{"route":"From Dale Bottom via Goat Crag","miles":1.9,"ascentFt":1470,"time":"1h 30m"},"Blea Rigg":{"route":"From Grasmere via Easedale Tarn","miles":3.0,"ascentFt":1640,"time":"2h 00m"},"Calf Crag":{"route":"From Grasmere via Far Easedale","miles":4.0,"ascentFt":1725,"time":"2h 20m"},"Eagle Crag":{"route":"Direct from Stonethwaite","miles":1.9,"ascentFt":1440,"time":"1h 30m"},"Gibson Knott":{"route":"From Mill Bridge via Greenburn Bottom","miles":3.0,"ascentFt":1360,"time":"1h 50m"},"Grange Fell":{"route":"From Quayfoot via King's How","miles":1.8,"ascentFt":1350,"time":"1h 20m"},"Great Crag":{"route":"From Stonethwaite via Lingy End","miles":1.5,"ascentFt":1150,"time":"1h 10m"},"Harrison Stickle":{"route":"From the NDG Hotel via Pike How","miles":1.5,"ascentFt":2140,"time":"1h 45m"},"Helm Crag":{"route":"From Grasmere via the south east ridge","miles":2.0,"ascentFt":1250,"time":"1h 25m"},"High Seat":{"route":"From Rough How Bridge via Shoulthwaite Gill","miles":2.4,"ascentFt":1500,"time":"1h 40m"},"High Tove":{"route":"Direct from Armboth","miles":1.2,"ascentFt":1050,"time":"1h 00m"},"Loft Crag":{"route":"From the NDG Hotel via Mark Gate","miles":1.7,"ascentFt":1930,"time":"1h 40m"},"Loughrigg Fell":{"route":"From White Moss via Loughrigg Terrace","miles":1.3,"ascentFt":945,"time":"0h 55m"},"Pavey Ark":{"route":"From the NDG Hotel via the North Rake","miles":1.7,"ascentFt":2010,"time":"1h 40m"},"Pike o' Stickle":{"route":"From the ODG Hotel via Troughton Beck","miles":3.0,"ascentFt":2080,"time":"2h 15m"},"Raven Crag":{"route":"From Smaithwite Bridge","miles":1.7,"ascentFt":1170,"time":"1h 15m"},"Sergeant Man":{"route":"From Grasmere via Codale Tarn","miles":4.2,"ascentFt":2420,"time":"2h 50m"},"Sergeant's Crag":{"route":"From Stonethwaite via Brown Crag","miles":4.6,"ascentFt":1840,"time":"2h 40m"},"Silver How":{"route":"From Elterwater via Huntingstile Gap","miles":1.8,"ascentFt":1560,"time":"1h 15m"},"Steel Fell":{"route":"From Mill Bridge via the south east ridge","miles":1.65,"ascentFt":1485,"time":"1h 25m"},"Tarn Crag":{"route":"From Grasmere via the east ridge","miles":3.2,"ascentFt":1720,"time":"2h 05m"},"Thunacar Knott":{"route":"From the NDG Hotel via Stickle Ghyll","miles":1.75,"ascentFt":2080,"time":"1h 45m"},"Ullscarf":{"route":"From Thirlmere (Dob Gill) via Standing Crag","miles":2.7,"ascentFt":1775,"time":"1h 55m"},"Walla Crag":{"route":"From Great Wood via Cat Gill","miles":0.9,"ascentFt":850,"time":"0h 45m"},"Bowfell":{"route":"From the ODG Hotel via Oxendale and Hell Gill","miles":3.8,"ascentFt":2790,"time":"2h 50m"},"Brim Fell":{"route":"From Coniston (fell gate) via Brim Fell Rake","miles":2.3,"ascentFt":2050,"time":"1h 55m"},"Cold Pike":{"route":"From the ODG Hotel via Browney Gill","miles":3.2,"ascentFt":2100,"time":"2h 20m"},"Coniston Old Man":{"route":"From Coniston (fell gate) via the south ridge","miles":2.4,"ascentFt":2075,"time":"2h 05m"},"Crinkle Crags":{"route":"From the ODG Hotel via Red Tarn","miles":3.8,"ascentFt":2790,"time":"2h 50m"},"Dow Crag":{"route":"From Torver via the Walna Scar Pass","miles":3.8,"ascentFt":2405,"time":"2h 40m"},"Esk Pike":{"route":"From Seathwaite via Ruddy Gill","miles":3.5,"ascentFt":2590,"time":"2h 40m"},"Glaramara":{"route":"From Seatoller via Thornythwaite Fell","miles":3.0,"ascentFt":2310,"time":"2h 20m"},"Great Carrs":{"route":"From Little Langdale via Wet Side Edge","miles":4.0,"ascentFt":2410,"time":"2h 45m"},"Great End":{"route":"From Seathwaite via The Band","miles":3.3,"ascentFt":2570,"time":"2h 40m"},"Green Crag":{"route":"From the Birkerfell road via Great Worm Crag","miles":2.5,"ascentFt":990,"time":"1h 15m"},"Grey Friar":{"route":"From the Duddon Valley via Troutal Fell","miles":3.2,"ascentFt":2020,"time":"2h 15m"},"Hard Knott":{"route":"From Brotherilkeld via Border End","miles":2.0,"ascentFt":1660,"time":"1h 40m"},"Harter Fell":{"route":"From Birks Bridge via the south west face","miles":3.0,"ascentFt":1700,"time":"2h 05m"},"Holme Fell":{"route":"From Glen Mary Bridge via Uskdale Gap","miles":1.5,"ascentFt":800,"time":"0h 55m"},"Illgill Head":{"route":"From Wasdale Head","miles":2.2,"ascentFt":1800,"time":"1h 45m"},"Lingmell":{"route":"From Wasdale Head via Piers Gill","miles":3.6,"ascentFt":2650,"time":"2h 45m"},"Lingmoor Fell":{"route":"From Elterwater via the east ridge","miles":2.17,"ascentFt":1400,"time":"1h 30m"},"Pike o' Blisco":{"route":"From the ODG Hotel via Redacre Gill","miles":2.0,"ascentFt":1950,"time":"1h 45m"},"Rossett Pike":{"route":"From the ODG Hotel via Rossett Gill","miles":3.2,"ascentFt":1860,"time":"2h 10m"},"Rosthwaite Fell":{"route":"From Stonethwaite via Big Stanger Gill","miles":1.75,"ascentFt":1600,"time":"1h 30m"},"Scafell":{"route":"From Wasdale via the West Wall Traverse","miles":2.3,"ascentFt":2917,"time":"2h 45m"},"Scafell Pike":{"route":"From Wasdale Head via Mickledore","miles":2.4,"ascentFt":2993,"time":"2h 30m"},"Seathwaite Fell":{"route":"From Seathwaite via Aaron Crags","miles":2.0,"ascentFt":1720,"time":"1h 40m"},"Slight Side":{"route":"From Wasdale Head via Great How","miles":4.7,"ascentFt":2650,"time":"3h 10m"},"Swirl How":{"route":"From Coniston via Prison Band","miles":3.3,"ascentFt":2610,"time":"2h 40m"},"Wetherlam":{"route":"From Coniston via Black Sails","miles":3.3,"ascentFt":2485,"time":"2h 30m"},"Whin Rigg":{"route":"From Irton Park via Irton Fell","miles":2.7,"ascentFt":1470,"time":"1h 45m"},"Bakestall":{"route":"From Peter House via Birkett Edge","miles":2.4,"ascentFt":1512,"time":"1h 40m"},"Bannerdale Crags":{"route":"From Mungrisdale via the east ridge","miles":2.2,"ascentFt":1500,"time":"1h 35m"},"Binsey":{"route":"From Bewaldeth via West Crag","miles":1.6,"ascentFt":910,"time":"1h 05m"},"Blencathra":{"route":"From Scales via Hall's Fell","miles":2.3,"ascentFt":2325,"time":"2h 05m"},"Bowscale Fell":{"route":"From Bowscale via Bowscale Tarn","miles":2.5,"ascentFt":1550,"time":"1h 45m"},"Brae Fell":{"route":"From Longlands via Charleton Gill","miles":2.8,"ascentFt":1207,"time":"1h 40m"},"Carl Side":{"route":"From Millbeck via Doups","miles":1.5,"ascentFt":2070,"time":"1h 40m"},"Carrock Fell":{"route":"From Stone Ends","miles":1.2,"ascentFt":1400,"time":"1h 10m"},"Dodd":{"route":"From Millbeck via Long Doors","miles":1.5,"ascentFt":1270,"time":"1h 25m"},"Great Calva":{"route":"From Mosedale via the east flank","miles":3.0,"ascentFt":1320,"time":"1h 50m"},"Great Cockup":{"route":"From Longlands via Trusmadoor","miles":2.3,"ascentFt":1190,"time":"1h 30m"},"Great Sca Fell":{"route":"From Longlands via Charleton Gill","miles":2.9,"ascentFt":1457,"time":"1h 50m"},"Knott":{"route":"From Mosedale via Coomb Height","miles":5.3,"ascentFt":1685,"time":"2h 50m"},"Latrigg":{"route":"From Keswick via Mallen Dodd","miles":1.77,"ascentFt":950,"time":"1h 10m"},"Longlands Fell":{"route":"From Longlands via the north ridge","miles":1.2,"ascentFt":855,"time":"0h 55m"},"Long Side":{"route":"From Dodd Wood via Gable Gill","miles":1.75,"ascentFt":2065,"time":"1h 45m"},"Lonscale Fell":{"route":"From Keswick via the east ridge","miles":3.8,"ascentFt":2370,"time":"2h 40m"},"Meal Fell":{"route":"From Longlands via Trusmadoor","miles":2.3,"ascentFt":1220,"time":"1h 30m"},"Mungrisdale Common":{"route":"From Mosedale via the north ridge","miles":3.2,"ascentFt":1235,"time":"1h 50m"},"Skiddaw":{"route":"From Gale Road via Jenkin Hill","miles":3.1,"ascentFt":2125,"time":"2h 20m"},"Skiddaw Little Man":{"route":"From Millbeck via the south-west arete","miles":1.5,"ascentFt":2440,"time":"1h 50m"},"Souther Fell":{"route":"From Mungrisdale via the north east ridge","miles":1.53,"ascentFt":1055,"time":"1h 10m"},"Ullock Pike":{"route":"From Ravenstone via The Edge","miles":1.7,"ascentFt":1860,"time":"1h 40m"},"Ard Crags":{"route":"From Buttermere via Sail Beck","miles":3.4,"ascentFt":1700,"time":"2h 10m"},"Barf":{"route":"From Powter How via Beckstones Gill","miles":0.9,"ascentFt":1200,"time":"1h 00m"},"Barrow":{"route":"From Braithwaite via the north east ridge","miles":1.35,"ascentFt":1210,"time":"1h 10m"},"Broom Fell":{"route":"From Spout Force via the south ridge","miles":1.55,"ascentFt":930,"time":"1h 00m"},"Castle Crag":{"route":"From Rosthwaite via Lingy Bank","miles":1.4,"ascentFt":890,"time":"1h 00m"},"Catbells":{"route":"From Gutherscale via the north ridge","miles":1.0,"ascentFt":1000,"time":"0h 55m"},"Causey Pike":{"route":"From Stonycroft Bridge via Rowling End","miles":1.3,"ascentFt":1730,"time":"1h 10m"},"Dale Head":{"route":"From Seatoller via High Scawdel","miles":2.7,"ascentFt":2170,"time":"2h 10m"},"Eel Crag":{"route":"From Braithwaite via The Shelf","miles":4.0,"ascentFt":2590,"time":"2h 50m"},"Grasmoor":{"route":"From Lanthwaite Green via Grasmoor End","miles":1.25,"ascentFt":2280,"time":"1h 40m"},"Graystones":{"route":"From Spout Force via Darling How Plantation","miles":2.0,"ascentFt":890,"time":"1h 15m"},"Grisedale Pike":{"route":"From Comb Bridge via the north ridge","miles":1.85,"ascentFt":1560,"time":"1h 30m"},"High Spy":{"route":"From Rosthwaite via Rigghead Quarry","miles":2.6,"ascentFt":1990,"time":"2h 00m"},"Hindscarth":{"route":"From Church Bridge via Scope End","miles":2.5,"ascentFt":2000,"time":"2h 00m"},"Hopegill Head":{"route":"From Swinside via Ladyside Pike","miles":2.3,"ascentFt":1765,"time":"1h 50m"},"Knott Rigg":{"route":"From Buttermere via Sail Beck","miles":1.9,"ascentFt":1410,"time":"1h 30m"},"Ling Fell":{"route":"From Brumston Bridge","miles":1.25,"ascentFt":740,"time":"0h 50m"},"Lord's Seat":{"route":"From Spout Force via Aiken Beck","miles":2.6,"ascentFt":1110,"time":"1h 35m"},"Maiden Moor":{"route":"From Grange via Hause Gate","miles":2.5,"ascentFt":1715,"time":"1h 50m"},"Outerside":{"route":"From Braithwaite via Stile End","miles":2.2,"ascentFt":1660,"time":"1h 40m"},"Rannerdale Knotts":{"route":"From Buttermere via Low Bank","miles":1.4,"ascentFt":850,"time":"1h 00m"},"Robinson":{"route":"From Buttermere via High Snockrigg","miles":2.2,"ascentFt":2145,"time":"1h 55m"},"Sail":{"route":"From Buttermere via Sail Pass","miles":4.0,"ascentFt":2270,"time":"2h 40m"},"Sale Fell":{"route":"From St. Margaret's Church via the west ridge","miles":1.2,"ascentFt":730,"time":"0h 50m"},"Scar Crags":{"route":"From Uzzicar via Sail Pass","miles":2.8,"ascentFt":1805,"time":"2h 00m"},"Wandope":{"route":"From Buttermere via Addacomb Ridge","miles":3.2,"ascentFt":2240,"time":"2h 20m"},"Whinlatter":{"route":"From Whinlatter Pass via Whinlatter Top","miles":1.5,"ascentFt":1025,"time":"1h 00m"},"Whiteless Pike":{"route":"From Buttermere via Whiteless Breast","miles":1.6,"ascentFt":1710,"time":"1h 30m"},"Whiteside":{"route":"From Lanthwaite Green via Whin Ben","miles":1.4,"ascentFt":1885,"time":"1h 30m"},"Base Brown":{"route":"From Seathwaite via Sourmilk Gill","miles":1.3,"ascentFt":1730,"time":"1h 25m"},"Blake Fell":{"route":"From Felldyke via High Pen","miles":2.8,"ascentFt":1460,"time":"1h 45m"},"Brandreth":{"route":"From Seathwaite via Gillercomb Head","miles":2.0,"ascentFt":1950,"time":"1h 45m"},"Buckbarrow":{"route":"From Harrow Head via Gill Beck","miles":1.0,"ascentFt":1050,"time":"0h 55m"},"Burnbank Fell":{"route":"From Fangs Brow via the north east ridge","miles":1.25,"ascentFt":860,"time":"1h 05m"},"Caw Fell":{"route":"From Netherbeck Bridge via Great Lad Crag","miles":3.8,"ascentFt":2200,"time":"2h 30m"},"Crag Fell":{"route":"From Bleach Green via Cragfell Pinnacles","miles":2.3,"ascentFt":1550,"time":"1h 40m"},"Fellbarrow":{"route":"From Waterend via the Mosser Fell Road","miles":2.0,"ascentFt":970,"time":"1h 15m"},"Gavel Fell":{"route":"From Cross Rigg via Fothergill Head","miles":2.4,"ascentFt":955,"time":"1h 20m"},"Great Borne":{"route":"From Bowness Knott via Rake Beck","miles":1.6,"ascentFt":1640,"time":"1h 30m"},"Great Gable":{"route":"From Wasdale Head via the Breast Route","miles":3.2,"ascentFt":2725,"time":"2h 40m"},"Green Gable":{"route":"From Seathwaite via Gillercomb","miles":2.0,"ascentFt":2230,"time":"1h 55m"},"Grey Knotts":{"route":"From Seathwaite Bridge via Newhouse Gill","miles":1.75,"ascentFt":1900,"time":"1h 40m"},"Grike":{"route":"From Scaly Moss via the old mine road","miles":2.0,"ascentFt":860,"time":"1h 10m"},"Haycock":{"route":"From Netherbeck Bridge via Nether Beck","miles":3.5,"ascentFt":2415,"time":"2h 30m"},"Haystacks":{"route":"From Gatescarth via Warnscale","miles":2.7,"ascentFt":1800,"time":"1h 50m"},"Hen Comb":{"route":"From Loweswater via the north ridge","miles":2.3,"ascentFt":1300,"time":"1h 30m"},"High Crag":{"route":"From Buttermere via Sheepbone Rake","miles":2.6,"ascentFt":2160,"time":"2h 05m"},"High Stile":{"route":"From Buttermere via the north-east ridge","miles":2.9,"ascentFt":2400,"time":"2h 20m"},"Kirk Fell":{"route":"From Wasdale Head via Beck Head","miles":3.0,"ascentFt":2460,"time":"2h 20m"},"Lank Rigg":{"route":"From Blakeley via Whoap Beck","miles":2.7,"ascentFt":1060,"time":"1h 35m"},"Low Fell":{"route":"From Waterend via Darling Fell","miles":2.0,"ascentFt":1330,"time":"1h 30m"},"Mellbreak":{"route":"From Loweswater via the north ridge","miles":2.0,"ascentFt":1520,"time":"1h 35m"},"Middle Fell":{"route":"From Greendale via the south ridge","miles":1.33,"ascentFt":1637,"time":"1h 25m"},"Pillar":{"route":"From Wasdale Head via the High Level Route","miles":4.0,"ascentFt":3400,"time":"3h 15m"},"Scoat Fell":{"route":"From Netherbeck Bridge via Scoat Tarn","miles":4.4,"ascentFt":2790,"time":"3h 05m"},"Seatallan":{"route":"From Greendale via Greendale Tarn","miles":2.4,"ascentFt":2030,"time":"1h 55m"},"Steeple":{"route":"From Bowness Knott via Lingmell","miles":4.3,"ascentFt":2450,"time":"2h 55m"},"Yewbarrow":{"route":"From Overbeck Bridge direct via Bell Rib","miles":1.3,"ascentFt":1830,"time":"1h 30m"}};
+const ROUTE_VARIANTS={
+"Catstycam":[
+ {route:"From Glenridding via the north west ridge",miles:3.7,ascentFt:2450,time:"2h 40m"},
+ {route:"From Glenridding via the east shoulder",miles:3.6,ascentFt:2430,time:"2h 40m"}
+],
+"Fairfield":[
+ {route:"From Mill Bridge via Grisedale Hause",miles:2.6,ascentFt:2550,time:"2h 20m"},
+ {route:"From Bridgend via Deepdale Hause",miles:3.6,ascentFt:2400,time:"2h 35m"},
+ {route:"From Bridgend via Greenhow End",miles:4.2,ascentFt:2490,time:"2h 50m"}
+],
+"Helvellyn":[
+ {route:"From Swirls via the edge of Browncove Crags",miles:2.3,ascentFt:2475,time:"2h 10m",label:"Shortest published ascent"},
+ {route:"From Glenridding via Swirral Edge",miles:4.2,ascentFt:2860,time:"3h 00m",label:"Edge route",character:"Exposed ridge terrain. Choose only if the conditions and your experience suit the route."},
+ {route:"From Glenridding via Striding Edge",miles:3.7,ascentFt:2830,time:"2h 50m",label:"Classic edge route",character:"Exposed scrambling terrain. Avoid treating this as a routine footpath, especially in poor weather."}
+],
+"Red Screes":[
+ {route:"From the summit of the Kirkstone Pass",miles:0.7,ascentFt:1050,time:"0h 45m"},
+ {route:"From Ambleside via the south ridge",miles:3.5,ascentFt:2375,time:"2h 35m"}
+],
+"Seat Sandal":[
+ {route:"From Dunmail Raise via Raise Beck",miles:1.5,ascentFt:1620,time:"1h 25m"},
+ {route:"From Mill Bridge via Grisedale Hause",miles:2.2,ascentFt:2090,time:"2h 00m"},
+ {route:"From Mill Bridge via the south ridge",miles:1.75,ascentFt:2077,time:"1h 45m"}
+],
+"Helm Crag":[
+ {route:"From Grasmere via the south east ridge",miles:2.0,ascentFt:1250,time:"1h 25m"},
+ {route:"From Mill Bridge via Bracken Hause",miles:1.5,ascentFt:1110,time:"1h 10m"}
+],
+"High Rigg":[
+ {route:"From Smaithwaite Bridge via the south ridge",miles:1.8,ascentFt:900,time:"1h 05m"},
+ {route:"From Sosgill Bridge via St. John's Hause",miles:1.7,ascentFt:840,time:"1h 05m"}
+],
+"Loughrigg Fell":[
+ {route:"From White Moss via Loughrigg Terrace",miles:1.3,ascentFt:945,time:"0h 55m"},
+ {route:"From Pelter Bridge",miles:2.7,ascentFt:1275,time:"1h 40m"},
+ {route:"From Clappersgate via Todd Crag",miles:2.4,ascentFt:1190,time:"1h 30m"}
+],
+"Silver How":[
+ {route:"From Elterwater via Huntingstile Gap",miles:1.8,ascentFt:1560,time:"1h 15m"},
+ {route:"From Robinson Place via Meg's Gill",miles:1.5,ascentFt:1275,time:"1h 10m"}
+],
+"Allen Crags":[
+ {route:"From Seathwaite via Allen Gill",miles:2.7,ascentFt:2190,time:"2h 15m"},
+ {route:"From Seathwaite via Ruddy Gill",miles:3.1,ascentFt:2220,time:"2h 20m"}
+],
+"Black Fell":[
+ {route:"From Tom Gill then via Tarn Hows",miles:2.5,ascentFt:935,time:"1h 25m"},
+ {route:"From Borwick Lodge via the Mountain Road",miles:1.0,ascentFt:650,time:"1h 00m"}
+],
+"Coniston Old Man":[
+ {route:"From Coniston (fell gate) via the south ridge",miles:2.4,ascentFt:2075,time:"2h 05m"},
+ {route:"From Coniston (fell gate) via Low Water",miles:2.0,ascentFt:1960,time:"1h 45m"},
+ {route:"From Little Arrow via Goat Crag",miles:2.8,ascentFt:2330,time:"2h 15m"},
+ {route:"From Coniston (fell gate) via the Diamond path",miles:1.6,ascentFt:1950,time:"1h 35m"},
+ {route:"From Torver via Goat's Hawse",miles:3.5,ascentFt:2420,time:"2h 35m"}
+],
+"Dow Crag":[
+ {route:"From Torver via the Walna Scar Pass",miles:3.8,ascentFt:2405,time:"2h 40m"},
+ {route:"From Torver via the south rake",miles:3.0,ascentFt:2240,time:"2h 20m",character:"Rake route: check the detailed route description and ground conditions before choosing it."},
+ {route:"From Little Arrow via Goat's Hause",miles:3.4,ascentFt:2300,time:"2h 30m"},
+ {route:"From the Duddon Valley via Seathwaite Tarn",miles:3.7,ascentFt:2350,time:"2h 35m"}
+],
+"Great End":[
+ {route:"From Seathwaite via The Band",miles:3.3,ascentFt:2570,time:"2h 40m"},
+ {route:"From Seathwaite via Esk Hause",miles:3.5,ascentFt:2560,time:"2h 40m"}
+],
+"Holme Fell":[
+ {route:"From Glen Mary Bridge via Uskdale Gap",miles:1.5,ascentFt:800,time:"0h 55m"},
+ {route:"From Oxen Fell via the north-east ridge",miles:1.5,ascentFt:715,time:"0h 55m"}
+],
+"Scafell":[
+ {route:"From Wasdale via the West Wall Traverse",miles:2.3,ascentFt:2917,time:"2h 45m",character:"Serious mountain terrain. Read the detailed route description before committing."},
+ {route:"From Wasdale via Lord's Rake",miles:2.3,ascentFt:3100,time:"2h 35m",character:"Rake route with serious mountain terrain; conditions can materially change the risk."}
+],
+"Scafell Pike":[
+ {route:"From Wasdale Head via Mickledore",miles:2.4,ascentFt:2993,time:"2h 30m"},
+ {route:"From Wasdale Head via Hollow Stones",miles:2.5,ascentFt:2962,time:"2h 35m"}
+],
+"Bannerdale Crags":[
+ {route:"From Mungrisdale via the east ridge",miles:2.2,ascentFt:1500,time:"1h 35m"},
+ {route:"From Mungrisdale via Bannerdale",miles:2.8,ascentFt:1542,time:"1h 10m"}
+],
+"Binsey":[
+ {route:"From Bewaldeth via West Crag",miles:1.6,ascentFt:910,time:"1h 05m"},
+ {route:"From Binsey Lodge",miles:0.7,ascentFt:585,time:"0h 35m",label:"Shortest published ascent"}
+],
+"Bowscale Fell":[
+ {route:"From Bowscale via Bowscale Tarn",miles:2.5,ascentFt:1550,time:"1h 45m"},
+ {route:"From Mungrisdale via Bannerdale",miles:2.3,ascentFt:1550,time:"1h 54m"},
+ {route:"From Mungrisdale via the east ridge",miles:2.5,ascentFt:1570,time:"1h 45m"}
+],
+"Knott":[
+ {route:"From Mosedale via Coomb Height",miles:5.3,ascentFt:1685,time:"2h 50m"},
+ {route:"From Mosedale via Grainsgill Beck",miles:4.4,ascentFt:1660,time:"2h 30m"}
+],
+"Barf":[
+ {route:"From Powter How via Beckstones Gill",miles:0.9,ascentFt:1200,time:"1h 00m"},
+ {route:"Direct from Powter How",miles:0.7,ascentFt:1190,time:"0h 55m"}
+],
+"Barrow":[
+ {route:"From Braithwaite via the north east ridge",miles:1.35,ascentFt:1210,time:"1h 10m"},
+ {route:"From Uzzicar via Stonycroft Gill",miles:2.1,ascentFt:1100,time:"1h 25m"}
+],
+"Grasmoor":[
+ {route:"From Lanthwaite Green via Grasmoor End",miles:1.25,ascentFt:2280,time:"1h 40m"},
+ {route:"From Cinderdale Common via Lad Hows",miles:1.7,ascentFt:2460,time:"2h 00m"}
+],
+"Outerside":[
+ {route:"From Braithwaite via Stile End",miles:2.2,ascentFt:1660,time:"1h 40m"},
+ {route:"From Uzzicar via Stonycroft Gill",miles:2.1,ascentFt:1440,time:"1h 35m"}
+],
+"Robinson":[
+ {route:"From Buttermere via High Snockrigg",miles:2.2,ascentFt:2145,time:"1h 55m"},
+ {route:"From Chapel Bridge via High Snab Bank",miles:2.7,ascentFt:2030,time:"2h 10m"}
+],
+"Sail":[
+ {route:"From Buttermere via Sail Pass",miles:4.0,ascentFt:2270,time:"2h 40m"},
+ {route:"From Uzzicar via Stonycroft Gill",miles:3.0,ascentFt:2140,time:"2h 20m"}
+],
+"Sale Fell":[
+ {route:"From St. Margaret's Church via the west ridge",miles:1.2,ascentFt:730,time:"0h 50m"},
+ {route:"From Brumston Bridge via Rivings",miles:1.8,ascentFt:700,time:"1h 05m"},
+ {route:"From St. Margaret's Church",miles:1.0,ascentFt:775,time:"0h 50m"}
+],
+"Blake Fell":[
+ {route:"From Felldyke via High Pen",miles:2.8,ascentFt:1460,time:"1h 45m"},
+ {route:"From Felldyke via Sharp Knott",miles:2.7,ascentFt:1460,time:"1h 40m"}
+],
+"Burnbank Fell":[
+ {route:"From Fangs Brow via the north east ridge",miles:1.25,ascentFt:860,time:"1h 05m"},
+ {route:"From Maggie's Bridge via Holme Wood",miles:2.0,ascentFt:1240,time:"1h 20m"}
+],
+"Great Gable":[
+ {route:"From Wasdale Head via the Breast Route",miles:3.2,ascentFt:2725,time:"2h 40m"},
+ {route:"From Wasdale Head via Beck Head",miles:2.3,ascentFt:2715,time:"2h 25m"}
+],
+"High Crag":[
+ {route:"From Buttermere via Sheepbone Rake",miles:2.6,ascentFt:2160,time:"2h 05m",character:"Rake route: steep ground. Check the detailed route description and conditions."},
+ {route:"From Gatesgarth via Seat",miles:2.25,ascentFt:2135,time:"2h 00m"}
+],
+"Kirk Fell":[
+ {route:"From Wasdale Head via Beck Head",miles:3.0,ascentFt:2460,time:"2h 20m"},
+ {route:"From Wasdale Head via Black Sail Pass",miles:3.2,ascentFt:2490,time:"2h 30m"}
+]
+};
+function routeKey(name){return cleanName(name).replace(/\s+/g,' ').trim()}
+const ROUTE_ALIASES={"Old Man of Coniston":"Coniston Old Man","The Old Man of Coniston":"Coniston Old Man","Red Pike - Buttermere":"Red Pike (B)","Red Pike - Wasdale":"Red Pike (W)"};
+function routeStatsFor(f){const n=routeKey(f.name),k=ROUTE_ALIASES[n]||n;return ROUTE_STATS[k]||null}
+function routeVariantsFor(f){const n=routeKey(f.name),k=ROUTE_ALIASES[n]||n;if(ROUTE_VARIANTS[k])return ROUTE_VARIANTS[k];const one=ROUTE_STATS[k];return one?[one]:[]}
+function metresFromFeet(ft){return Math.round(ft*0.3048)}
+function kmFromMiles(mi){return (mi*1.609344).toFixed(1)}
+function routeStartText(route){let t=route.replace(/^Direct from /i,'').replace(/^From /i,'');return t.split(/ via | then via /i)[0].replace(/\([^)]*\)/g,'').trim()}
+function startDirectionsUrl(route){const start=routeStartText(route);return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(start+', Lake District, UK')}
+function routeCharacter(r){if(r.character)return r.character;const x=r.route.toLowerCase();if(/edge|ridge|rake|arete/.test(x))return 'Ridge/rake style line: read the detailed route notes for exposure, scrambling and wet-weather considerations.';return ''}
+function routeOptionHTML(r,i,active){const label=r.label||('Route '+(i+1));return `<button type="button" class="${active?'active':''}" onclick="selectRouteOption(this,${i})">${label}</button>`}
+function routeDetailHTML(r){const ch=routeCharacter(r);return `<div class="route-name"><b>Published ascent:</b> ${r.route}</div>${ch?`<div class="route-character">${ch}</div>`:''}<div class="route-stat-grid"><div class="route-stat"><span>Distance to summit</span><b>${r.miles} mi / ${kmFromMiles(r.miles)} km</b></div><div class="route-stat"><span>Ascent</span><b>${r.ascentFt.toLocaleString()} ft / ${metresFromFeet(r.ascentFt)} m</b></div><div class="route-stat"><span>Time to summit</span><b>${r.time}</b></div></div><a class="route-start-link" href="${startDirectionsUrl(r.route)}" target="_blank" rel="noopener">Directions/search for route start: ${routeStartText(r.route)} ↗</a>`}
+function routeStatsHTML(f){const rs=routeVariantsFor(f);if(!rs.length)return `<div class="no-route"><b>Verified route statistics not loaded for this fell yet.</b><br>The summit and parking tools still work; use the route-link buttons below for a detailed route before setting out.</div>`;const key=encodeURIComponent(routeKey(f.name));return `${rs.length>1?`<div class="route-picker" data-fell="${key}" data-routes='${JSON.stringify(rs).replace(/'/g,"&#39;")}'><div class="route-picker-label">Choose ascent <span class="route-count">${rs.length} published options</span></div><div class="route-choice">${rs.map((r,i)=>routeOptionHTML(r,i,i===0)).join('')}</div></div>`:''}<div class="route-selected">${routeDetailHTML(rs[0])}</div><div class="route-source">Published ascent statistics: Wainwright Routes. Figures are to the summit, not a complete return/circular walk.</div>`}
+window.selectRouteOption=(btn,i)=>{const picker=btn.closest('.route-picker');if(!picker)return;const rs=JSON.parse(picker.dataset.routes.replace(/&#39;/g,"'"));picker.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('active',j===i));const target=picker.parentElement.querySelector('.route-selected');if(target&&rs[i])target.innerHTML=routeDetailHTML(rs[i]);clearRouteOverlay(false);const card=btn.closest('.route-card');if(card){const st=card.querySelector('.route-map-status');if(st){st.className='route-map-status';st.textContent='Route choice changed — click “Draw route on map” to refresh the line.'}}};
+
+
+let activeRouteLayer=null,activeRouteStartMarker=null,activeRouteEndMarker=null;
+let activeRouteCoords=[],activeDirections=[],navWatchId=null,navUserMarker=null,navStepIndex=0,voiceGuidance=false,lastSpokenStep=-1;
+let lastUserPos=null,offRouteCount=0,activeNavCard=null,activeRouteContext=null;
+const OFF_ROUTE_THRESHOLD_M=60,OFF_ROUTE_CONFIRM_FIXES=2;
+const GEOCODE_CACHE=new Map();
+const KNOWN_STARTS={
+ 'keswick':[54.6013,-3.1347],
+ 'ambleside':[54.4310,-2.9630],'braithwaite':[54.6039,-3.1916],'buttermere':[54.5408,-3.2762],
+ 'coniston':[54.3680,-3.0756],'elterwater':[54.4358,-3.0383],'gatesgarth':[54.5231,-3.2464],
+ 'glenridding':[54.5447,-2.9509],'grasmere':[54.4588,-3.0246],'mungrisdale':[54.6643,-2.9877],
+ 'seathwaite':[54.4983,-3.1817],'swirls':[54.5435,-3.0367],'wasdale head':[54.4668,-3.2563],
+ 'wasdale':[54.4668,-3.2563],'white moss':[54.4485,-3.0358],'pelter bridge':[54.4475,-3.0105],
+ 'dunmail raise':[54.4776,-3.0282],'torver':[54.3375,-3.1008],'little arrow':[54.3418,-3.1038],
+ 'lanthwaite green':[54.5666,-3.2972],'cinderdale common':[54.5588,-3.2920],
+ 'maggie\'s bridge':[54.5702,-3.3498],'fangs brow':[54.5909,-3.3667],
+ 'hardknott pass':[54.4026,-3.1956],'the summit of the kirkstone pass':[54.4742,-2.9212],
+ 'kirkstone pass':[54.4742,-2.9212],'mosedale':[54.6787,-3.0273],'bowness knott':[54.5279,-3.4011]
+};
+function normPlace(x){return (x||'').toLowerCase().replace(/[’']/g,"'").replace(/\s+/g,' ').trim()}
+function setRouteStatus(card,msg,type=''){const el=card&&card.querySelector('.route-map-status');if(el){el.className='route-map-status'+(type?' '+type:'');el.textContent=msg}}
+function clearRouteOverlay(updateStatus=true){stopNavigation();activeRouteContext=null;if(activeRouteLayer){if(activeRouteLayer._guideMarkers)activeRouteLayer._guideMarkers.forEach(m=>map.removeLayer(m));map.removeLayer(activeRouteLayer);activeRouteLayer=null}if(activeRouteStartMarker){map.removeLayer(activeRouteStartMarker);activeRouteStartMarker=null}if(activeRouteEndMarker){map.removeLayer(activeRouteEndMarker);activeRouteEndMarker=null}activeRouteCoords=[];activeDirections=[];navStepIndex=0;document.querySelectorAll('.turn-panel').forEach(el=>el.innerHTML='<h5>Turn-by-turn directions</h5><div class="turn-summary">Draw a route to load walking directions.</div>');document.querySelectorAll('[data-nav-start]').forEach(b=>b.disabled=true);if(updateStatus)document.querySelectorAll('.route-map-status').forEach(el=>{el.className='route-map-status';el.textContent='Route line cleared.'})}
+window.clearRouteOverlay=clearRouteOverlay;
+const ROUTE_STARTS={
+ 'From Keswick via the east ridge':[54.6013,-3.1347],
+ 'From Keswick via Mallen Dodd':[54.6013,-3.1347],
+ 'From Swirls via the edge of Browncove Crags':[54.5435,-3.0367],
+ 'From Glenridding via Striding Edge':[54.5447,-2.9509],
+ 'From Glenridding via Swirral Edge':[54.5447,-2.9509],
+ 'From Wasdale Head via Mickledore':[54.4668,-3.2563],
+ 'From Wasdale Head via Hollow Stones':[54.4668,-3.2563],
+ 'From Wasdale Head via the Breast Route':[54.4668,-3.2563],
+ 'From Wasdale Head via Beck Head':[54.4668,-3.2563],
+ 'From Coniston (fell gate) via the south ridge':[54.3707,-3.0757],
+ 'From Coniston (fell gate) via Low Water':[54.3707,-3.0757],
+ 'From Coniston (fell gate) via the Diamond path':[54.3707,-3.0757]
+};
+// Route-specific guide corridors. These points make the router honour the named line rather than
+// simply choosing any path from the start to the summit. They are planning waypoints, not a GPX trace.
+const ROUTE_WAYPOINTS={
+ 'From Keswick via the east ridge':[
+  {name:'Spooney Green / Latrigg approach',lat:54.6130,lon:-3.1334},
+  {name:'Lonscale east-ridge approach',lat:54.6265,lon:-3.1040}
+ ],
+ 'From Swirls via the edge of Browncove Crags':[
+  {name:'Browncove Crags approach',lat:54.5368,lon:-3.0088}
+ ],
+ 'From Glenridding via Striding Edge':[
+  {name:'Hole-in-the-Wall',lat:54.5354,lon:-2.9673},
+  {name:'Striding Edge',lat:54.5273,lon:-2.9807}
+ ],
+ 'From Glenridding via Swirral Edge':[
+  {name:'Red Tarn approach',lat:54.5388,lon:-2.9670},
+  {name:'Swirral Edge',lat:54.5361,lon:-2.9904}
+ ],
+ 'From Wasdale Head via Mickledore':[
+  {name:'Hollow Stones',lat:54.4587,lon:-3.2408},
+  {name:'Mickledore',lat:54.4507,lon:-3.2222}
+ ],
+ 'From Wasdale Head via Hollow Stones':[
+  {name:'Hollow Stones',lat:54.4587,lon:-3.2408}
+ ],
+ 'From Wasdale Head via the Breast Route':[
+  {name:'Sty Head path',lat:54.4786,lon:-3.2300},
+  {name:'Great Gable south-west approach',lat:54.4820,lon:-3.2210}
+ ],
+ 'From Wasdale Head via Beck Head':[
+  {name:'Beck Head',lat:54.4878,lon:-3.2350}
+ ]
+};
+function embeddedStartFor(route){
+ const exact=ROUTE_STARTS[route];
+ if(exact)return {lat:exact[0],lon:exact[1],source:'embedded route start'};
+ const place=routeStartText(route),key=normPlace(place);
+ if(KNOWN_STARTS[key])return {lat:KNOWN_STARTS[key][0],lon:KNOWN_STARTS[key][1],source:'embedded start point'};
+ return null;
+}
+async function geocodeStart(place,route){
+ const embedded=embeddedStartFor(route||'');
+ if(embedded)return embedded;
+ const key=normPlace(place);
+ if(GEOCODE_CACHE.has(key))return GEOCODE_CACHE.get(key);
+ // Last-resort lookup retained only for routes whose start has not yet been embedded.
+ const q=encodeURIComponent(place+', Lake District, Cumbria, UK');
+ const url='https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=gb&q='+q;
+ try{
+  const r=await fetch(url,{headers:{'Accept':'application/json'}});
+  if(!r.ok)throw new Error('lookup unavailable');
+  const data=await r.json();
+  if(!data.length)throw new Error('no match');
+  const out={lat:Number(data[0].lat),lon:Number(data[0].lon),source:'place-name fallback'};
+  GEOCODE_CACHE.set(key,out);return out;
+ }catch(e){
+  throw new Error('this route does not yet have an embedded start coordinate');
+ }
+}
+function routeViaPoints(route){return ROUTE_WAYPOINTS[route]||[]}
+function selectedRouteFromCard(card){const rs=JSON.parse((card.dataset.routes||'[]').replace(/&#39;/g,"'"));if(!rs.length)return null;const picker=card.querySelector('.route-picker');if(!picker)return rs[0];const buttons=[...picker.querySelectorAll('.route-choice button')];const idx=Math.max(0,buttons.findIndex(b=>b.classList.contains('active')));return rs[idx]||rs[0]}
+function decodePolyline6(str){
+ let index=0,lat=0,lon=0,coords=[];
+ while(index<str.length){let b,shift=0,result=0;do{b=str.charCodeAt(index++)-63;result|=(b&0x1f)<<shift;shift+=5}while(b>=0x20);lat+=(result&1)?~(result>>1):(result>>1);shift=0;result=0;do{b=str.charCodeAt(index++)-63;result|=(b&0x1f)<<shift;shift+=5}while(b>=0x20);lon+=(result&1)?~(result>>1):(result>>1);coords.push([lon/1e6,lat/1e6])}
+ return coords;
+}
+function valhallaRouteToGeo(data){
+ if(!data||!data.trip||!Array.isArray(data.trip.legs))throw new Error('routing service returned an unexpected response');
+ let coords=[],dirs=[];
+ data.trip.legs.forEach((leg,legIndex)=>{const lc=decodePolyline6(leg.shape||'');const offset=coords.length-(coords.length?1:0);if(coords.length&&lc.length)coords.push(...lc.slice(1));else coords.push(...lc);(leg.maneuvers||[]).forEach((m,i)=>{const local=Math.max(0,Number(m.begin_shape_index||0));const gi=Math.min(coords.length-1,offset+local);const c=coords[gi]||coords[0];dirs.push({instruction:m.instruction||m.verbal_pre_transition_instruction||'Continue',verbal:m.verbal_pre_transition_instruction||m.instruction||'Continue',lengthKm:Number(m.length||0),timeSec:Number(m.time||0),type:Number(m.type||0),coord:c?{lon:c[0],lat:c[1]}:null,leg:legIndex})})});
+ activeRouteCoords=coords.map(c=>({lon:c[0],lat:c[1]}));activeDirections=dirs;
+ return {type:'FeatureCollection',features:[{type:'Feature',properties:{distanceKm:Number(data.trip.summary&&data.trip.summary.length||0),timeSec:Number(data.trip.summary&&data.trip.summary.time||0)},geometry:{type:'LineString',coordinates:coords}}]};
+}
+function turnIcon(t){if([1,2,3,4].includes(t))return '↗';if([5,6,7].includes(t))return '↘';if([8,9,10].includes(t))return '↩';if([15,16].includes(t))return '⛰';return '↑'}
+function formatDuration(sec){sec=Math.round(sec||0);if(sec<60)return sec+' sec';const m=Math.round(sec/60);if(m<60)return m+' min';return Math.floor(m/60)+'h '+(m%60)+'m'}
+function renderDirections(card,summary){const panel=card.querySelector('.turn-panel');if(!panel)return;const total=summary||{};const hdr=(total.length?Number(total.length).toFixed(1)+' km':'')+(total.time?' · '+formatDuration(total.time):'');panel.innerHTML='<h5>Turn-by-turn directions</h5><div class="turn-summary">'+(hdr||'Walking directions loaded')+' · '+activeDirections.length+' manoeuvres</div><div class="turn-list">'+activeDirections.map((d,i)=>'<div class="turn-step" data-turn="'+i+'"><div class="turn-icon">'+turnIcon(d.type)+'</div><div><b>'+(i===0?'Start: ':'')+'</b>'+escapeHtml(d.instruction)+'</div><div class="turn-meta">'+(d.lengthKm?d.lengthKm.toFixed(d.lengthKm<1?2:1)+' km':'')+'</div></div>').join('')+'</div>';const nav=card.querySelector('[data-nav-start]');if(nav)nav.disabled=!activeDirections.length;}
+function escapeHtml(v){return String(v||'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]))}
+function distanceM(a,b){return havKm(a.lat,a.lon,b.lat,b.lon)*1000}
+function nearestRoutePoint(here){
+ if(!activeRouteCoords.length)return null;
+ const lat0=here.lat*Math.PI/180,cos0=Math.cos(lat0),R=6371000;
+ let best={distance:Infinity,index:0,coord:activeRouteCoords[0]};
+ for(let i=0;i<activeRouteCoords.length-1;i++){
+  const a=activeRouteCoords[i],b=activeRouteCoords[i+1];
+  const ax=(a.lon-here.lon)*Math.PI/180*R*cos0, ay=(a.lat-here.lat)*Math.PI/180*R;
+  const bx=(b.lon-here.lon)*Math.PI/180*R*cos0, by=(b.lat-here.lat)*Math.PI/180*R;
+  const vx=bx-ax,vy=by-ay,den=vx*vx+vy*vy;
+  let t=den?-(ax*vx+ay*vy)/den:0;t=Math.max(0,Math.min(1,t));
+  const px=ax+t*vx,py=ay+t*vy,d=Math.hypot(px,py);
+  if(d<best.distance){best={distance:d,index:i,coord:{lat:a.lat+(b.lat-a.lat)*t,lon:a.lon+(b.lon-a.lon)*t}}}
+ }
+ return best;
+}
+function setOffRouteActions(card,show,distance){const box=card&&card.querySelector('.offroute-actions');if(!box)return;box.classList.toggle('show',!!show);const meter=box.querySelector('.offroute-meter');if(meter&&distance!=null)meter.textContent=Math.round(distance)+' m off route';}
+async function recalculateFromHere(btn){
+ const card=btn.closest('.route-card');if(!card||!lastUserPos||!activeRouteCoords.length){setLiveStatus(card,'Current GPS position or route is unavailable.','error');return}
+ const near=nearestRoutePoint(lastUserPos);if(!near)return;
+ const end=activeRouteCoords[activeRouteCoords.length-1];
+ btn.disabled=true;setLiveStatus(card,'Recalculating a walking line from your position back to the planned route…','active');
+ try{
+  const reconnectIndex=Math.min(activeRouteCoords.length-1,Math.max(near.index+8,near.index));
+  const rejoin=activeRouteCoords[reconnectIndex]||near.coord;
+  const payload={locations:[{lat:lastUserPos.lat,lon:lastUserPos.lon,type:'break'},{lat:rejoin.lat,lon:rejoin.lon,type:'through'},{lat:end.lat,lon:end.lon,type:'break'}],costing:'pedestrian',units:'kilometers',directions_options:{language:'en-GB'}};
+  const resp=await fetch('https://valhalla1.openstreetmap.de/route',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  if(!resp.ok)throw new Error('walking router returned HTTP '+resp.status);
+  const data=await resp.json();
+  if(activeRouteLayer){if(activeRouteLayer._guideMarkers)activeRouteLayer._guideMarkers.forEach(m=>map.removeLayer(m));map.removeLayer(activeRouteLayer)}
+  const geo=valhallaRouteToGeo(data);activeRouteLayer=L.geoJSON(geo,{style:{color:'#e56b3f',weight:5,opacity:.9}}).addTo(map);
+  renderDirections(card,data.trip.summary||{});navStepIndex=0;offRouteCount=0;setOffRouteActions(card,false);setLiveStatus(card,'Route recalculated from your current position. Continue with the updated directions.','active');
+  if(voiceGuidance&&activeDirections[0])speakDirection('Route recalculated. '+activeDirections[0].verbal);
+ }catch(err){setLiveStatus(card,'Could not recalculate: '+err.message+'. Stay with your map or GPX and use your judgement.','error')}finally{btn.disabled=false}
+}
+window.recalculateFromHere=recalculateFromHere;
+function highlightNavStep(card,idx){navStepIndex=Math.max(0,Math.min(idx,activeDirections.length-1));document.querySelectorAll('.turn-step').forEach(el=>el.classList.toggle('active',Number(el.dataset.turn)===navStepIndex));const active=card&&card.querySelector('.turn-step.active');if(active)active.scrollIntoView({block:'nearest'});}
+function setLiveStatus(card,msg,type=''){const el=card&&card.querySelector('.nav-live');if(el){el.className='nav-live'+(type?' '+type:'');el.textContent=msg}}
+function speakDirection(text){if(!voiceGuidance||!('speechSynthesis' in window))return;try{window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';window.speechSynthesis.speak(u)}catch(e){}}
+function stopNavigation(){if(navWatchId!==null&&navigator.geolocation){navigator.geolocation.clearWatch(navWatchId);navWatchId=null}if(navUserMarker){map.removeLayer(navUserMarker);navUserMarker=null}lastSpokenStep=-1;offRouteCount=0;activeNavCard=null;lastUserPos=null;document.querySelectorAll('.offroute-actions').forEach(el=>el.classList.remove('show'));document.querySelectorAll('.nav-live').forEach(el=>{if(el.classList.contains('active')||el.classList.contains('warn')){el.className='nav-live';el.textContent='Live guidance stopped.'}})}
+window.stopNavigation=stopNavigation;
+window.toggleVoiceGuidance=(btn)=>{voiceGuidance=!voiceGuidance;btn.textContent=voiceGuidance?'Voice: on':'Voice: off';if(voiceGuidance&&activeDirections[navStepIndex])speakDirection(activeDirections[navStepIndex].verbal)};
+window.startNavigation=(btn)=>{
+ const card=btn.closest('.route-card');if(!card||!activeDirections.length)return;
+ if(!navigator.geolocation){setLiveStatus(card,'This browser does not provide location access. You can still use the turn list.','error');return}
+ stopNavigation();activeNavCard=card;navStepIndex=0;highlightNavStep(card,0);setLiveStatus(card,'Waiting for your GPS position…','active');
+ navWatchId=navigator.geolocation.watchPosition(pos=>{
+  const here={lat:pos.coords.latitude,lon:pos.coords.longitude};lastUserPos=here;
+  if(!navUserMarker)navUserMarker=L.circleMarker([here.lat,here.lon],{radius:7,color:'#1f5ca8',weight:3,fillColor:'#fff',fillOpacity:1}).addTo(map).bindTooltip('Your position');else navUserMarker.setLatLng([here.lat,here.lon]);
+  const nearest=nearestRoutePoint(here);const off=nearest?nearest.distance:0;
+  if(off>OFF_ROUTE_THRESHOLD_M)offRouteCount++;else offRouteCount=0;
+  if(offRouteCount>=OFF_ROUTE_CONFIRM_FIXES){
+   setOffRouteActions(card,true,off);
+   setLiveStatus(card,'Off-route alert: you are about '+Math.round(off)+' m from the planned line. Check the map before moving; you can recalculate from your position.','warn');
+   if(voiceGuidance&&offRouteCount===OFF_ROUTE_CONFIRM_FIXES)speakDirection('You appear to be off the planned route. Check the map.');
+   return;
+  }else setOffRouteActions(card,false);
+  let idx=navStepIndex;while(idx<activeDirections.length-1&&activeDirections[idx].coord&&distanceM(here,activeDirections[idx].coord)<35)idx++;
+  if(idx!==navStepIndex){highlightNavStep(card,idx);if(lastSpokenStep!==idx){speakDirection(activeDirections[idx].verbal);lastSpokenStep=idx}}
+  const next=activeDirections[navStepIndex];const d=next&&next.coord?Math.round(distanceM(here,next.coord)):null;
+  setLiveStatus(card,(d!==null?'Next in about '+d+' m: ':'')+(next?next.instruction:'Route complete')+(nearest?' · '+Math.round(nearest.distance)+' m from route':''), 'active');
+ },err=>{setLiveStatus(card,'Live GPS guidance unavailable: '+err.message+'. The turn list remains available.','error')},{enableHighAccuracy:true,maximumAge:3000,timeout:15000});
+};
+window.drawRouteFromPopup=async(btn)=>{const card=btn.closest('.route-card');if(!card)return;const route=selectedRouteFromCard(card);if(!route){setRouteStatus(card,'No published route option is loaded for this fell.','warn');return}const startName=routeStartText(route.route);const fellLat=Number(card.dataset.lat),fellLon=Number(card.dataset.lon);btn.disabled=true;const vias=routeViaPoints(route.route);setRouteStatus(card,'Using the saved start coordinate'+(vias.length?' and '+vias.length+' route-specific waypoint'+(vias.length>1?'s':''):'')+' to calculate the walking line and directions…');try{const start=await geocodeStart(startName,route.route);const points=[{lat:start.lat,lon:start.lon,name:startName},...vias,{lat:fellLat,lon:fellLon,name:card.dataset.fell}];activeRouteContext={card,route,start,vias,points};const locations=points.map((p,i)=>({lat:p.lat,lon:p.lon,type:(i===0||i===points.length-1)?'break':'through'}));const payload={locations,costing:'pedestrian',units:'kilometers',directions_options:{language:'en-GB'}};const resp=await fetch('https://valhalla1.openstreetmap.de/route',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!resp.ok)throw new Error('walking router returned HTTP '+resp.status);const data=await resp.json();const geo=valhallaRouteToGeo(data);clearRouteOverlay(false);/* clear resets arrays, restore from data */const restored=valhallaRouteToGeo(data);activeRouteLayer=L.geoJSON(restored,{style:{color:'#e56b3f',weight:5,opacity:.9}}).addTo(map);activeRouteStartMarker=L.circleMarker([start.lat,start.lon],{radius:7,color:'#193028',weight:3,fillColor:'#ffffff',fillOpacity:1}).bindTooltip('Route start: '+startName).addTo(map);activeRouteEndMarker=L.circleMarker([fellLat,fellLon],{radius:6,color:'#ffffff',weight:2,fillColor:'#e56b3f',fillOpacity:1}).bindTooltip('Summit: '+card.dataset.fell).addTo(map);const guideMarkers=vias.map(v=>L.circleMarker([v.lat,v.lon],{radius:5,color:'#f7d27a',weight:2,fillColor:'#243a34',fillOpacity:1}).bindTooltip('Guide waypoint: '+v.name).addTo(map));if(activeRouteLayer)activeRouteLayer._guideMarkers=guideMarkers;const group=L.featureGroup([activeRouteLayer,activeRouteStartMarker,activeRouteEndMarker,...guideMarkers]);map.fitBounds(group.getBounds(),{padding:[35,35],maxZoom:15});renderDirections(card,data.trip.summary||{});const viaMsg=vias.length?' through '+vias.map(v=>v.name).join(' → '):'';const sum=data.trip.summary||{};setRouteStatus(card,'Mapped walking route shown'+(sum.length?' — '+Number(sum.length).toFixed(1)+' km · '+formatDuration(sum.time):'')+'. Turn-by-turn directions are loaded below'+viaMsg+'.','ok')}catch(err){console.warn(err);setRouteStatus(card,'Route preview unavailable: '+err.message+'. The published statistics and detailed route/GPX links are still available.','error')}finally{btn.disabled=false}};
+
+
+const PARKING_HUBS=[
+{name:'Glenridding village / main car parks',lat:54.5447,lon:-2.9509,note:'Useful for Helvellyn east-side routes, Birkhouse Moor and Sheffield Pike.'},
+{name:'Patterdale village',lat:54.5343,lon:-2.9367,note:'Good base for St Sunday Crag, Birks, Arnison Crag and eastern approaches.'},
+{name:'Swirls / Thirlmere',lat:54.5435,lon:-3.0367,note:'Popular shorter western approach to the Helvellyn ridge.'},
+{name:'Legburthwaite / Thirlmere',lat:54.5740,lon:-3.0630,note:'Useful for Clough Head, High Rigg and northern Thirlmere fells.'},
+{name:'Ambleside',lat:54.4310,lon:-2.9630,note:'Good for the Fairfield/Low Pike side and nearby lower fells.'},
+{name:'Rydal',lat:54.4488,lon:-3.0022,note:'Useful for Nab Scar, Heron Pike and the Fairfield horseshoe.'},
+{name:'Grasmere',lat:54.4588,lon:-3.0246,note:'Useful for Stone Arthur, Silver How, Helm Crag and several Central Fells.'},
+{name:'Hartsop',lat:54.5047,lon:-2.9203,note:'Excellent base for High Street ridge, Gray Crag and Hartsop Dodd.'},
+{name:'Martindale / Hause',lat:54.5736,lon:-2.8565,note:'Useful for Hallin Fell, Steel Knotts and nearby Far Eastern fells.'},
+{name:'Mardale Head',lat:54.4920,lon:-2.8255,note:'Classic start for High Street, Harter Fell, Branstree and Mardale Ill Bell.'},
+{name:'Kentmere',lat:54.4288,lon:-2.8395,note:'Main base for Kentmere horseshoe fells; parking is limited.'},
+{name:'Pooley Bridge',lat:54.6127,lon:-2.8207,note:'Useful for lower Ullswater approaches and Loadpot Hill area.'},
+{name:'Keswick / Spooney Green',lat:54.6130,lon:-3.1334,note:'Useful for Latrigg and approaches toward Skiddaw.'},
+{name:'Gale Road / Latrigg',lat:54.6236,lon:-3.1125,note:'Popular high start for Latrigg and Skiddaw routes; limited spaces.'},
+{name:'Dodd Wood / Mirehouse',lat:54.6539,lon:-3.1800,note:'Useful for Dodd, Ullock Pike and Long Side approaches.'},
+{name:'Mungrisdale',lat:54.6643,lon:-2.9877,note:'Useful for Bowscale Fell, Bannerdale Crags, Souther Fell and Carrock Fell.'},
+{name:'Braithwaite',lat:54.6039,lon:-3.1916,note:'Great base for Grisedale Pike, Coledale fells and Barrow.'},
+{name:'Newlands / Little Town',lat:54.5816,lon:-3.1997,note:'Useful for Catbells, Maiden Moor, Robinson, Hindscarth and Dale Head.'},
+{name:'Honister Pass',lat:54.5112,lon:-3.1997,note:'High start for Grey Knotts, Brandreth, Fleetwith Pike and Dale Head.'},
+{name:'Buttermere village',lat:54.5408,lon:-3.2762,note:'Useful for Red Pike, High Stile, Rannerdale Knotts and Whiteless Pike.'},
+{name:'Gatesgarth',lat:54.5231,lon:-3.2464,note:'Classic base for Haystacks and Fleetwith Pike; popular and often busy.'},
+{name:'Loweswater',lat:54.5773,lon:-3.3598,note:'Useful for Mellbreak, Hen Comb, Low Fell and surrounding Western Fells.'},
+{name:'Ennerdale / Bowness Knott',lat:54.5279,lon:-3.4011,note:'Useful for remote western approaches; valley access is long.'},
+{name:'Wasdale Head',lat:54.4668,lon:-3.2563,note:'Classic base for Scafell Pike, Great Gable, Kirk Fell and Wasdale fells.'},
+{name:'Seathwaite / Borrowdale',lat:54.4983,lon:-3.1817,note:'Classic base for Great Gable, Great End, Glaramara and Scafell Pike routes.'},
+{name:'Seatoller',lat:54.5134,lon:-3.1667,note:'Useful for Castle Crag, Rosthwaite Fell and Borrowdale routes.'},
+{name:'Stonethwaite',lat:54.4994,lon:-3.1408,note:'Useful for Eagle Crag, Sergeant’s Crag and Central Fell approaches.'},
+{name:'Old Dungeon Ghyll / Great Langdale',lat:54.4482,lon:-3.0906,note:'Classic start for Langdale Pikes, Bowfell, Crinkle Crags and Pike o’ Blisco.'},
+{name:'Elterwater',lat:54.4358,lon:-3.0383,note:'Useful for Lingmoor Fell, Loughrigg and lower Langdale routes.'},
+{name:'Coniston / Walna Scar Road',lat:54.3639,lon:-3.1167,note:'Popular for The Old Man of Coniston, Dow Crag and nearby Coniston fells.'},
+{name:'Tilberthwaite',lat:54.4005,lon:-3.0557,note:'Useful for Wetherlam, Holme Fell and quieter Coniston approaches.'},
+{name:'Eskdale / Boot',lat:54.3891,lon:-3.2748,note:'Useful for Harter Fell, Green Crag and southern approaches.'},
+{name:'Hardknott Pass',lat:54.4026,lon:-3.1956,note:'High but remote start for Hard Knott and some Scafell approaches.'},
+{name:'Wastwater / Greendale',lat:54.4458,lon:-3.3040,note:'Useful for Middle Fell, Buckbarrow, Seatallan and western Scafell routes.'}
+];
+function havKm(a,b,c,d){const R=6371,rad=x=>x*Math.PI/180;const dlat=rad(c-a),dlon=rad(d-b);const q=Math.sin(dlat/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(dlon/2)**2;return 2*R*Math.asin(Math.sqrt(q));}
+function nearbyParking(f){return PARKING_HUBS.map(p=>({...p,dist:havKm(f.latitude,f.longitude,p.lat,p.lon)})).sort((a,b)=>a.dist-b.dist).slice(0,3)}
+function routeSearchUrl(name){return 'https://www.google.com/search?q='+encodeURIComponent('site:wainwrightroutes.co.uk "'+cleanName(name)+'" route')}
+function wainroutesSearch(name){return 'https://wainroutes.co.uk/?q='+encodeURIComponent(cleanName(name))}
+function parkingDirections(p){return 'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(p.lat+','+p.lon)}
+function routeEffort(f){const h=Number(f.heightMetres); if(h<500)return {label:'Usually shorter / lower-level',tag:'Lower fell'}; if(h<750)return {label:'Typical half-day mountain walk',tag:'Moderate ascent'}; if(h<900)return {label:'Substantial mountain day',tag:'High fell'}; return {label:'Major mountain outing',tag:'Very high fell'};}
+function popupHTML(f){
+ const g=grade(f), ft=Math.round(Number(f.heightFt)||f.heightMetres*3.28084), lat=f.latitude.toFixed(6),lon=f.longitude.toFixed(6), encoded=encodeURIComponent(`${lat},${lon}`);
+ const osm=`https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}#map=16/${lat}/${lon}`;
+ const google=`https://www.google.com/maps/search/?api=1&query=${encoded}`;
+ const parks=nearbyParking(f), effort=routeEffort(f);
+ const parkingHtml=parks.map((p,i)=>`<div class="parking-item"><span><b>${i===0?'Suggested start: ':''}${p.name}</b><br>${p.note}</span><a href="${parkingDirections(p)}" target="_blank" rel="noopener">${p.dist.toFixed(1)} km*</a></div>`).join('');
+ return `<div class="popup-title">${cleanName(f.name)}</div><div class="popup-grade grade-${g}">${gradeLabel(g)} · summit guide</div><div class="grid"><div class="tile"><span>Height</span><b>${Number(f.heightMetres).toFixed(Number(f.heightMetres)%1?1:0)} m / ${ft} ft</b></div><div class="tile"><span>OS grid</span><b>${f.gridReference||'—'}</b></div><div class="tile"><span>Latitude</span><b>${lat}</b></div><div class="tile"><span>Longitude</span><b>${lon}</b></div></div>
+ <div class="route-card" data-fell="${cleanName(f.name).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}" data-lat="${lat}" data-lon="${lon}" data-routes='${JSON.stringify(routeVariantsFor(f)).replace(/'/g,"&#39;")}'><h4>🥾 Walk planning</h4><div class="route-tags"><span class="tag">${effort.tag}</span><span class="tag">${effort.label}</span></div>${routeStatsHTML(f)}<div class="route-map-tools"><button type="button" onclick="drawRouteFromPopup(this)">Draw route + directions</button><button type="button" class="secondary" onclick="clearRouteOverlay()">Clear route</button></div><div class="route-map-legend"><span class="route-map-start"></span><span class="route-map-line"></span><span class="route-map-end"></span><span>saved start → guide waypoint(s) → summit</span></div><div class="route-map-status">Choose an ascent above, then draw its mapped walking line and turn-by-turn directions.</div><div class="nav-tools"><button type="button" data-nav-start disabled onclick="startNavigation(this)">Start live guidance</button><button type="button" class="secondary" onclick="toggleVoiceGuidance(this)">Voice: off</button><button type="button" class="secondary" onclick="stopNavigation()">Stop</button></div><div class="nav-live">Live guidance is optional and needs browser location permission. The turn list works without it.</div><div class="offroute-actions"><button type="button" onclick="recalculateFromHere(this)">Recalculate from here</button><button type="button" class="secondary" onclick="this.closest('.offroute-actions').classList.remove('show')">Dismiss · <span class="offroute-meter">off route</span></button></div><div class="turn-panel"><h5>Turn-by-turn directions</h5><div class="turn-summary">Draw a route to load walking directions.</div></div><div class="small"><b>Suggested parking / start areas</b></div><div class="parking-list">${parkingHtml}</div><div class="route-links"><a href="${routeSearchUrl(f.name)}" target="_blank" rel="noopener">Open detailed route</a><a class="alt" href="${wainroutesSearch(f.name)}" target="_blank" rel="noopener">Wainroutes / GPX</a></div><div class="route-note"><b>Route & directions:</b> generated on demand over mapped OpenStreetMap paths using Valhalla's pedestrian routing and manoeuvre instructions. Embedded start coordinates and route-specific guide waypoints are used for selected named ridges/edges. Live guidance includes a 60 m off-route alert (confirmed across consecutive GPS fixes) and can recalculate a pedestrian line from your current position. GPS accuracy and mapped paths can be imperfect in mountain terrain, so carry an appropriate offline map/GPX and do not rely on this browser page as your sole navigation method. Published figures are for the ascent to the summit, not necessarily a complete return walk. Parking is a planning aid, not live availability.</div></div>
+ <div class="popup-actions"><a href="${osm}" target="_blank" rel="noopener">Open summit map</a><a class="secondary" href="${google}" target="_blank" rel="noopener">Google Maps</a><button class="secondary" onclick="copyCoords('${lat}, ${lon}',this)">Copy coordinates</button><button onclick="toggleClimbed('${f.name.replace(/'/g,"\\'")}',this)">${climbed.has(f.name)?'✓ Climbed':'Mark climbed'}</button></div><div class="warning">Mountain difficulty depends on the chosen route, weather, visibility and ground conditions. Use a proper walking map/GPX and mountain forecast for navigation.</div>`
+}
+function renderMarkers(){layer.clearLayers();markers.clear();filtered.forEach(f=>{const m=L.marker([f.latitude,f.longitude],{icon:markerIcon(f)}).bindPopup(popupHTML(f),{maxWidth:300});m.addTo(layer);markers.set(f.name,m)});}
+function renderList(){const list=document.getElementById('fellList');if(!filtered.length){list.innerHTML='<div class="empty">No fells match those filters.</div>';return}list.innerHTML=filtered.map(f=>{const g=grade(f);return `<div class="fell" data-name="${f.name.replace(/"/g,'&quot;')}"><span class="dot" style="background:var(--${g})"></span><div><h3>${cleanName(f.name)}</h3><div class="meta">${f.heightMetres}m · ${gradeLabel(g)} · ${f.gridReference}</div></div><label class="bag"><input type="checkbox" data-check="${f.name.replace(/"/g,'&quot;')}" ${climbed.has(f.name)?'checked':''}/> done</label></div>`}).join('');
+ list.querySelectorAll('.fell').forEach(el=>el.addEventListener('click',e=>{if(e.target.matches('input'))return;focusFell(el.dataset.name)}));
+ list.querySelectorAll('input[data-check]').forEach(cb=>cb.addEventListener('change',e=>{e.stopPropagation();setClimbed(cb.dataset.check,cb.checked)}));
+}
+function applyFilters(){const q=document.getElementById('search').value.trim().toLowerCase(),hf=document.getElementById('heightFilter').value,sort=document.getElementById('sort').value;filtered=fells.filter(f=>{const h=f.heightMetres;return (!q||f.name.toLowerCase().includes(q)||(f.gridReference||'').toLowerCase().includes(q))&&(currentGrade==='all'||grade(f)===currentGrade)&&(hf==='all'||(hf==='under500'&&h<500)||(hf==='500to749'&&h>=500&&h<750)||(hf==='750plus'&&h>=750))});filtered.sort((a,b)=>sort==='heightDesc'?b.heightMetres-a.heightMetres:sort==='heightAsc'?a.heightMetres-b.heightMetres:a.name.localeCompare(b.name));document.getElementById('shownCount').textContent=filtered.length;renderMarkers();renderList();updateStats();}
+function focusFell(name){const f=fells.find(x=>x.name===name);if(!f)return;map.setView([f.latitude,f.longitude],14,{animate:true});const m=markers.get(name);if(m)m.openPopup();if(window.innerWidth<821)document.getElementById('sidebar').classList.remove('open')}
+function setClimbed(name,on){on?climbed.add(name):climbed.delete(name);localStorage.setItem('wainwrights-climbed',JSON.stringify([...climbed]));applyFilters();}
+window.toggleClimbed=(name)=>setClimbed(name,!climbed.has(name));
+window.copyCoords=async(text,btn)=>{try{await navigator.clipboard.writeText(text);const old=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=old,1300)}catch{prompt('Copy coordinates:',text)}};
+function updateStats(){document.getElementById('climbedCount').textContent=climbed.size;document.getElementById('progressPct').textContent=`${Math.round(climbed.size/214*100)}%`}
+function nearest(){if(!navigator.geolocation){alert('Location is not available in this browser.');return}navigator.geolocation.getCurrentPosition(pos=>{const {latitude,longitude}=pos.coords;let best=null,bd=Infinity;fells.forEach(f=>{const d=(f.latitude-latitude)**2+(f.longitude-longitude)**2;if(d<bd){bd=d;best=f}});if(best)focusFell(best.name)},()=>alert('Location permission was not granted.'))}
+function randomFell(){const pool=filtered.length?filtered:fells;if(!pool.length)return;focusFell(pool[Math.floor(Math.random()*pool.length)].name)}
+async function init(){try{const r=await fetch(DATA_URL);if(!r.ok)throw new Error('HTTP '+r.status);fells=parseCSV(await r.text());if(fells.length<200)throw new Error('Incomplete dataset');}catch(e){console.warn(e);fells=FALLBACK;document.getElementById('fellList').innerHTML='<div class="empty">Could not load the full online dataset. A small fallback set is shown; reconnect to the internet and reload for all 214.</div>';}applyFilters();if(fells.length>20)map.fitBounds(L.latLngBounds(fells.map(f=>[f.latitude,f.longitude])),{padding:[25,25]});}
+document.getElementById('search').addEventListener('input',applyFilters);document.getElementById('heightFilter').addEventListener('change',applyFilters);document.getElementById('sort').addEventListener('change',applyFilters);document.getElementById('nearestBtn').addEventListener('click',nearest);document.getElementById('randomBtn').addEventListener('click',randomFell);document.getElementById('mobileToggle').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');currentGrade=c.dataset.grade;applyFilters()}));
+init();
+</script>
+
+<script>
+(function(){
+  const net=document.getElementById('networkPill');
+  const installBtn=document.getElementById('installBtn');
+  const secureNote=document.getElementById('secureNote');
+  let deferredPrompt=null;
+  function updateNet(){
+    const online=navigator.onLine;
+    if(net){net.textContent=online?'Online':'Offline';net.classList.toggle('offline',!online)}
+  }
+  updateNet();
+  window.addEventListener('online',updateNet);
+  window.addEventListener('offline',updateNet);
+  if(secureNote){
+    if(window.isSecureContext){secureNote.innerHTML='<strong>GPS ready:</strong> this page is running in a secure context. Tap Start live guidance to request location permission.'}
+    else{secureNote.innerHTML='<strong>GPS unavailable here:</strong> install/serve this app from an HTTPS address. Opening the downloaded HTML via content:// will not reliably provide geolocation.'}
+  }
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;if(installBtn)installBtn.classList.add('show')});
+  if(installBtn)installBtn.addEventListener('click',async()=>{
+    if(!deferredPrompt){alert('Your browser has not offered installation yet. On Android Chrome/Samsung Internet, use the browser menu and choose Add to Home screen / Install app.');return}
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;deferredPrompt=null;installBtn.classList.remove('show');
+  });
+  window.addEventListener('appinstalled',()=>{if(installBtn)installBtn.classList.remove('show')});
+  if('serviceWorker' in navigator && window.isSecureContext){
+    window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+  }
+})();
+</script>
+
+</body>
+</html>
