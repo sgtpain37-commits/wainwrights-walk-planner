@@ -279,14 +279,15 @@ function routeVariantsFor(f){const n=routeKey(f.name),k=ROUTE_ALIASES[n]||n;if(R
 function metresFromFeet(ft){return Math.round(ft*0.3048)}
 function kmFromMiles(mi){return (mi*1.609344).toFixed(1)}
 function routeStartText(route){let t=route.replace(/^Direct from /i,'').replace(/^From /i,'');return t.split(/ via | then via /i)[0].replace(/\([^)]*\)/g,'').trim()}
-function startDirectionsUrl(route){const start=routeStartText(route);return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(start+', Lake District, UK')}
+function startDirectionsUrl(route){const saved=ROUTE_STARTS[route];const query=saved?saved.join(','):routeStartText(route)+', Lake District, UK';return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(query)}
 function routeCharacter(r){if(r.character)return r.character;const x=r.route.toLowerCase();if(/edge|ridge|rake|arete/.test(x))return 'Ridge/rake style line: read the detailed route notes for exposure, scrambling and wet-weather considerations.';return ''}
 function routeOptionHTML(r,i,active){const label=r.label||('Route '+(i+1));return `<button type="button" class="${active?'active':''}" onclick="selectRouteOption(this,${i})">${label}</button>`}
-function routeDetailHTML(r){const ch=routeCharacter(r);return `<div class="route-name"><b>Published ascent:</b> ${r.route}</div>${ch?`<div class="route-character">${ch}</div>`:''}<div class="route-stat-grid"><div class="route-stat"><span>Distance to summit</span><b>${Number(r.miles).toFixed(1)} miles</b></div><div class="route-stat"><span>Ascent</span><b>${r.ascentFt.toLocaleString()} ft / ${metresFromFeet(r.ascentFt)} m</b></div><div class="route-stat"><span>Time to summit</span><b>${r.time}</b></div></div><a class="route-start-link" href="${startDirectionsUrl(r.route)}" target="_blank" rel="noopener">Directions/search for route start: ${routeStartText(r.route)} ↗</a>`}
+function routeDetailHTML(r){const ch=routeCharacter(r);return `<div class="route-name"><b>Published ascent:</b> ${r.route}</div>${routeMappingHTML(r.route)}${ch?`<div class="route-character">${ch}</div>`:''}<div class="route-stat-grid"><div class="route-stat"><span>Distance to summit</span><b>${Number(r.miles).toFixed(1)} miles</b></div><div class="route-stat"><span>Ascent</span><b>${r.ascentFt.toLocaleString()} ft / ${metresFromFeet(r.ascentFt)} m</b></div><div class="route-stat"><span>Time to summit</span><b>${r.time}</b></div></div><a class="route-start-link" href="${startDirectionsUrl(r.route)}" target="_blank" rel="noopener">Directions/search for route start: ${routeStartText(r.route)} ↗</a>`}
 function routeStatsHTML(f){const rs=routeVariantsFor(f);if(!rs.length)return `<div class="no-route"><b>Verified route statistics not loaded for this fell yet.</b><br>The summit and parking tools still work; use the route-link buttons below for a detailed route before setting out.</div>`;const key=encodeURIComponent(routeKey(f.name));return `${rs.length>1?`<div class="route-picker" data-fell="${key}" data-routes='${JSON.stringify(rs).replace(/'/g,"&#39;")}'><div class="route-picker-label">Choose ascent <span class="route-count">${rs.length} published options</span></div><div class="route-choice">${rs.map((r,i)=>routeOptionHTML(r,i,i===0)).join('')}</div></div>`:''}<div class="route-selected">${routeDetailHTML(rs[0])}</div><div class="route-source">Published ascent statistics: Wainwright Routes. Figures are to the summit, not a complete return/circular walk.</div>`}
-window.selectRouteOption=(btn,i)=>{const picker=btn.closest('.route-picker');if(!picker)return;const rs=JSON.parse(picker.dataset.routes.replace(/&#39;/g,"'"));picker.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('active',j===i));const target=picker.parentElement.querySelector('.route-selected');if(target&&rs[i])target.innerHTML=routeDetailHTML(rs[i]);clearRouteOverlay(false);const card=btn.closest('.route-card');if(card){const st=card.querySelector('.route-map-status');if(st){st.className='route-map-status';st.textContent='Route choice changed — click “Draw route on map” to refresh the line.'}}};
+window.selectRouteOption=(btn,i)=>{const picker=btn.closest('.route-picker');if(!picker)return;const rs=JSON.parse(picker.dataset.routes.replace(/&#39;/g,"'"));picker.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('active',j===i));const target=picker.parentElement.querySelector('.route-selected');if(target&&rs[i])target.innerHTML=routeDetailHTML(rs[i]);clearRouteOverlay(false);const card=btn.closest('.route-card');if(card){const st=card.querySelector('.route-map-status');if(st){st.className='route-map-status';st.textContent='Route choice changed — preview the generated line to refresh the map.'}}};
 
 
+let routePreviewGeneration=0;
 let activeRouteLayer=null,activeRouteStartMarker=null,activeRouteEndMarker=null;
 let activeRouteCoords=[],activeDirections=[],navWatchId=null,navUserMarker=null,navStepIndex=0,voiceGuidance=false,lastSpokenStep=-1;
 let lastUserPos=null,offRouteCount=0,activeNavCard=null,activeRouteContext=null;
@@ -307,7 +308,7 @@ const KNOWN_STARTS={
 };
 function normPlace(x){return (x||'').toLowerCase().replace(/[’']/g,"'").replace(/\s+/g,' ').trim()}
 function setRouteStatus(card,msg,type=''){const el=card&&card.querySelector('.route-map-status');if(el){el.className='route-map-status'+(type?' '+type:'');el.textContent=msg}}
-function clearRouteOverlay(updateStatus=true){stopNavigation();activeRouteContext=null;if(activeRouteLayer){if(activeRouteLayer._guideMarkers)activeRouteLayer._guideMarkers.forEach(m=>map.removeLayer(m));map.removeLayer(activeRouteLayer);activeRouteLayer=null}if(activeRouteStartMarker){map.removeLayer(activeRouteStartMarker);activeRouteStartMarker=null}if(activeRouteEndMarker){map.removeLayer(activeRouteEndMarker);activeRouteEndMarker=null}activeRouteCoords=[];activeDirections=[];navStepIndex=0;document.querySelectorAll('.turn-panel').forEach(el=>el.innerHTML='<h5>Turn-by-turn directions</h5><div class="turn-summary">Draw a route to load walking directions.</div>');document.querySelectorAll('[data-nav-start]').forEach(b=>b.disabled=true);if(updateStatus)document.querySelectorAll('.route-map-status').forEach(el=>{el.className='route-map-status';el.textContent='Route line cleared.'})}
+function clearRouteOverlay(updateStatus=true){routePreviewGeneration++;stopNavigation();activeRouteContext=null;if(activeRouteLayer){if(activeRouteLayer._guideMarkers)activeRouteLayer._guideMarkers.forEach(m=>map.removeLayer(m));map.removeLayer(activeRouteLayer);activeRouteLayer=null}if(activeRouteStartMarker){map.removeLayer(activeRouteStartMarker);activeRouteStartMarker=null}if(activeRouteEndMarker){map.removeLayer(activeRouteEndMarker);activeRouteEndMarker=null}activeRouteCoords=[];activeDirections=[];navStepIndex=0;document.querySelectorAll('.turn-panel').forEach(el=>el.innerHTML='<h5>Turn-by-turn directions</h5><div class="turn-summary">Draw a route to load walking directions.</div>');document.querySelectorAll('[data-nav-start]').forEach(b=>b.disabled=true);if(updateStatus)document.querySelectorAll('.route-map-status').forEach(el=>{el.className='route-map-status';el.textContent='Route line cleared.'})}
 window.clearRouteOverlay=clearRouteOverlay;
 const ROUTE_STARTS={
  'From Keswick via the east ridge':[54.6013,-3.1347],
@@ -319,13 +320,22 @@ const ROUTE_STARTS={
  'From Wasdale Head via Hollow Stones':[54.4668,-3.2563],
  'From Wasdale Head via the Breast Route':[54.4668,-3.2563],
  'From Wasdale Head via Beck Head':[54.4668,-3.2563],
- 'From Coniston (fell gate) via the south ridge':[54.3707,-3.0757],
- 'From Coniston (fell gate) via Low Water':[54.3707,-3.0757],
- 'From Coniston (fell gate) via the Diamond path':[54.3707,-3.0757]
+ 'From Coniston (fell gate) via the south ridge':[54.363508,-3.0962563],
+ 'From Coniston (fell gate) via Low Water':[54.3636831,-3.0961275],
+ 'From Coniston (fell gate) via the Diamond path':[54.363633,-3.0962563]
 };
-// Route-specific guide corridors. These points make the router honour the named line rather than
-// simply choosing any path from the start to the summit. They are planning waypoints, not a GPX trace.
+// Route-specific planning guides, not verified walking tracks. Routing may snap to other paths.
+// Source-attributed points are sampled verbatim from publisher maps; see docs/route-mapping.md.
 const ROUTE_WAYPOINTS={
+ "From Glenridding via the north west ridge":[{"name":"Published north west ridge guide 1","lat":54.5473263,"lon":-2.9758787},{"name":"Published north west ridge guide 2","lat":54.5392106,"lon":-2.9959631},{"name":"Published north west ridge guide 3","lat":54.5375674,"lon":-3.0115843},{"name":"Published north west ridge guide 4","lat":54.5349281,"lon":-3.0102539}],
+ "From Glenridding via the east shoulder":[{"name":"Published east shoulder guide 1","lat":54.5416754,"lon":-2.9656649},{"name":"Published east shoulder guide 2","lat":54.5417252,"lon":-2.9960918},{"name":"Published east shoulder guide 3","lat":54.535202,"lon":-2.9960918},{"name":"Published east shoulder guide 4","lat":54.5328116,"lon":-3.0033016}],
+ "From Seathwaite via Allen Gill":[{"name":"Published Allen Gill guide 1","lat":54.4850483,"lon":-3.1818295},{"name":"Published Allen Gill guide 2","lat":54.4769702,"lon":-3.1793404},{"name":"Published Allen Gill guide 3","lat":54.4747758,"lon":-3.1723881},{"name":"Published Allen Gill guide 4","lat":54.470686,"lon":-3.175993}],
+ "From Seathwaite via Ruddy Gill":[{"name":"Published Ruddy Gill guide 1","lat":54.4778179,"lon":-3.1833744},{"name":"Published Ruddy Gill guide 2","lat":54.4707858,"lon":-3.1879234},{"name":"Published Ruddy Gill guide 3","lat":54.4662965,"lon":-3.1873226},{"name":"Published Ruddy Gill guide 4","lat":54.4649497,"lon":-3.1802845}],
+ "From Seathwaite via The Band":[{"name":"Published The Band guide 1","lat":54.4852976,"lon":-3.1958628},{"name":"Published The Band guide 2","lat":54.4759977,"lon":-3.2057333},{"name":"Published The Band guide 3","lat":54.4722572,"lon":-3.1992102},{"name":"Published The Band guide 4","lat":54.4688405,"lon":-3.1968927}],
+ "From Seathwaite via Esk Hause":[{"name":"Published Esk Hause guide 1","lat":54.4788652,"lon":-3.1828594},{"name":"Published Esk Hause guide 2","lat":54.4685662,"lon":-3.1898975},{"name":"Published Esk Hause guide 3","lat":54.4627547,"lon":-3.1873226},{"name":"Published Esk Hause guide 4","lat":54.4618068,"lon":-3.1945324}],
+ "From Coniston (fell gate) via the south ridge":[{"name":"Published south ridge guide 1","lat":54.3585319,"lon":-3.1181431},{"name":"Published south ridge guide 2","lat":54.3615326,"lon":-3.1237221},{"name":"Published south ridge guide 3","lat":54.3641081,"lon":-3.1194735},{"name":"Published south ridge guide 4","lat":54.3681585,"lon":-3.1197739}],
+ "From Coniston (fell gate) via Low Water":[{"name":"Published Low Water guide 1","lat":54.3733835,"lon":-3.1029081},{"name":"Published Low Water guide 2","lat":54.3728835,"lon":-3.110075},{"name":"Published Low Water guide 3","lat":54.3742584,"lon":-3.1163406},{"name":"Published Low Water guide 4","lat":54.3724836,"lon":-3.1184006}],
+ "From Coniston (fell gate) via the Diamond path":[{"name":"Published Diamond path guide 1","lat":54.3618577,"lon":-3.1053972},{"name":"Published Diamond path guide 2","lat":54.3641081,"lon":-3.1101179},{"name":"Published Diamond path guide 3","lat":54.3666584,"lon":-3.1143665},{"name":"Published Diamond path guide 4","lat":54.3696086,"lon":-3.117156}],
  'From Keswick via the east ridge':[
   {name:'Spooney Green / Latrigg approach',lat:54.6130,lon:-3.1334},
   {name:'Lonscale east-ridge approach',lat:54.6265,lon:-3.1040}
@@ -383,6 +393,31 @@ async function geocodeStart(place,route){
  }
 }
 function routeViaPoints(route){return ROUTE_WAYPOINTS[route]||[]}
+
+// A source documents guide coordinates, not independent verification of the generated line.
+const ROUTE_GUIDE_SOURCES={"From Coniston (fell gate) via the south ridge":{"source":"https://www.wainwrightroutes.co.uk/conistonoldman-1_map.html"},"From Coniston (fell gate) via Low Water":{"source":"https://www.wainwrightroutes.co.uk/conistonoldman-2_map.html"},"From Coniston (fell gate) via the Diamond path":{"source":"https://www.wainwrightroutes.co.uk/conistonoldman-4_map.html"},"From Glenridding via the north west ridge":{"source":"https://www.wainwrightroutes.co.uk/catstycam_map.html"},"From Glenridding via the east shoulder":{"source":"https://www.wainwrightroutes.co.uk/catstycam2_map.html"},"From Seathwaite via Allen Gill":{"source":"https://www.wainwrightroutes.co.uk/allencrags_map.html"},"From Seathwaite via Ruddy Gill":{"source":"https://www.wainwrightroutes.co.uk/allencrags2_map.html"},"From Seathwaite via The Band":{"source":"https://www.wainwrightroutes.co.uk/greatend-1_map.html"},"From Seathwaite via Esk Hause":{"source":"https://www.wainwrightroutes.co.uk/greatend-2_map.html"}};
+function routeMappingNotice(route){
+ const vias=routeViaPoints(route);
+ return vias.length
+  ? 'Unverified generated walking line. Guide points help distinguish this ascent, but the line between them may differ from the published path. Check the detailed route and an appropriate map.'
+  : 'Unverified generated walking line. No route-specific guide points are available for this ascent; different named paths from the same start may generate the same line. Published figures describe the ascent, not this generated line.';
+}
+// A distance check detects obvious disagreement; passing it is not route verification.
+function routeDistanceWarning(route,summary){
+ const publishedKm=Number(route.miles)*1.609344,generatedKm=Number(summary.length);
+ if(!(publishedKm>0&&generatedKm>0)||Math.abs(generatedKm-publishedKm)<=publishedKm*0.5)return '';
+ return 'Large distance discrepancy: generated '+(generatedKm/1.609344).toFixed(1)+' miles versus published '+Number(route.miles).toFixed(1)+' miles to the summit. This preview may not follow the selected ascent. Check the detailed route and map before using these directions. ';
+}
+function routeMappingHTML(route){
+ const source=ROUTE_GUIDE_SOURCES[route];
+ return '<div class="route-note"><b>Map preview:</b> '+routeMappingNotice(route)+(source?' <a href="'+source.source+'" target="_blank" rel="noopener">Published guide-point source ↗</a>':'')+'</div>';
+}
+function buildWalkingRequest(start,vias,summit){
+ const points=[start,...vias,summit];
+ if(points.some(p=>!Number.isFinite(p.lat)||!Number.isFinite(p.lon)||Math.abs(p.lat)>90||Math.abs(p.lon)>180))throw new Error('invalid routing coordinate');
+ return {locations:points.map((p,i)=>({lat:p.lat,lon:p.lon,type:(i===0||i===points.length-1)?'break':'through'})),costing:'pedestrian',units:'kilometers',directions_options:{language:'en-GB'}};
+}
+
 function selectedRouteFromCard(card){const rs=JSON.parse((card.dataset.routes||'[]').replace(/&#39;/g,"'"));if(!rs.length)return null;const picker=card.querySelector('.route-picker');if(!picker)return rs[0];const buttons=[...picker.querySelectorAll('.route-choice button')];const idx=Math.max(0,buttons.findIndex(b=>b.classList.contains('active')));return rs[idx]||rs[0]}
 function decodePolyline6(str){
  let index=0,lat=0,lon=0,coords=[];
@@ -405,7 +440,7 @@ function showNavHud(){const h=document.getElementById('navHud');if(h)h.classList
 function hideNavHud(){const h=document.getElementById('navHud');if(h)h.classList.remove('show');document.body.classList.remove('navigation-mode')}
 function setNavHud(nextText='',distanceText='',remainingText='—',routeText='—',statusText=''){const q=id=>document.getElementById(id);if(q('navHudNext'))q('navHudNext').textContent=nextText||'Continue';if(q('navHudDistance'))q('navHudDistance').textContent=distanceText||'';if(q('navHudRemaining'))q('navHudRemaining').textContent=remainingText||'—';if(q('navHudRoute'))q('navHudRoute').textContent=routeText||'—';if(q('navHudStatus'))q('navHudStatus').textContent=statusText||''}
 window.toggleVoiceHud=(btn)=>{voiceGuidance=!voiceGuidance;document.querySelectorAll('[onclick*=\"toggleVoiceGuidance\"],#navHudVoice').forEach(b=>b.textContent=voiceGuidance?'Voice: on':'Voice: off');if(voiceGuidance&&activeDirections[navStepIndex])speakDirection(activeDirections[navStepIndex].verbal)};
-function renderDirections(card,summary){const panel=card.querySelector('.turn-panel');if(!panel)return;const section=panel.closest('details');if(section)section.open=true;const total=summary||{};const hdr=(total.length?formatKmPreferred(total.length):'')+(total.time?' · '+formatDuration(total.time):'');panel.innerHTML='<h5>Turn-by-turn directions</h5><div class="turn-summary">'+(hdr||'Walking directions loaded')+' · '+activeDirections.length+' manoeuvres</div><div class="turn-list">'+activeDirections.map((d,i)=>'<div class="turn-step" data-turn="'+i+'"><div class="turn-icon">'+turnIcon(d.type)+'</div><div><b>'+(i===0?'Start: ':'')+'</b>'+escapeHtml(d.instruction)+'</div><div class="turn-meta">'+(d.lengthKm?formatKmPreferred(d.lengthKm):'')+'</div></div>').join('')+'</div>';const nav=card.querySelector('[data-nav-start]');if(nav)nav.disabled=!activeDirections.length;}
+function renderDirections(card,summary){const panel=card.querySelector('.turn-panel');if(!panel)return;const section=panel.closest('details');if(section)section.open=true;const total=summary||{};const hdr=(total.length?formatKmPreferred(total.length):'')+(total.time?' · '+formatDuration(total.time):'');panel.innerHTML='<h5>Generated directions — unverified line</h5><div class="turn-summary">'+(hdr||'Walking directions loaded')+' · '+activeDirections.length+' manoeuvres</div><div class="turn-list">'+activeDirections.map((d,i)=>'<div class="turn-step" data-turn="'+i+'"><div class="turn-icon">'+turnIcon(d.type)+'</div><div><b>'+(i===0?'Start: ':'')+'</b>'+escapeHtml(d.instruction)+'</div><div class="turn-meta">'+(d.lengthKm?formatKmPreferred(d.lengthKm):'')+'</div></div>').join('')+'</div>';const nav=card.querySelector('[data-nav-start]');if(nav)nav.disabled=!activeDirections.length;}
 function escapeHtml(v){return String(v||'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]))}
 function distanceM(a,b){return havKm(a.lat,a.lon,b.lat,b.lon)*1000}
 function nearestRoutePoint(here){
@@ -479,7 +514,46 @@ window.startNavigation=(btn)=>{
   if(here&&nearest&&nearest.distance<1000)map.panTo([here.lat,here.lon],{animate:true,duration:.35});
  },err=>{setLiveStatus(card,'Live GPS guidance unavailable: '+err.message+'. The turn list remains available.','error')},{enableHighAccuracy:true,maximumAge:3000,timeout:15000});
 };
-window.drawRouteFromPopup=async(btn)=>{const card=btn.closest('.route-card');if(!card)return;const route=selectedRouteFromCard(card);if(!route){setRouteStatus(card,'No published route option is loaded for this fell.','warn');return}const startName=routeStartText(route.route);const fellLat=Number(card.dataset.lat),fellLon=Number(card.dataset.lon);btn.disabled=true;const vias=routeViaPoints(route.route);setRouteStatus(card,'Using the saved start coordinate'+(vias.length?' and '+vias.length+' route-specific waypoint'+(vias.length>1?'s':''):'')+' to calculate the walking line and directions…');try{const start=await geocodeStart(startName,route.route);const points=[{lat:start.lat,lon:start.lon,name:startName},...vias,{lat:fellLat,lon:fellLon,name:card.dataset.fell}];activeRouteContext={card,route,start,vias,points};const locations=points.map((p,i)=>({lat:p.lat,lon:p.lon,type:(i===0||i===points.length-1)?'break':'through'}));const payload={locations,costing:'pedestrian',units:'kilometers',directions_options:{language:'en-GB'}};const resp=await fetch('https://valhalla1.openstreetmap.de/route',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});if(!resp.ok)throw new Error('walking router returned HTTP '+resp.status);const data=await resp.json();const geo=valhallaRouteToGeo(data);clearRouteOverlay(false);/* clear resets arrays, restore from data */const restored=valhallaRouteToGeo(data);activeRouteLayer=L.geoJSON(restored,{style:{color:'#e56b3f',weight:5,opacity:.9}}).addTo(map);activeRouteStartMarker=L.circleMarker([start.lat,start.lon],{radius:7,color:'#193028',weight:3,fillColor:'#ffffff',fillOpacity:1}).bindTooltip('Route start: '+startName).addTo(map);activeRouteEndMarker=L.circleMarker([fellLat,fellLon],{radius:6,color:'#ffffff',weight:2,fillColor:'#e56b3f',fillOpacity:1}).bindTooltip('Summit: '+card.dataset.fell).addTo(map);const guideMarkers=vias.map(v=>L.circleMarker([v.lat,v.lon],{radius:5,color:'#f7d27a',weight:2,fillColor:'#243a34',fillOpacity:1}).bindTooltip('Guide waypoint: '+v.name).addTo(map));if(activeRouteLayer)activeRouteLayer._guideMarkers=guideMarkers;const group=L.featureGroup([activeRouteLayer,activeRouteStartMarker,activeRouteEndMarker,...guideMarkers]);map.fitBounds(group.getBounds(),{padding:[35,35],maxZoom:15});renderDirections(card,data.trip.summary||{});const viaMsg=vias.length?' through '+vias.map(v=>v.name).join(' → '):'';const sum=data.trip.summary||{};setRouteStatus(card,'Mapped walking route shown'+(sum.length?' — '+formatKmPreferred(sum.length)+' · '+formatDuration(sum.time):'')+'. Turn-by-turn directions are loaded below'+viaMsg+'.','ok')}catch(err){console.warn(err);setRouteStatus(card,'Route preview unavailable: '+err.message+'. The published statistics and detailed route/GPX links are still available.','error')}finally{btn.disabled=false}};
+window.drawRouteFromPopup=async(btn)=>{
+ const card=btn.closest('.route-card');if(!card)return;
+ const route=selectedRouteFromCard(card);
+ if(!route){setRouteStatus(card,'No published route option is loaded for this fell.','warn');return}
+ let requestId=++routePreviewGeneration;
+ const current=()=>requestId===routePreviewGeneration;
+ const startName=routeStartText(route.route);
+ const fellLat=Number(card.dataset.lat),fellLon=Number(card.dataset.lon);
+ const vias=routeViaPoints(route.route);
+ btn.disabled=true;
+ setRouteStatus(card,'Calculating an unverified walking line'+(vias.length?' using '+vias.length+' route-specific guide points':' without route-specific guide points')+'…');
+ try{
+  const start=await geocodeStart(startName,route.route);
+  if(!current())return;
+  const points=[{lat:start.lat,lon:start.lon,name:startName},...vias,{lat:fellLat,lon:fellLon,name:card.dataset.fell}];
+  const payload=buildWalkingRequest(points[0],vias,points[points.length-1]);
+  const resp=await fetch('https://valhalla1.openstreetmap.de/route',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  if(!current())return;
+  if(!resp.ok)throw new Error('walking router returned HTTP '+resp.status);
+  const data=await resp.json();
+  if(!current())return;
+  clearRouteOverlay(false);
+  requestId=routePreviewGeneration;
+  activeRouteContext={card,route,start,vias,points};
+  const geo=valhallaRouteToGeo(data);
+  activeRouteLayer=L.geoJSON(geo,{style:{color:'#e56b3f',weight:5,opacity:.9}}).addTo(map);
+  activeRouteStartMarker=L.circleMarker([start.lat,start.lon],{radius:7,color:'#193028',weight:3,fillColor:'#ffffff',fillOpacity:1}).bindTooltip('Route start: '+startName).addTo(map);
+  activeRouteEndMarker=L.circleMarker([fellLat,fellLon],{radius:6,color:'#ffffff',weight:2,fillColor:'#e56b3f',fillOpacity:1}).bindTooltip('Summit: '+card.dataset.fell).addTo(map);
+  const guideMarkers=vias.map(v=>L.circleMarker([v.lat,v.lon],{radius:5,color:'#f7d27a',weight:2,fillColor:'#243a34',fillOpacity:1}).bindTooltip('Guide waypoint: '+v.name).addTo(map));
+  activeRouteLayer._guideMarkers=guideMarkers;
+  const group=L.featureGroup([activeRouteLayer,activeRouteStartMarker,activeRouteEndMarker,...guideMarkers]);
+  map.fitBounds(group.getBounds(),{padding:[35,35],maxZoom:15});
+  renderDirections(card,data.trip.summary||{});
+  const viaMsg=vias.length?' through '+vias.map(v=>v.name).join(' → '):'';
+  const sum=data.trip.summary||{};
+  setRouteStatus(card,routeDistanceWarning(route,sum)+'Unverified generated walking line shown'+(sum.length?' — '+formatKmPreferred(sum.length)+' · '+formatDuration(sum.time):'')+'. Generated directions are loaded below'+viaMsg+'. '+routeMappingNotice(route.route),'warn');
+ }catch(err){
+  if(current()){console.warn(err);setRouteStatus(card,'Route preview unavailable: '+err.message+'. The published statistics and detailed route/GPX links are still available.','error')}
+ }finally{btn.disabled=false}
+};
 
 
 const PARKING_HUBS=[
@@ -532,7 +606,7 @@ function popupHTML(f){
  const parkingHtml=parks.map((p,i)=>`<div class="parking-item"><span><b>${i===0?'Suggested start: ':''}${p.name}</b><br>${p.note}</span><a href="${parkingDirections(p)}" target="_blank" rel="noopener">${(p.dist/1.609344).toFixed(1)} mi*</a></div>`).join('');
  return `<div class="popup-title">${cleanName(f.name)}</div><div class="popup-grade grade-${g}">${gradeLabel(g)} · summit guide</div><div class="grid"><div class="tile"><span>Height</span><b>${Number(f.heightMetres).toFixed(Number(f.heightMetres)%1?1:0)} m / ${ft} ft</b></div><div class="tile"><span>OS grid</span><b>${f.gridReference||'—'}</b></div><div class="tile"><span>Latitude</span><b>${lat}</b></div><div class="tile"><span>Longitude</span><b>${lon}</b></div></div>
  <div class="route-card" data-fell="${cleanName(f.name).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}" data-lat="${lat}" data-lon="${lon}" data-routes='${JSON.stringify(routeVariantsFor(f)).replace(/'/g,"&#39;")}'>
- <details class="route-section" open><summary>🥾 Walk planning</summary><div class="route-section-body"><div class="route-tags"><span class="tag">${effort.tag}</span><span class="tag">${effort.label}</span></div>${routeStatsHTML(f)}<div class="route-map-tools"><button type="button" onclick="drawRouteFromPopup(this)">Draw route + directions</button><button type="button" class="secondary" onclick="clearRouteOverlay()">Clear route</button></div><div class="route-map-legend"><span class="route-map-start"></span><span class="route-map-line"></span><span class="route-map-end"></span><span>saved start → guide waypoint(s) → summit</span></div><div class="route-map-status">Choose an ascent above, then draw its mapped walking line and turn-by-turn directions.</div></div></details>
+ <details class="route-section" open><summary>🥾 Walk planning</summary><div class="route-section-body"><div class="route-tags"><span class="tag">${effort.tag}</span><span class="tag">${effort.label}</span></div>${routeStatsHTML(f)}<div class="route-map-tools"><button type="button" onclick="drawRouteFromPopup(this)">Preview generated line + directions</button><button type="button" class="secondary" onclick="clearRouteOverlay()">Clear route</button></div><div class="route-map-legend"><span class="route-map-start"></span><span class="route-map-line"></span><span class="route-map-end"></span><span>saved start → guide waypoint(s) → summit</span></div><div class="route-map-status">Choose an ascent above to preview an unverified generated line. Published ascent statistics are separate from generated distances and directions.</div></div></details>
  <div class="nav-focus"><div class="small"><b>🧭 Live navigation</b></div><div class="nav-tools"><button type="button" data-nav-start disabled onclick="startNavigation(this)">Start live guidance</button><button type="button" class="secondary" onclick="toggleVoiceGuidance(this)">Voice: off</button><button type="button" class="secondary" onclick="stopNavigation()">Stop</button></div><div class="nav-live">Live guidance is optional and needs browser location permission. The turn list works without it.</div><div class="offroute-actions"><button type="button" onclick="recalculateFromHere(this)">Recalculate from here</button><button type="button" class="secondary" onclick="this.closest('.offroute-actions').classList.remove('show')">Dismiss · <span class="offroute-meter">off route</span></button></div></div>
  <details class="route-section" data-section="directions"><summary>↪ Turn-by-turn directions</summary><div class="route-section-body"><div class="turn-panel"><h5>Turn-by-turn directions</h5><div class="turn-summary">Draw a route to load walking directions.</div></div></div></details>
  <details class="route-section"><summary>🅿 Parking &amp; start</summary><div class="route-section-body"><div class="parking-list">${parkingHtml}</div><div class="route-links"><a href="${routeSearchUrl(f.name)}" target="_blank" rel="noopener">Open detailed route</a><a class="alt" href="${wainroutesSearch(f.name)}" target="_blank" rel="noopener">Wainroutes / GPX</a></div></div></details>

@@ -1,0 +1,95 @@
+[
+  {
+    "route": "From Coniston (fell gate) via the south ridge",
+    "source": "https://www.wainwrightroutes.co.uk/conistonoldman-1_map.html",
+    "retrieved": "2026-11-08",
+    "start": [
+      54.363508,
+      -3.0962563
+    ],
+    "guides": [
+      {
+        "index": 28,
+        "lat": 54.3585319,
+        "lon": -3.1181431
+      },
+      {
+        "index": 37,
+        "lat": 54.3615326,
+        "lon": -3.1237221
+      },
+      {
+        "index": 48,
+        "lat": 54.3641081,
+        "lon": -3.1194735
+      },
+      {
+        "index": 59,
+        "lat": 54.3681585,
+        "lon": -3.1197739
+      }
+    ]
+  },
+  {
+    "route": "From Coniston (fell gate) via Low Water",
+    "source": "https://www.wainwrightroutes.co.uk/conistonoldman-2_map.html",
+    "retrieved": "2026-11-08",
+    "start": [
+      54.3636831,
+      -3.0961275
+    ],
+    "guides": [
+      {
+        "index": 23,
+        "lat": 54.3733835,
+        "lon": -3.1029081
+      },
+      {
+        "index": 38,
+        "lat": 54.3728835,
+        "lon": -3.110075
+      },
+      {
+        "index": 49,
+        "lat": 54.3742584,
+        "lon": -3.1163406
+      },
+      {
+        "index": 55,
+        "lat": 54.3724836,
+        "lon": -3.1184006
+      }
+    ]
+  },
+  {
+    "route": "From Coniston (fell gate) via the Diamond path",
+    "source": "https://www.wainwrightroutes.co.uk/conistonoldman-4_map.html",
+    "retrieved": "2026-11-08",
+    "start": [
+      54.363633,
+      -3.0962563
+    ],
+    "guides": [
+      {
+        "index": 15,
+        "lat": 54.3618577,
+        "lon": -3.1053972
+      },
+      {
+        "index": 27,
+        "lat": 54.3641081,
+        "lon": -3.1101179
+      },
+      {
+        "index": 38,
+        "lat": 54.3666584,
+        "lon": -3.1143665
+      },
+      {
+        "index": 50,
+        "lat": 54.3696086,
+        "lon": -3.117156
+      }
+    ]
+  }
+]
