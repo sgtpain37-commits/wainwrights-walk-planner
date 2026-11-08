@@ -1,0 +1,22 @@
+{
+  "checked": "2026-11-08",
+  "endpoint": "https://valhalla1.openstreetmap.de/route",
+  "note": "Diagnostic only. Different generated shapes do not verify the published paths. These responses have substantial distance discrepancies.",
+  "results": [
+    {
+      "route": "From Coniston (fell gate) via the south ridge",
+      "lengthKm": 10.667,
+      "shapeSHA256": "1e85ae5b8c835858ba0f591895e9edac73fa7b2036aeb48600c0f7cadf928e78"
+    },
+    {
+      "route": "From Coniston (fell gate) via Low Water",
+      "lengthKm": 15.947,
+      "shapeSHA256": "4fc0729c69eec32ea96c270cc63b629579efa16295ecb19107b1172395d02227"
+    },
+    {
+      "route": "From Coniston (fell gate) via the Diamond path",
+      "lengthKm": 5.652,
+      "shapeSHA256": "6fb711a0dccf8c1da84fc69f863b38afd7c0c4eafd024d8697dfcc888e787ec1"
+    }
+  ]
+}

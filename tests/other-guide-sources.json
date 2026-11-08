@@ -1,0 +1,164 @@
+[
+  {
+    "route": "From Glenridding via the north west ridge",
+    "source": "https://www.wainwrightroutes.co.uk/catstycam_map.html",
+    "retrieved": "2026-11-08",
+    "guides": [
+      {
+        "index": 36,
+        "lat": 54.5473263,
+        "lon": -2.9758787
+      },
+      {
+        "index": 72,
+        "lat": 54.5392106,
+        "lon": -2.9959631
+      },
+      {
+        "index": 99,
+        "lat": 54.5375674,
+        "lon": -3.0115843
+      },
+      {
+        "index": 108,
+        "lat": 54.5349281,
+        "lon": -3.0102539
+      }
+    ]
+  },
+  {
+    "route": "From Glenridding via the east shoulder",
+    "source": "https://www.wainwrightroutes.co.uk/catstycam2_map.html",
+    "retrieved": "2026-11-08",
+    "guides": [
+      {
+        "index": 27,
+        "lat": 54.5416754,
+        "lon": -2.9656649
+      },
+      {
+        "index": 63,
+        "lat": 54.5417252,
+        "lon": -2.9960918
+      },
+      {
+        "index": 81,
+        "lat": 54.535202,
+        "lon": -2.9960918
+      },
+      {
+        "index": 99,
+        "lat": 54.5328116,
+        "lon": -3.0033016
+      }
+    ]
+  },
+  {
+    "route": "From Seathwaite via Allen Gill",
+    "source": "https://www.wainwrightroutes.co.uk/allencrags_map.html",
+    "retrieved": "2026-11-08",
+    "guides": [
+      {
+        "index": 15,
+        "lat": 54.4850483,
+        "lon": -3.1818295
+      },
+      {
+        "index": 24,
+        "lat": 54.4769702,
+        "lon": -3.1793404
+      },
+      {
+        "index": 30,
+        "lat": 54.4747758,
+        "lon": -3.1723881
+      },
+      {
+        "index": 36,
+        "lat": 54.470686,
+        "lon": -3.175993
+      }
+    ]
+  },
+  {
+    "route": "From Seathwaite via Ruddy Gill",
+    "source": "https://www.wainwrightroutes.co.uk/allencrags2_map.html",
+    "retrieved": "2026-11-08",
+    "guides": [
+      {
+        "index": 21,
+        "lat": 54.4778179,
+        "lon": -3.1833744
+      },
+      {
+        "index": 30,
+        "lat": 54.4707858,
+        "lon": -3.1879234
+      },
+      {
+        "index": 36,
+        "lat": 54.4662965,
+        "lon": -3.1873226
+      },
+      {
+        "index": 42,
+        "lat": 54.4649497,
+        "lon": -3.1802845
+      }
+    ]
+  },
+  {
+    "route": "From Seathwaite via The Band",
+    "source": "https://www.wainwrightroutes.co.uk/greatend-1_map.html",
+    "retrieved": "2026-11-08",
+    "guides": [
+      {
+        "index": 40,
+        "lat": 54.4852976,
+        "lon": -3.1958628
+      },
+      {
+        "index": 64,
+        "lat": 54.4759977,
+        "lon": -3.2057333
+      },
+      {
+        "index": 80,
+        "lat": 54.4722572,
+        "lon": -3.1992102
+      },
+      {
+        "index": 88,
+        "lat": 54.4688405,
+        "lon": -3.1968927
+      }
+    ]
+  },
+  {
+    "route": "From Seathwaite via Esk Hause",
+    "source": "https://www.wainwrightroutes.co.uk/greatend-2_map.html",
+    "retrieved": "2026-11-08",
+    "guides": [
+      {
+        "index": 40,
+        "lat": 54.4788652,
+        "lon": -3.1828594
+      },
+      {
+        "index": 64,
+        "lat": 54.4685662,
+        "lon": -3.1898975
+      },
+      {
+        "index": 80,
+        "lat": 54.4627547,
+        "lon": -3.1873226
+      },
+      {
+        "index": 88,
+        "lat": 54.4618068,
+        "lon": -3.1945324
+      }
+    ]
+  }
+]
