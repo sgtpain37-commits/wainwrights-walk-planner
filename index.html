@@ -287,7 +287,7 @@ function routeStatsHTML(f){const rs=routeVariantsFor(f);if(!rs.length)return `<d
 window.selectRouteOption=(btn,i)=>{const picker=btn.closest('.route-picker');if(!picker)return;const rs=JSON.parse(picker.dataset.routes.replace(/&#39;/g,"'"));picker.querySelectorAll('button').forEach((b,j)=>b.classList.toggle('active',j===i));const target=picker.parentElement.querySelector('.route-selected');if(target&&rs[i])target.innerHTML=routeDetailHTML(rs[i]);clearRouteOverlay(false);const card=btn.closest('.route-card');if(card){const st=card.querySelector('.route-map-status');if(st){st.className='route-map-status';st.textContent='Route choice changed — preview the generated line to refresh the map.'}}};
 
 
-let routePreviewGeneration=0;
+let routePreviewGeneration=0,navSessionGeneration=0;
 let activeRouteLayer=null,activeRouteStartMarker=null,activeRouteEndMarker=null;
 let activeRouteCoords=[],activeDirections=[],navWatchId=null,navUserMarker=null,navStepIndex=0,voiceGuidance=false,lastSpokenStep=-1;
 let lastUserPos=null,offRouteCount=0,activeNavCard=null,activeRouteContext=null;
@@ -406,7 +406,7 @@ function routeMappingNotice(route){
 function routeDistanceWarning(route,summary){
  const publishedKm=Number(route.miles)*1.609344,generatedKm=Number(summary.length);
  if(!(publishedKm>0&&generatedKm>0)||Math.abs(generatedKm-publishedKm)<=publishedKm*0.5)return '';
- return 'Large distance discrepancy: generated '+(generatedKm/1.609344).toFixed(1)+' miles versus published '+Number(route.miles).toFixed(1)+' miles to the summit. This preview may not follow the selected ascent. Check the detailed route and map before using these directions. ';
+ return 'Large distance discrepancy: generated '+(generatedKm/1.609344).toFixed(1)+' miles versus published '+Number(route.miles).toFixed(1)+' miles to the summit. This preview may not follow the selected ascent. Live guidance is restricted. Check the published ascent, independent walking-route resources and an appropriate map. ';
 }
 function routeMappingHTML(route){
  const source=ROUTE_GUIDE_SOURCES[route];
@@ -420,16 +420,83 @@ function buildWalkingRequest(start,vias,summit){
 
 function selectedRouteFromCard(card){const rs=JSON.parse((card.dataset.routes||'[]').replace(/&#39;/g,"'"));if(!rs.length)return null;const picker=card.querySelector('.route-picker');if(!picker)return rs[0];const buttons=[...picker.querySelectorAll('.route-choice button')];const idx=Math.max(0,buttons.findIndex(b=>b.classList.contains('active')));return rs[idx]||rs[0]}
 function decodePolyline6(str){
- let index=0,lat=0,lon=0,coords=[];
- while(index<str.length){let b,shift=0,result=0;do{b=str.charCodeAt(index++)-63;result|=(b&0x1f)<<shift;shift+=5}while(b>=0x20);lat+=(result&1)?~(result>>1):(result>>1);shift=0;result=0;do{b=str.charCodeAt(index++)-63;result|=(b&0x1f)<<shift;shift+=5}while(b>=0x20);lon+=(result&1)?~(result>>1):(result>>1);coords.push([lon/1e6,lat/1e6])}
+ if(typeof str!=='string')throw new Error('invalid route geometry');
+ let index=0,lat=0,lon=0;const coords=[];
+ function delta(){let result=0,shift=0,b;do{
+  if(index>=str.length||shift>30)throw new Error('invalid route geometry encoding');
+  b=str.charCodeAt(index++)-63;if(b<0||b>63)throw new Error('invalid route geometry encoding');
+  result+=(b&31)*2**shift;shift+=5;
+ }while(b>=32);return result%2?-(result+1)/2:result/2;}
+ while(index<str.length){lat+=delta();lon+=delta();if(Math.abs(lat)>90e6||Math.abs(lon)>180e6)throw new Error('invalid route geometry coordinate');coords.push([lon/1e6,lat/1e6]);}
  return coords;
+}
+// Diagnostic eligibility only: no generated line is independently verified by these checks.
+function assessRouteGuidance(route,data,points,comparePublished=true){
+ const reasons=[],trip=data&&data.trip,summary=trip&&trip.summary;
+ const positive=x=>typeof x==='number'&&Number.isFinite(x)&&x>0;
+ if(!trip||!summary||!positive(summary.length)||!Number.isFinite(summary.time)||summary.time<0)reasons.push('Missing or invalid generated distance/time.');
+ if(!positive(route&&route.miles))reasons.push('Published ascent distance is unavailable or invalid.');
+ if(trip&&((trip.status!==undefined&&trip.status!==0)||(trip.units!==undefined&&trip.units!=='kilometers')))reasons.push('Router reported failure or unexpected distance units.');
+ const warning=routeDistanceWarning(route||{},summary||{});if(comparePublished&&warning)reasons.push(warning.trim());
+ let coords=[],count=0;
+ try{
+  if(!trip||!Array.isArray(trip.legs)||!trip.legs.length)throw new Error('Missing routing legs.');
+  for(const leg of trip.legs){
+   const lc=decodePolyline6(leg.shape);if(lc.length<2)throw new Error('Missing or incomplete route geometry.');
+   if(coords.length&&distanceM({lon:coords.at(-1)[0],lat:coords.at(-1)[1]},{lon:lc[0][0],lat:lc[0][1]})>10)throw new Error('Disconnected routing legs.');
+   coords.push(...(coords.length?lc.slice(1):lc));
+   if(!Array.isArray(leg.maneuvers)||!leg.maneuvers.length)throw new Error('Missing turn instructions.');
+   let previous=-1;
+   for(const m of leg.maneuvers){
+    if(!Number.isInteger(m.begin_shape_index)||m.begin_shape_index<previous||m.begin_shape_index>=lc.length||m.begin_shape_index<0||
+       !Number.isInteger(m.end_shape_index)||m.end_shape_index<m.begin_shape_index||m.end_shape_index>=lc.length||
+       !Number.isFinite(m.length)||m.length<0||!Number.isFinite(m.time)||m.time<0||
+       !(typeof m.instruction==='string'&&m.instruction.trim()||typeof m.verbal_pre_transition_instruction==='string'&&m.verbal_pre_transition_instruction.trim()))throw new Error('Invalid turn instructions or geometry indices.');
+    previous=m.begin_shape_index;count++;
+   }
+  }
+  let length=0;for(let i=1;i<coords.length;i++)length+=distanceM({lon:coords[i-1][0],lat:coords[i-1][1]},{lon:coords[i][0],lat:coords[i][1]})/1000;
+  if(!(length>0))throw new Error('Route geometry has no usable length.');
+  if(summary&&positive(summary.length)&&Math.abs(summary.length-length)>Math.max(.2,summary.length*.2))reasons.push('Generated distance disagrees with its route geometry.');
+  if(!points||points.length<2)reasons.push('Requested route endpoints are unavailable.');
+  else for(const [c,p] of [[coords[0],points[0]],[coords.at(-1),points.at(-1)]]){
+   if(!p||!Number.isFinite(p.lat)||!Number.isFinite(p.lon)||distanceM({lon:c[0],lat:c[1]},p)>200)reasons.push('Generated line does not reach the requested start or summit (within 200 metres).');
+  }
+ }catch(err){reasons.push(err.message);}
+ if(!count&&!reasons.length)reasons.push('No usable turn instructions.');
+ return {allowed:reasons.length===0,reasons};
+}
+function guidanceRestriction(card){
+ const ctx=activeRouteContext;
+ if(!ctx||ctx.card!==card||ctx.generation!==routePreviewGeneration||JSON.stringify(selectedRouteFromCard(card))!==ctx.routeKey)return 'Preview the currently selected ascent before starting guidance.';
+ if(!ctx.safety||!ctx.safety.allowed)return ctx.safety&&ctx.safety.reasons.join(' ')||'Route checks are incomplete.';
+ if(!activeDirections.length||activeRouteCoords.length<2)return 'Usable routing geometry and directions are required.';
+ return '';
+}
+function updateGuidanceAvailability(card){
+ const reason=guidanceRestriction(card),nav=card.querySelector('[data-nav-start]');
+ if(nav){nav.disabled=!!reason;nav.title=reason?'Live guidance restricted: '+reason:'Unverified generated line; passing diagnostic checks does not verify the walking route.';}
+ setLiveStatus(card,reason?'Live guidance restricted: '+reason+' Unverified map previews and published ascent / independent walking-route links remain available.':'Unverified generated line. Diagnostic checks passed; this does not independently verify the ascent. Check the published route, map and terrain.',reason?'error':'');
+ return !reason;
 }
 function valhallaRouteToGeo(data){
  if(!data||!data.trip||!Array.isArray(data.trip.legs))throw new Error('routing service returned an unexpected response');
- let coords=[],dirs=[];
- data.trip.legs.forEach((leg,legIndex)=>{const lc=decodePolyline6(leg.shape||'');const offset=coords.length-(coords.length?1:0);if(coords.length&&lc.length)coords.push(...lc.slice(1));else coords.push(...lc);(leg.maneuvers||[]).forEach((m,i)=>{const local=Math.max(0,Number(m.begin_shape_index||0));const gi=Math.min(coords.length-1,offset+local);const c=coords[gi]||coords[0];dirs.push({instruction:m.instruction||m.verbal_pre_transition_instruction||'Continue',verbal:m.verbal_pre_transition_instruction||m.instruction||'Continue',lengthKm:Number(m.length||0),timeSec:Number(m.time||0),type:Number(m.type||0),coord:c?{lon:c[0],lat:c[1]}:null,leg:legIndex})})});
+ const coords=[],dirs=[],lines=[];
+ for(const [legIndex,leg] of data.trip.legs.entries()){
+  const lc=decodePolyline6(leg.shape);if(lc.length<2)throw new Error('missing or incomplete route geometry');
+  lines.push(lc);coords.push(...(coords.length?lc.slice(1):lc));
+  // Invalid instructions must not prevent inspection of otherwise drawable geometry.
+  for(const m of Array.isArray(leg.maneuvers)?leg.maneuvers:[]){
+   if(!m||!Number.isInteger(m.begin_shape_index)||m.begin_shape_index<0||m.begin_shape_index>=lc.length)continue;
+   const c=lc[m.begin_shape_index];
+   dirs.push({instruction:m.instruction||m.verbal_pre_transition_instruction||'Continue',verbal:m.verbal_pre_transition_instruction||m.instruction||'Continue',lengthKm:Number(m.length||0),timeSec:Number(m.time||0),type:Number(m.type||0),coord:{lon:c[0],lat:c[1]},leg:legIndex});
+  }
+ }
+ if(!lines.length)throw new Error('missing route geometry');
  activeRouteCoords=coords.map(c=>({lon:c[0],lat:c[1]}));activeDirections=dirs;
- return {type:'FeatureCollection',features:[{type:'Feature',properties:{distanceKm:Number(data.trip.summary&&data.trip.summary.length||0),timeSec:Number(data.trip.summary&&data.trip.summary.time||0)},geometry:{type:'LineString',coordinates:coords}}]};
+ // Keep separate legs separate on the map; never fabricate a connection across a gap.
+ const geometry=lines.length===1?{type:'LineString',coordinates:lines[0]}:{type:'MultiLineString',coordinates:lines};
+ return {type:'FeatureCollection',features:[{type:'Feature',properties:{distanceKm:Number(data.trip.summary&&data.trip.summary.length||0),timeSec:Number(data.trip.summary&&data.trip.summary.time||0)},geometry}]};
 }
 function turnIcon(t){if([1,2,3,4].includes(t))return '↗';if([5,6,7].includes(t))return '↘';if([8,9,10].includes(t))return '↩';if([15,16].includes(t))return '⛰';return '↑'}
 function formatDuration(sec){sec=Math.round(sec||0);if(sec<60)return sec+' sec';const m=Math.round(sec/60);if(m<60)return m+' min';return Math.floor(m/60)+'h '+(m%60)+'m'}
@@ -439,8 +506,8 @@ function remainingRouteM(nearest){if(!nearest||!activeRouteCoords.length)return 
 function showNavHud(){const h=document.getElementById('navHud');if(h)h.classList.add('show');document.body.classList.add('navigation-mode')}
 function hideNavHud(){const h=document.getElementById('navHud');if(h)h.classList.remove('show');document.body.classList.remove('navigation-mode')}
 function setNavHud(nextText='',distanceText='',remainingText='—',routeText='—',statusText=''){const q=id=>document.getElementById(id);if(q('navHudNext'))q('navHudNext').textContent=nextText||'Continue';if(q('navHudDistance'))q('navHudDistance').textContent=distanceText||'';if(q('navHudRemaining'))q('navHudRemaining').textContent=remainingText||'—';if(q('navHudRoute'))q('navHudRoute').textContent=routeText||'—';if(q('navHudStatus'))q('navHudStatus').textContent=statusText||''}
-window.toggleVoiceHud=(btn)=>{voiceGuidance=!voiceGuidance;document.querySelectorAll('[onclick*=\"toggleVoiceGuidance\"],#navHudVoice').forEach(b=>b.textContent=voiceGuidance?'Voice: on':'Voice: off');if(voiceGuidance&&activeDirections[navStepIndex])speakDirection(activeDirections[navStepIndex].verbal)};
-function renderDirections(card,summary){const panel=card.querySelector('.turn-panel');if(!panel)return;const section=panel.closest('details');if(section)section.open=true;const total=summary||{};const hdr=(total.length?formatKmPreferred(total.length):'')+(total.time?' · '+formatDuration(total.time):'');panel.innerHTML='<h5>Generated directions — unverified line</h5><div class="turn-summary">'+(hdr||'Walking directions loaded')+' · '+activeDirections.length+' manoeuvres</div><div class="turn-list">'+activeDirections.map((d,i)=>'<div class="turn-step" data-turn="'+i+'"><div class="turn-icon">'+turnIcon(d.type)+'</div><div><b>'+(i===0?'Start: ':'')+'</b>'+escapeHtml(d.instruction)+'</div><div class="turn-meta">'+(d.lengthKm?formatKmPreferred(d.lengthKm):'')+'</div></div>').join('')+'</div>';const nav=card.querySelector('[data-nav-start]');if(nav)nav.disabled=!activeDirections.length;}
+window.toggleVoiceHud=(btn)=>{voiceGuidance=!voiceGuidance;document.querySelectorAll('[onclick*=\"toggleVoiceGuidance\"],#navHudVoice').forEach(b=>b.textContent=voiceGuidance?'Voice: on':'Voice: off');if(voiceGuidance&&activeNavCard&&!guidanceRestriction(activeNavCard)&&activeDirections[navStepIndex])speakDirection(activeDirections[navStepIndex].verbal)};
+function renderDirections(card,summary){const panel=card.querySelector('.turn-panel');updateGuidanceAvailability(card);if(!panel)return;const section=panel.closest('details');if(section)section.open=true;const total=summary||{};const hdr=(total.length?formatKmPreferred(total.length):'')+(total.time?' · '+formatDuration(total.time):'');panel.innerHTML='<h5>Generated directions — unverified line</h5><div class="turn-summary">'+(hdr||'Walking directions loaded')+' · '+activeDirections.length+' manoeuvres</div><div class="turn-list">'+activeDirections.map((d,i)=>'<div class="turn-step" data-turn="'+i+'"><div class="turn-icon">'+turnIcon(d.type)+'</div><div><b>'+(i===0?'Start: ':'')+'</b>'+escapeHtml(d.instruction)+'</div><div class="turn-meta">'+(d.lengthKm?formatKmPreferred(d.lengthKm):'')+'</div></div>').join('')+'</div>';}
 function escapeHtml(v){return String(v||'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]))}
 function distanceM(a,b){return havKm(a.lat,a.lon,b.lat,b.lon)*1000}
 function nearestRoutePoint(here){
@@ -460,35 +527,46 @@ function nearestRoutePoint(here){
 }
 function setOffRouteActions(card,show,distance){const box=card&&card.querySelector('.offroute-actions');if(!box)return;box.classList.toggle('show',!!show);const meter=box.querySelector('.offroute-meter');if(meter&&distance!=null)meter.textContent=formatDistanceM(distance)+' off route';}
 async function recalculateFromHere(btn){
- const card=btn.closest('.route-card');if(!card||!lastUserPos||!activeRouteCoords.length){setLiveStatus(card,'Current GPS position or route is unavailable.','error');return}
+ const card=btn.closest('.route-card'),ctx=activeRouteContext;
+ if(!card||!lastUserPos||!ctx||ctx.card!==card||!activeRouteCoords.length){setLiveStatus(card,'Current GPS position or selected route is unavailable.','error');return}
  const near=nearestRoutePoint(lastUserPos);if(!near)return;
- const end=activeRouteCoords[activeRouteCoords.length-1];
- btn.disabled=true;setLiveStatus(card,'Recalculating a walking line from your position back to the planned route…','active');
+ const here={...lastUserPos},end=activeRouteCoords.at(-1),rejoin=activeRouteCoords[Math.min(activeRouteCoords.length-1,near.index+8)]||near.coord;
+ const requestId=++routePreviewGeneration;
+ const current=()=>requestId===routePreviewGeneration&&activeRouteContext===ctx&&JSON.stringify(selectedRouteFromCard(card))===ctx.routeKey;
+ stopNavigation();ctx.generation=requestId;
+ // Remaining-distance reroutes cannot be compared with the published full ascent.
+ const priorReasons=ctx.safety&&!ctx.safety.allowed?ctx.safety.reasons:[];
+ ctx.safety={allowed:false,reasons:[...priorReasons,'Recalculated remaining lines are preview-only: their distance cannot be checked against the published full ascent. Preview the full selected ascent again to reassess live guidance.']};
+ updateGuidanceAvailability(card);btn.disabled=true;
+ setRouteStatus(card,'Recalculating an unverified preview from your position. Live guidance stopped.','warn');
  try{
-  const reconnectIndex=Math.min(activeRouteCoords.length-1,Math.max(near.index+8,near.index));
-  const rejoin=activeRouteCoords[reconnectIndex]||near.coord;
-  const payload={locations:[{lat:lastUserPos.lat,lon:lastUserPos.lon,type:'break'},{lat:rejoin.lat,lon:rejoin.lon,type:'through'},{lat:end.lat,lon:end.lon,type:'break'}],costing:'pedestrian',units:'kilometers',directions_options:{language:'en-GB'}};
+  const payload=buildWalkingRequest(here,[rejoin],end);
   const resp=await fetch('https://valhalla1.openstreetmap.de/route',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-  if(!resp.ok)throw new Error('walking router returned HTTP '+resp.status);
-  const data=await resp.json();
+  if(!current())return;if(!resp.ok)throw new Error('walking router returned HTTP '+resp.status);
+  const data=await resp.json();if(!current())return;
+  const safety=assessRouteGuidance(ctx.route,data,[here,end],false);
+  ctx.safety.reasons.push(...safety.reasons);
+  const geo=valhallaRouteToGeo(data);
   if(activeRouteLayer){if(activeRouteLayer._guideMarkers)activeRouteLayer._guideMarkers.forEach(m=>map.removeLayer(m));map.removeLayer(activeRouteLayer)}
-  const geo=valhallaRouteToGeo(data);activeRouteLayer=L.geoJSON(geo,{style:{color:'#e56b3f',weight:5,opacity:.9}}).addTo(map);
-  renderDirections(card,data.trip.summary||{});navStepIndex=0;offRouteCount=0;setOffRouteActions(card,false);setLiveStatus(card,'Route recalculated from your current position. Continue with the updated directions.','active');
-  if(voiceGuidance&&activeDirections[0])speakDirection('Route recalculated. '+activeDirections[0].verbal);
- }catch(err){setLiveStatus(card,'Could not recalculate: '+err.message+'. Stay with your map or GPX and use your judgement.','error')}finally{btn.disabled=false}
+  activeRouteLayer=L.geoJSON(geo,{style:{color:'#e56b3f',weight:5,opacity:.9}}).addTo(map);
+  renderDirections(card,data.trip.summary||{});navStepIndex=0;offRouteCount=0;setOffRouteActions(card,false);
+  setRouteStatus(card,'Unverified recalculated map preview shown. '+ctx.safety.reasons.join(' '),'warn');
+ }catch(err){if(current()){setRouteStatus(card,'Could not recalculate: '+err.message+'. Published ascent and independent route links remain available.','error');updateGuidanceAvailability(card)}}finally{btn.disabled=false}
 }
 window.recalculateFromHere=recalculateFromHere;
 function highlightNavStep(card,idx){navStepIndex=Math.max(0,Math.min(idx,activeDirections.length-1));document.querySelectorAll('.turn-step').forEach(el=>el.classList.toggle('active',Number(el.dataset.turn)===navStepIndex));const active=card&&card.querySelector('.turn-step.active');if(active)active.scrollIntoView({block:'nearest'});}
 function setLiveStatus(card,msg,type=''){const el=card&&card.querySelector('.nav-live');if(el){el.className='nav-live'+(type?' '+type:'');el.textContent=msg}}
-function speakDirection(text){if(!voiceGuidance||!('speechSynthesis' in window))return;try{window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';window.speechSynthesis.speak(u)}catch(e){}}
-function stopNavigation(){if(navWatchId!==null&&navigator.geolocation){navigator.geolocation.clearWatch(navWatchId);navWatchId=null}if(navUserMarker){map.removeLayer(navUserMarker);navUserMarker=null}lastSpokenStep=-1;offRouteCount=0;activeNavCard=null;lastUserPos=null;hideNavHud();document.querySelectorAll('.offroute-actions').forEach(el=>el.classList.remove('show'));document.querySelectorAll('.nav-live').forEach(el=>{if(el.classList.contains('active')||el.classList.contains('warn')){el.className='nav-live';el.textContent='Live guidance stopped.'}})}
+function speakDirection(text){if(!activeNavCard||guidanceRestriction(activeNavCard)||!voiceGuidance||!('speechSynthesis' in window))return;try{window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';window.speechSynthesis.speak(u)}catch(e){}}
+function stopNavigation(){navSessionGeneration++;if(window.speechSynthesis)window.speechSynthesis.cancel();if(navWatchId!==null&&navigator.geolocation){navigator.geolocation.clearWatch(navWatchId);navWatchId=null}if(navUserMarker){map.removeLayer(navUserMarker);navUserMarker=null}lastSpokenStep=-1;offRouteCount=0;activeNavCard=null;lastUserPos=null;hideNavHud();document.querySelectorAll('.offroute-actions').forEach(el=>el.classList.remove('show'));document.querySelectorAll('.nav-live').forEach(el=>{if(el.classList.contains('active')||el.classList.contains('warn')){el.className='nav-live';el.textContent='Live guidance stopped.'}})}
 window.stopNavigation=stopNavigation;
-window.toggleVoiceGuidance=(btn)=>{voiceGuidance=!voiceGuidance;document.querySelectorAll('[onclick*=\"toggleVoiceGuidance\"],#navHudVoice').forEach(b=>b.textContent=voiceGuidance?'Voice: on':'Voice: off');if(voiceGuidance&&activeDirections[navStepIndex])speakDirection(activeDirections[navStepIndex].verbal)};
+window.toggleVoiceGuidance=(btn)=>{voiceGuidance=!voiceGuidance;document.querySelectorAll('[onclick*=\"toggleVoiceGuidance\"],#navHudVoice').forEach(b=>b.textContent=voiceGuidance?'Voice: on':'Voice: off');if(voiceGuidance&&activeNavCard&&!guidanceRestriction(activeNavCard)&&activeDirections[navStepIndex])speakDirection(activeDirections[navStepIndex].verbal)};
 window.startNavigation=(btn)=>{
- const card=btn.closest('.route-card');if(!card||!activeDirections.length)return;const directions=card.querySelector('[data-section="directions"]');if(directions)directions.open=true;
+ const card=btn.closest('.route-card');if(!card)return;if(!updateGuidanceAvailability(card))return;const directions=card.querySelector('[data-section="directions"]');if(directions)directions.open=true;
  if(!navigator.geolocation){setLiveStatus(card,'This browser does not provide location access. You can still use the turn list.','error');return}
  stopNavigation();activeNavCard=card;navStepIndex=0;highlightNavStep(card,0);setLiveStatus(card,'Waiting for your GPS position…','active');showNavHud();setNavHud('Waiting for GPS…','','—','Locating','Keep your offline map or GPX available.');map.closePopup();
+ const session=navSessionGeneration;
  navWatchId=navigator.geolocation.watchPosition(pos=>{
+  if(session!==navSessionGeneration||activeNavCard!==card||guidanceRestriction(card))return;
   const here={lat:pos.coords.latitude,lon:pos.coords.longitude};lastUserPos=here;
   if(!navUserMarker)navUserMarker=L.circleMarker([here.lat,here.lon],{radius:7,color:'#1f5ca8',weight:3,fillColor:'#fff',fillOpacity:1}).addTo(map).bindTooltip('Your position');else navUserMarker.setLatLng([here.lat,here.lon]);
   const nearest=nearestRoutePoint(here);const off=nearest?nearest.distance:0;
@@ -512,13 +590,14 @@ window.startNavigation=(btn)=>{
   setLiveStatus(card,(d!==null?'Next in about '+formatDistanceM(d)+': ':'')+(next?next.instruction:'Route complete')+(nearest?' · '+formatDistanceM(nearest.distance)+' from route':''), 'active');
   setNavHud(next?next.instruction:'Route complete',d!==null?'In '+formatDistanceM(d):'',nearest?formatDistanceM(remainingRouteM(nearest)):'—',nearest&&nearest.distance<=OFF_ROUTE_THRESHOLD_M?'On route':formatDistanceM(nearest?nearest.distance:0)+' from route','GPS guidance is active. Keep checking the map and terrain.');
   if(here&&nearest&&nearest.distance<1000)map.panTo([here.lat,here.lon],{animate:true,duration:.35});
- },err=>{setLiveStatus(card,'Live GPS guidance unavailable: '+err.message+'. The turn list remains available.','error')},{enableHighAccuracy:true,maximumAge:3000,timeout:15000});
+ },err=>{if(session!==navSessionGeneration||activeNavCard!==card)return;setLiveStatus(card,'Live GPS guidance unavailable: '+err.message+'. The turn list remains available.','error')},{enableHighAccuracy:true,maximumAge:3000,timeout:15000});
 };
 window.drawRouteFromPopup=async(btn)=>{
  const card=btn.closest('.route-card');if(!card)return;
  const route=selectedRouteFromCard(card);
  if(!route){setRouteStatus(card,'No published route option is loaded for this fell.','warn');return}
- let requestId=++routePreviewGeneration;
+ clearRouteOverlay(false);
+ let requestId=routePreviewGeneration;
  const current=()=>requestId===routePreviewGeneration;
  const startName=routeStartText(route.route);
  const fellLat=Number(card.dataset.lat),fellLon=Number(card.dataset.lon);
@@ -537,7 +616,7 @@ window.drawRouteFromPopup=async(btn)=>{
   if(!current())return;
   clearRouteOverlay(false);
   requestId=routePreviewGeneration;
-  activeRouteContext={card,route,start,vias,points};
+  activeRouteContext={card,route,start,vias,points,generation:requestId,routeKey:JSON.stringify(route),safety:assessRouteGuidance(route,data,points)};
   const geo=valhallaRouteToGeo(data);
   activeRouteLayer=L.geoJSON(geo,{style:{color:'#e56b3f',weight:5,opacity:.9}}).addTo(map);
   activeRouteStartMarker=L.circleMarker([start.lat,start.lon],{radius:7,color:'#193028',weight:3,fillColor:'#ffffff',fillOpacity:1}).bindTooltip('Route start: '+startName).addTo(map);
@@ -549,9 +628,9 @@ window.drawRouteFromPopup=async(btn)=>{
   renderDirections(card,data.trip.summary||{});
   const viaMsg=vias.length?' through '+vias.map(v=>v.name).join(' → '):'';
   const sum=data.trip.summary||{};
-  setRouteStatus(card,routeDistanceWarning(route,sum)+'Unverified generated walking line shown'+(sum.length?' — '+formatKmPreferred(sum.length)+' · '+formatDuration(sum.time):'')+'. Generated directions are loaded below'+viaMsg+'. '+routeMappingNotice(route.route),'warn');
+  setRouteStatus(card,(guidanceRestriction(card)?'Live guidance restricted: '+guidanceRestriction(card)+' ':'')+'Unverified generated walking line shown'+(sum.length?' — '+formatKmPreferred(sum.length)+' · '+formatDuration(sum.time):'')+'. Generated directions are loaded below'+viaMsg+'. '+routeMappingNotice(route.route),'warn');
  }catch(err){
-  if(current()){console.warn(err);setRouteStatus(card,'Route preview unavailable: '+err.message+'. The published statistics and detailed route/GPX links are still available.','error')}
+  if(current()){if(activeRouteContext){activeRouteContext.safety={allowed:false,reasons:[err.message]};updateGuidanceAvailability(card)}console.warn(err);setRouteStatus(card,'Route preview unavailable: '+err.message+'. The published statistics and detailed route/GPX links are still available.','error')}
  }finally{btn.disabled=false}
 };
 

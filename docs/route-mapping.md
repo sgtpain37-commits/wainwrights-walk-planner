@@ -78,4 +78,27 @@ The committed diagnostic was run against the public router. All three requests r
 
 Additional diagnostic requests allowing reversals at guide points (`via`) still returned excessive distances (5.960, 15.194 and 4.170 km). No routing restriction has been relaxed just to produce a more plausible length. The application retains its existing pedestrian costing and `through` waypoint behavior.
 
-A discrepancy greater than 50% of the published ascent distance in either direction now produces a leading warning containing both distances and saying the preview may not follow the selected ascent. This threshold is an explicit diagnostic heuristic, not a safety or verification test. The line remains an unverified preview and the existing navigation tools remain available. A route within the threshold is still labelled unverified. Additional path matching, current map/ground checks or a reliable full track would be needed before claiming faithful mapping. This change fixes identical routing inputs and misleading presentation; it does not establish accurate end-to-end generated ascents.
+A discrepancy greater than 50% of the published ascent distance in either direction now produces a leading warning containing both distances and saying the preview may not follow the selected ascent. This threshold is an explicit diagnostic heuristic, not a safety or verification test. At that time the line remained an unverified preview and navigation tools remained available; the live-guidance restriction below supersedes that behavior. A route within the threshold is still labelled unverified. Additional path matching, current map/ground checks or a reliable full track would be needed before claiming faithful mapping. This change fixes identical routing inputs and misleading presentation; it does not establish accurate end-to-end generated ascents.
+
+
+## Live-guidance restrictions (10 November 2026)
+
+The distance discrepancy is now a live-guidance gate, not only a warning. A generated full ascent differing by **more than 50% in either direction** is preview-only. Exactly 50% does not trigger this diagnostic. All three recorded Coniston responses are restricted. Passing this check does **not** independently verify a walking route or establish agreement with the published ascent.
+
+`assessRouteGuidance()` also restricts missing/non-finite/non-positive distance, invalid time, unavailable published distance, router failure status, unexpected units, malformed or empty geometry, disconnected legs, unusable or invalid turn indices/instructions, and geometry with no length. Additional diagnostic heuristics restrict endpoints more than 200 metres from the requested start/summit, leg joins separated by more than 10 metres, and geometry versus summary lengths differing by more than the larger of 200 metres or 20% of the summary. These tolerances catch gross disagreement; they are not field verification or a guarantee that paths, access or terrain are suitable. Status and units are checked when supplied; the request still explicitly uses kilometres and pedestrian costing.
+
+The Start button and `startNavigation()` use the same eligibility state, bound to the selected ascent, its owning card and the current request generation. Re-enabling the DOM button alone cannot bypass the handler. Starting a new preview immediately stops guidance, cancels speech and invalidates the previous state, even if the replacement request fails. Selection changes and clearing reset route context; stale route responses and GPS callbacks cannot restore guidance.
+
+Recalculation retains the walking-router request and map inspection functionality but stops live guidance before requesting a new line. **Remaining-distance reroutes are preview-only**, including reroutes from a previously eligible ascent: a remaining distance cannot be compared fairly with the full published ascent, and the current reroute request does not preserve all published guides. Recalculation never clears an existing restriction or automatically resumes spoken guidance. Its response must still belong to the current selection and request generation. To reassess eligibility, generate a fresh full ascent preview. No override or replacement walking track is provided.
+
+Drawable restricted lines and their unverified turn lists remain available for inspection alongside published ascent statistics, route-start information, detailed route/GPX links and independent walking-route resources. Malformed geometry that cannot be decoded is not drawn or repaired with invented coordinates; the error and existing resource links remain available. The app-shell cache advances to v16.
+
+Reproduce all regression checks offline:
+
+```sh
+node --test tests/*.test.cjs
+node scripts/audit-route-locations.cjs > /tmp/route-collisions.json
+diff -u docs/route-location-collisions.json /tmp/route-collisions.json
+```
+
+The new navigation tests execute the application's actual handlers with mocked DOM, GPS, speech and routing services. They cover recorded Coniston distances, both threshold boundaries, invalid response data, inspectable restricted previews, direct Start calls, wrong cards/selections, clearing, failed and pending preview requests, recalculation, stale responses/callbacks, and retained near-route/off-route behavior. Synthetic geometry in these tests is only a control-flow fixture and is never application routing data. Existing catalogue, published coordinates, statistics, alias and collision tests remain in place. No real-device GPS walk or independent route verification is claimed.
