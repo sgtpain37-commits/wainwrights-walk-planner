@@ -1,0 +1,138 @@
+{
+  "Angletarn Pikes (Angletarn Pikes North Top)": {
+    "routeKey": "Angletarn Pikes",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Baystones (Wansfell)": {
+    "routeKey": "Wansfell",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Beda Fell (Beda Head)": {
+    "routeKey": "Beda Fell",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Blencathra-Hallsfell Top": {
+    "routeKey": "Blencathra",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Catstye Cam": {
+    "routeKey": "Catstycam",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Crag Hill (Eel Crag)": {
+    "routeKey": "Eel Crag",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Crinkle Crags-Long Top (Second Crinkle)": {
+    "routeKey": "Crinkle Crags",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Dodd (Skiddaw)": {
+    "routeKey": "Dodd",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Fellbarrow-Mosser Fell": {
+    "routeKey": "Fellbarrow",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Grange Fell (Brund Fell)": {
+    "routeKey": "Grange Fell",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Great Crag (Stonethwaite)": {
+    "routeKey": "Great Crag",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Harter Fell (Eskdale)": {
+    "routeKey": "Harter Fell",
+    "basis": "Birks Bridge / Duddon start identifies the Eskdale fell; never associate with Mardale."
+  },
+  "Hartsop Above How (Gill Crag-Hartsop Above How)": {
+    "routeKey": "Hartsop above How",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Haystacks (Buttermere)": {
+    "routeKey": "Haystacks",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Heron Pike (Rydal)": {
+    "routeKey": "Heron Pike",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "High Crag (Buttermere)": {
+    "routeKey": "High Crag",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "High Pike (Scandale)": {
+    "routeKey": "High Pike",
+    "basis": "Ambleside via High Sweden Bridge identifies Scandale; never associate with Caldbeck."
+  },
+  "High Rigg (Naddle Fell)": {
+    "routeKey": "High Rigg",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Lingmoor Fell (Lingmoor Fell-Brown How)": {
+    "routeKey": "Lingmoor Fell",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Little Hart Crag (Little Hart Crag-West Top)": {
+    "routeKey": "Little Hart Crag",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Mellbreak (Mellbreak South Top)": {
+    "routeKey": "Mellbreak",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Pike of Blisco": {
+    "routeKey": "Pike o' Blisco",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Pike of Stickle": {
+    "routeKey": "Pike o' Stickle",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Rosthwaite Fell-Bessyboot": {
+    "routeKey": "Rosthwaite Fell",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "St Sunday Crag": {
+    "routeKey": "St. Sunday Crag",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Steel Fell (Dead Pike-Steel Fell)": {
+    "routeKey": "Steel Fell",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Steel Knotts (Pikeawassa-Steel Knotts)": {
+    "routeKey": "Steel Knotts",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Stony Cove Pike (Caudale Moor)": {
+    "routeKey": "Caudale Moor",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Tarn Crag (Easedale)": {
+    "routeKey": "Tarn Crag",
+    "basis": "Grasmere via east ridge identifies Easedale; never associate with Sleddale."
+  },
+  "The Knott (High Street)": {
+    "routeKey": "The Knott",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "The Old Man of Coniston (Coniston Old Man)": {
+    "routeKey": "Coniston Old Man",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Whin Rigg (Wasdale)": {
+    "routeKey": "Whin Rigg",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Whinlatter (Brown How-Whinlatter)": {
+    "routeKey": "Whinlatter",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  },
+  "Whiteside (Whiteside West Top)": {
+    "routeKey": "Whiteside",
+    "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association."
+  }
+}

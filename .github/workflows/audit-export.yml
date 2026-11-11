@@ -1,0 +1,17 @@
+name: Summit audit export
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  audit-export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/audit-export.test.cjs
+      - run: node scripts/export-route-audit.cjs --check
