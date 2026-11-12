@@ -14,7 +14,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "1f60d206bb626512a6244944436f1bcc91d087b398c5a4aca03c0ec626186132"
+      "sha256": "8decfaa2e558d8db18553f86413d32151a91d7b37e38a4afedb6334d6f545c62"
     },
     {
       "path": "data/audit/wainwrights.csv",
@@ -51,8 +51,8 @@
   ],
   "summary": {
     "summits": 214,
-    "associated": 174,
-    "namingMismatches": 25,
+    "associated": 199,
+    "namingMismatches": 0,
     "missingRouteRecords": 15,
     "publishedAscents": 243,
     "unresolvedCollisionPairs": 10
@@ -361,15 +361,11 @@
         "longitude": -2.907999
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Angletarn Pikes",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Angletarn Pikes"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -1158,15 +1154,11 @@
         "longitude": -2.921751
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Wansfell",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Wansfell"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -1229,15 +1221,11 @@
         "longitude": -2.884399
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Beda Fell",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Beda Fell"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -1868,7 +1856,8 @@
       "id": "summit-e15ae104bcfebacb",
       "name": "Blencathra-Hallsfell Top",
       "alternativeNames": [
-        "Blencathra"
+        "Blencathra",
+        "Blencathra — Hallsfell Top"
       ],
       "catalogue": {
         "name": "Blencathra-Hallsfell Top",
@@ -1882,15 +1871,11 @@
         "longitude": -3.049773
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Blencathra",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Blencathra"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -3654,15 +3639,11 @@
         "longitude": -3.250235
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Eel Crag",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Eel Crag"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -3728,15 +3709,11 @@
         "longitude": -3.159813
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Crinkle Crags",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Crinkle Crags"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -3864,15 +3841,11 @@
         "longitude": -3.172122
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Dodd",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Dodd"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -4582,15 +4555,11 @@
         "longitude": -3.344699
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Fellbarrow",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Fellbarrow"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -5077,15 +5046,11 @@
         "longitude": -3.137963
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Grange Fell",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Grange Fell"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -5653,15 +5618,11 @@
         "longitude": -3.129333
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Great Crag",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Great Crag"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -7161,15 +7122,11 @@
         "longitude": -2.953939
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Hartsop above How",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Hartsop above How"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -7803,15 +7760,11 @@
         "longitude": -2.995126
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Heron Pike",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Heron Pike"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -7877,15 +7830,11 @@
         "longitude": -3.267412
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "High Crag",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "High Crag"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -8215,15 +8164,11 @@
         "longitude": -3.071568
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "High Rigg",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "High Rigg"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -9608,15 +9553,11 @@
         "longitude": -3.07641
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Lingmoor Fell",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Lingmoor Fell"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -9682,15 +9623,11 @@
         "longitude": -2.947169
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Little Hart Crag",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Little Hart Crag"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -10669,15 +10606,11 @@
         "longitude": -3.318258
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Mellbreak",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Mellbreak"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -12175,15 +12108,11 @@
         "longitude": -3.14685
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Rosthwaite Fell",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Rosthwaite Fell"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -14059,15 +13988,11 @@
         "longitude": -3.052179
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Steel Fell",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Steel Fell"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -14130,15 +14055,11 @@
         "longitude": -2.866807
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Steel Knotts",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Steel Knotts"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -14337,15 +14258,11 @@
         "longitude": -2.90008
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Caudale Moor",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Caudale Moor"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -14640,15 +14557,11 @@
         "longitude": -2.870821
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "The Knott",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "The Knott"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -15791,15 +15704,11 @@
         "longitude": -3.309916
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Whin Rigg",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Whin Rigg"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -15862,15 +15771,11 @@
         "longitude": -3.254033
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Whinlatter",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Whinlatter"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -16066,15 +15971,11 @@
         "longitude": -3.285161
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Whiteside",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Whiteside"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {

@@ -1,0 +1,263 @@
+{
+  "checked": "2026-11-12",
+  "scope": "Summit identity and published approach association only; no full-track, coordinate, statistics or current-condition verification.",
+  "records": [
+    {
+      "name": "Angletarn Pikes (Angletarn Pikes North Top)",
+      "routeKey": "Angletarn Pikes",
+      "catalogueGrid": "NY413148",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/angletarnpikes_r1.htm"
+      ],
+      "identityEvidence": "Route visits the north top after the south top; this supports the catalogue north-top identity."
+    },
+    {
+      "name": "Baystones (Wansfell)",
+      "routeKey": "Wansfell",
+      "catalogueGrid": "NY403051",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/wansfell_r1.htm"
+      ],
+      "identityEvidence": "Route continues beyond Wansfell Pike to the summit explicitly identified as Baystones."
+    },
+    {
+      "name": "Beda Fell (Beda Head)",
+      "routeKey": "Beda Fell",
+      "catalogueGrid": "NY428171",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/bedafell_r1.htm"
+      ],
+      "identityEvidence": "Route explicitly identifies Beda Head as the summit of Beda Fell."
+    },
+    {
+      "name": "Blencathra-Hallsfell Top",
+      "routeKey": "Blencathra",
+      "catalogueGrid": "NY323277",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/blencathra_r1.htm",
+        "https://www.wainwrightroutes.co.uk/bowscalefell_overview.htm"
+      ],
+      "identityEvidence": "Scales approach via Hall's Fell reaches Blencathra summit; Hallsfell Top identity corroborated by the publisher's Bowscale Fell overview."
+    },
+    {
+      "name": "Crag Hill (Eel Crag)",
+      "routeKey": "Eel Crag",
+      "catalogueGrid": "NY192203",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/eelcrag_r1.htm"
+      ],
+      "identityEvidence": "Publisher explicitly explains Eel Crag as the fell named Crag Hill by Ordnance Survey."
+    },
+    {
+      "name": "Crinkle Crags-Long Top (Second Crinkle)",
+      "routeKey": "Crinkle Crags",
+      "catalogueGrid": "NY248048",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/crinklecrags_r1.htm"
+      ],
+      "identityEvidence": "Route explicitly reaches Long Top, after the first crinkle and the approach to the second."
+    },
+    {
+      "name": "Dodd (Skiddaw)",
+      "routeKey": "Dodd",
+      "catalogueGrid": "NY244273",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/dodd_r1.htm"
+      ],
+      "identityEvidence": "Millbeck and Long Doors approach describes Dodd beside Skiddaw and Dodd Wood."
+    },
+    {
+      "name": "Fellbarrow-Mosser Fell",
+      "routeKey": "Fellbarrow",
+      "catalogueGrid": "NY132242",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/fellbarrow_r1.htm",
+        "https://www.walklakes.co.uk/hill_2495.html"
+      ],
+      "identityEvidence": "Waterend/Mosser Fell Road approach reaches Fellbarrow; the Mosser Fell alternative name and NY132242 are corroborated separately."
+    },
+    {
+      "name": "Grange Fell (Brund Fell)",
+      "routeKey": "Grange Fell",
+      "catalogueGrid": "NY264162",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/grangefell_r1.htm"
+      ],
+      "identityEvidence": "Route via King's How continues to Brund Fell, rather than ending at the subsidiary top."
+    },
+    {
+      "name": "Great Crag (Stonethwaite)",
+      "routeKey": "Great Crag",
+      "catalogueGrid": "NY270146",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/greatcrag_r1.htm"
+      ],
+      "identityEvidence": "Stonethwaite/Lingy End approach reaches Great Crag above Dock Tarn."
+    },
+    {
+      "name": "Hartsop Above How (Gill Crag-Hartsop Above How)",
+      "routeKey": "Hartsop above How",
+      "catalogueGrid": "NY383120",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/hartsopabovehow_r1.htm",
+        "https://www.walklakes.co.uk/hill_2578.html"
+      ],
+      "identityEvidence": "Bridgend ridge approach reaches Hartsop above How; Gill Crag identity and grid corroborated separately."
+    },
+    {
+      "name": "Heron Pike (Rydal)",
+      "routeKey": "Heron Pike",
+      "catalogueGrid": "NY355083",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/heronpike_r1.htm"
+      ],
+      "identityEvidence": "Grasmere/Alcock Tarn approach identifies the Heron Pike on the Rydal/Great Rigg ridge."
+    },
+    {
+      "name": "High Crag (Buttermere)",
+      "routeKey": "High Crag",
+      "catalogueGrid": "NY180139",
+      "ascentCount": 2,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/highcrag_r1.htm"
+      ],
+      "identityEvidence": "Buttermere/Sheepbone Rake approach identifies the High Crag at the head of Buttermere."
+    },
+    {
+      "name": "High Rigg (Naddle Fell)",
+      "routeKey": "High Rigg",
+      "catalogueGrid": "NY308219",
+      "ascentCount": 2,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/highrigg_r1.htm",
+        "https://www.paulbeal.com/list-of-wainwrights/"
+      ],
+      "identityEvidence": "Smaithwaite Bridge approach identifies High Rigg in St John's in the Vale; Naddle Fell alternative and grid corroborated separately."
+    },
+    {
+      "name": "Lingmoor Fell (Lingmoor Fell-Brown How)",
+      "routeKey": "Lingmoor Fell",
+      "catalogueGrid": "NY302046",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/lingmoorfell_r1.htm",
+        "https://www.masarnenramblers.com/lingmoor-fell"
+      ],
+      "identityEvidence": "Elterwater route reaches Lingmoor Fell summit; Brown How identity corroborated separately."
+    },
+    {
+      "name": "Little Hart Crag (Little Hart Crag-West Top)",
+      "routeKey": "Little Hart Crag",
+      "catalogueGrid": "NY387100",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/littlehartcrag_r1.htm"
+      ],
+      "identityEvidence": "Caiston Glen route reaches Little Hart Crag summit, then describes its lower eastern top separately."
+    },
+    {
+      "name": "Mellbreak (Mellbreak South Top)",
+      "routeKey": "Mellbreak",
+      "catalogueGrid": "NY148186",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/mellbreak_r1.htm",
+        "https://www.wainwrightroutes.co.uk/mellbreak_overview.htm"
+      ],
+      "identityEvidence": "North-ridge route continues to the higher south top; the overview also identifies NY148186."
+    },
+    {
+      "name": "Rosthwaite Fell-Bessyboot",
+      "routeKey": "Rosthwaite Fell",
+      "catalogueGrid": "NY258124",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/rosthwaitefell_r1.htm"
+      ],
+      "identityEvidence": "Big Stanger Gill approach explicitly reaches Bessyboot, not Rosthwaite Cam."
+    },
+    {
+      "name": "Steel Fell (Dead Pike-Steel Fell)",
+      "routeKey": "Steel Fell",
+      "catalogueGrid": "NY319111",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/steelfell_r1.htm"
+      ],
+      "identityEvidence": "Mill Bridge/south-east ridge route explicitly identifies the actual top as Dead Pike."
+    },
+    {
+      "name": "Steel Knotts (Pikeawassa-Steel Knotts)",
+      "routeKey": "Steel Knotts",
+      "catalogueGrid": "NY440181",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/steelknotts_r1.htm"
+      ],
+      "identityEvidence": "Martindale Hause/Birkie Knott route explicitly identifies Pikeawassa as the summit of Steel Knotts."
+    },
+    {
+      "name": "Stony Cove Pike (Caudale Moor)",
+      "routeKey": "Caudale Moor",
+      "catalogueGrid": "NY417100",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/caudalemoor_r1.htm",
+        "https://www.beta.graupel.org.uk/hill_details.php?searchHill=2540"
+      ],
+      "identityEvidence": "Kirkstone Pass/St Raven's Edge route reaches Caudale Moor; Stony Cove Pike identity corroborated separately."
+    },
+    {
+      "name": "The Knott (High Street)",
+      "routeKey": "The Knott",
+      "catalogueGrid": "NY437126",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/theknott_r1.htm"
+      ],
+      "identityEvidence": "Hartsop/Hayeswater approach identifies The Knott in the High Street group; keep it separate from Knott."
+    },
+    {
+      "name": "Whin Rigg (Wasdale)",
+      "routeKey": "Whin Rigg",
+      "catalogueGrid": "NY151035",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/whinrigg_r1.htm"
+      ],
+      "identityEvidence": "Irton Park/Irton Fell approach and Wastwater views identify the Wasdale fell."
+    },
+    {
+      "name": "Whinlatter (Brown How-Whinlatter)",
+      "routeKey": "Whinlatter",
+      "catalogueGrid": "NY191251",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/whinlatter_r1.htm"
+      ],
+      "identityEvidence": "Route visits Whinlatter Top and continues along the ridge to Brown How."
+    },
+    {
+      "name": "Whiteside (Whiteside West Top)",
+      "routeKey": "Whiteside",
+      "catalogueGrid": "NY170219",
+      "ascentCount": 1,
+      "sources": [
+        "https://www.wainwrightroutes.co.uk/whiteside_r1.htm"
+      ],
+      "identityEvidence": "Lanthwaite Green/Whin Ben route visits the west top before discussing the higher east top separately."
+    }
+  ]
+}
