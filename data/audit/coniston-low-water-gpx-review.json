@@ -20,7 +20,13 @@
       -3.07298
     ],
     "startFinishSeparationMetres": 42,
-    "hasElevation": false
+    "hasElevation": false,
+    "boundingBox": {
+      "south": 54.364,
+      "north": 54.37479,
+      "west": -3.11805,
+      "east": -3.07298
+    }
   },
   "comparison": {
     "plannerSummit": [
@@ -39,14 +45,18 @@
       -3.0961275
     ],
     "nearestStartTrackPointIndex": 263,
-    "nearestStartTrackPointMetres": 48
+    "nearestStartTrackPointMetres": 48,
+    "nearestSummitTrackSegmentMetres": 332,
+    "nearestSummitTrackSegmentStartIndex": 154,
+    "nearestSummitTrackSegmentEndIndex": 155
   },
   "status": "research_only_not_summit_verified",
   "notes": [
     "The planner summit coordinates agree with independent summit references; do not relocate the summit to match this GPX.",
     "GPX forms a near-closed itinerary and is not interchangeable with the planner's one-way 2.0-mile ascent.",
-    "A nearest-vertex 332 m summit miss is not proof of route geometry error; inspect complete segments and source map.",
     "Do not use this track for live guidance until route intent and summit approach are independently verified.",
-    "Raw third-party GPX is not committed; audit records its SHA-256 for reproducibility."
+    "Raw third-party GPX is not committed; audit records its SHA-256 for reproducibility.",
+    "Complete track-segment nearest approach is 331.65 m, effectively the same as the nearest-vertex distance; the summit lies west of the GPX bounding box.",
+    "The GPX westernmost longitude is -3.11805, whereas the summit reference longitude is -3.12145; the track never reaches the summit longitude."
   ]
 }
