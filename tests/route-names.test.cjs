@@ -24,7 +24,9 @@ test('six catalogue names expose the complete existing ascent choices and single
 });
 test('alias-only correction changes lookup for exactly six catalogue identities, with route data unchanged',()=>{
  const html=fs.readFileSync('index.html','utf8');
- const baseline=html.replace(/const ROUTE_ALIASES=\{[\s\S]*?\};/, 'const ROUTE_ALIASES={"Old Man of Coniston":"Coniston Old Man","The Old Man of Coniston":"Coniston Old Man","Red Pike - Buttermere":"Red Pike (B)","Red Pike - Wasdale":"Red Pike (W)"};');
+ const aliases=plain(run('ROUTE_ALIASES'));
+ for(const [name] of fixes)delete aliases[name];
+ const baseline=html.replace(/const ROUTE_ALIASES=\{[\s\S]*?\};/, 'const ROUTE_ALIASES='+JSON.stringify(aliases)+';');
  const old=loadRouting({},baseline);
  const changed=audit.summits.filter(s=>JSON.stringify(routes(s.name))!==JSON.stringify(plain(old.run(`routeVariantsFor({name:${JSON.stringify(s.name)}})`)))).map(s=>s.name);
  assert.deepEqual(changed.sort(),fixes.map(f=>f[0]).sort());

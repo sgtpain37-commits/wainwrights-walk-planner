@@ -285,7 +285,10 @@ const ROUTE_ALIASES={
  "Pike of Blisco":"Pike o' Blisco",
  "Pike of Stickle":"Pike o' Stickle",
  "St Sunday Crag":"St. Sunday Crag",
- "The Old Man of Coniston (Coniston Old Man)":"Coniston Old Man"
+ "The Old Man of Coniston (Coniston Old Man)":"Coniston Old Man",
+ "Harter Fell (Eskdale)":"Harter Fell",
+ "High Pike (Scandale)":"High Pike",
+ "Tarn Crag (Easedale)":"Tarn Crag"
 };
 function routeStatsFor(f){const n=routeKey(f.name),k=ROUTE_ALIASES[n]||n;return ROUTE_STATS[k]||null}
 function routeVariantsFor(f){const n=routeKey(f.name),k=ROUTE_ALIASES[n]||n;if(ROUTE_VARIANTS[k])return ROUTE_VARIANTS[k];const one=ROUTE_STATS[k];return one?[one]:[]}

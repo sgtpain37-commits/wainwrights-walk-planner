@@ -31,12 +31,13 @@ test('all associations and published statistics agree with planner data and expl
   assert.deepEqual(s.ascents.map(a=>{const {statisticsSource,...r}=a.published;return r;}),expected);
   assert.equal(s.association.status,current.length?'associated':mappings[s.name]?'naming_mismatch':'missing_route_record');
  }
- assert.deepEqual(audit.summary,{summits:214,associated:171,namingMismatches:28,missingRouteRecords:15,publishedAscents:243,unresolvedCollisionPairs:10});
+ assert.deepEqual(audit.summary,{summits:214,associated:174,namingMismatches:25,missingRouteRecords:15,publishedAscents:243,unresolvedCollisionPairs:10});
  assert.deepEqual(audit.unassociatedRouteKeys,[]);
 });
 test('naming mismatches and absent repository records remain distinct',()=>{
  assert.equal(summit('Haystacks (Buttermere)').association.status,'associated');
- assert.equal(summit('Harter Fell (Eskdale)').association.status,'naming_mismatch');
+ assert.equal(summit('Harter Fell (Eskdale)').association.status,'associated');
+ assert.equal(summit('Baystones (Wansfell)').association.status,'naming_mismatch');
  assert.equal(summit('Haystacks (Buttermere)').association.routeKey,'Haystacks');
  assert.equal(summit('Fleetwith Pike').association.status,'missing_route_record');
  assert.deepEqual(summit('Fleetwith Pike').ascents,[]);
