@@ -14,7 +14,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "12be73b1a21a518cd5099802945aa49b4cf4285b16cddfc5713cb0633ead5fa9"
+      "sha256": "0cd1fa4e2625de551af99481dfa9c6f789b28690f60f1dcd6ab7e8df7ef8b8e1"
     },
     {
       "path": "data/audit/wainwrights.csv",
@@ -41,6 +41,10 @@
       "sha256": "ec2d521ae74d6a2ee79a929ae3bad17469fa71779f4e78c99fd65b36d442be31"
     },
     {
+      "path": "tests/red-pike-sources.json",
+      "sha256": "c8febbcd0333f55197434b376b705846eed475c29ac2412bc2ee8c3c3032969e"
+    },
+    {
       "path": "scripts/audit-route-locations.cjs",
       "sha256": "ebf8dbd1e63524a629367bb66f6ae5382497a0af6e302e993b5bc9cf254f5814"
     },
@@ -50,15 +54,15 @@
     },
     {
       "path": "scripts/export-route-audit.cjs",
-      "sha256": "bf68abe3c8b562cdbfa9a1015abd6d659b4d5c9fa2c50837f73570f2b28cb019"
+      "sha256": "4a2411c9cb98ae01ba4b3cfbd2ec80670e4f4684c8661d443e96637a120448d3"
     }
   ],
   "summary": {
     "summits": 214,
-    "associated": 199,
+    "associated": 201,
     "namingMismatches": 0,
-    "missingRouteRecords": 15,
-    "publishedAscents": 243,
+    "missingRouteRecords": 13,
+    "publishedAscents": 245,
     "unresolvedCollisionPairs": 0
   },
   "repositorySourceReferences": [
@@ -12561,7 +12565,9 @@
     {
       "id": "summit-2016a78949938fca",
       "name": "Red Pike (Buttermere)",
-      "alternativeNames": [],
+      "alternativeNames": [
+        "Red Pike - Buttermere"
+      ],
       "catalogue": {
         "name": "Red Pike (Buttermere)",
         "heightMetres": 755,
@@ -12574,23 +12580,105 @@
         "longitude": -3.298529
       },
       "association": {
-        "status": "missing_route_record",
-        "plannerResolves": false,
-        "routeKey": null,
-        "basis": "No route record identified in this repository; does not claim no real-world route exists.",
+        "status": "associated",
+        "plannerResolves": true,
+        "routeKey": "Red Pike (Buttermere)",
+        "basis": "Existing planner lookup",
         "proposedCorrection": null
       },
-      "ascents": [],
+      "ascents": [
+        {
+          "id": "ascent-e75aec89a70bdad5",
+          "published": {
+            "route": "From Buttermere via Lingcomb Edge",
+            "miles": 3.4,
+            "ascentFt": 2255,
+            "time": "2h 25m",
+            "statisticsSource": {
+              "attribution": "Wainwright Routes",
+              "url": "https://www.wainwrightroutes.co.uk/redpike_r1.htm",
+              "scope": "route-specific published ascent statistics; checked 2026-11-12"
+            }
+          },
+          "start": {
+            "text": "Buttermere",
+            "coordinates": {
+              "lat": 54.541358,
+              "lon": -3.2765651
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/redpike-b_map.html"
+          },
+          "guideWaypoints": [
+            {
+              "name": "Published Red Pike (Buttermere) guide 1",
+              "lat": 54.5387003,
+              "lon": -3.2903731,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/redpike-b_map.html",
+              "sampleIndex": 28
+            },
+            {
+              "name": "Published Red Pike (Buttermere) guide 2",
+              "lat": 54.542136,
+              "lon": -3.3039021,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/redpike-b_map.html",
+              "sampleIndex": 56
+            },
+            {
+              "name": "Published Red Pike (Buttermere) guide 3",
+              "lat": 54.5417003,
+              "lon": -3.3142662,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/redpike-b_map.html",
+              "sampleIndex": 84
+            },
+            {
+              "name": "Published Red Pike (Buttermere) guide 4",
+              "lat": 54.5359365,
+              "lon": -3.3060265,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/redpike-b_map.html",
+              "sampleIndex": 112
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/redpike-b_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/red-pike-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/redpike-b_map.html",
+          "generatedWalkingLine": {
+            "verification": "unverified",
+            "geometry": null,
+            "reason": "Unverified generated walking line. Published map samples are planning inputs only. Live guidance is restricted for this ascent pending independent line review; inspect the published route and an appropriate map."
+          },
+          "collisionIds": [],
+          "missingEvidence": [
+            "independent_full_walking_line_verification"
+          ]
+        }
+      ],
       "collisionIds": [],
-      "missingEvidence": [
-        "repository_published_ascent_record",
-        "route_specific_source_reference"
-      ]
+      "missingEvidence": []
     },
     {
       "id": "summit-4b2d3d2edb4577c5",
       "name": "Red Pike (Wasdale)",
-      "alternativeNames": [],
+      "alternativeNames": [
+        "Red Pike - Wasdale"
+      ],
       "catalogue": {
         "name": "Red Pike (Wasdale)",
         "heightMetres": 826,
@@ -12603,18 +12691,98 @@
         "longitude": -3.289879
       },
       "association": {
-        "status": "missing_route_record",
-        "plannerResolves": false,
-        "routeKey": null,
-        "basis": "No route record identified in this repository; does not claim no real-world route exists.",
+        "status": "associated",
+        "plannerResolves": true,
+        "routeKey": "Red Pike (Wasdale)",
+        "basis": "Existing planner lookup",
         "proposedCorrection": null
       },
-      "ascents": [],
+      "ascents": [
+        {
+          "id": "ascent-6aaa3726a6ed00ee",
+          "published": {
+            "route": "From Overbeck Bridge via Dore Head",
+            "miles": 3.25,
+            "ascentFt": 2590,
+            "time": "2h 35m",
+            "statisticsSource": {
+              "attribution": "Wainwright Routes",
+              "url": "https://www.wainwrightroutes.co.uk/red_pike_r1.htm",
+              "scope": "route-specific published ascent statistics; checked 2026-11-12"
+            }
+          },
+          "start": {
+            "text": "Overbeck Bridge",
+            "coordinates": {
+              "lat": 54.4500189,
+              "lon": -3.2850194
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/redpike-w_map.html"
+          },
+          "guideWaypoints": [
+            {
+              "name": "Published Red Pike (Wasdale) guide 1",
+              "lat": 54.4581523,
+              "lon": -3.2883453,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/redpike-w_map.html",
+              "sampleIndex": 23
+            },
+            {
+              "name": "Published Red Pike (Wasdale) guide 2",
+              "lat": 54.4677307,
+              "lon": -3.2862425,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/redpike-w_map.html",
+              "sampleIndex": 46
+            },
+            {
+              "name": "Published Red Pike (Wasdale) guide 3",
+              "lat": 54.4758605,
+              "lon": -3.2777882,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/redpike-w_map.html",
+              "sampleIndex": 70
+            },
+            {
+              "name": "Published Red Pike (Wasdale) guide 4",
+              "lat": 54.4773567,
+              "lon": -3.2853842,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/redpike-w_map.html",
+              "sampleIndex": 93
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/redpike-w_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/red-pike-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/redpike-w_map.html",
+          "generatedWalkingLine": {
+            "verification": "unverified",
+            "geometry": null,
+            "reason": "Unverified generated walking line. Published map samples are planning inputs only. Live guidance is restricted for this ascent pending independent line review; inspect the published route and an appropriate map."
+          },
+          "collisionIds": [],
+          "missingEvidence": [
+            "independent_full_walking_line_verification"
+          ]
+        }
+      ],
       "collisionIds": [],
-      "missingEvidence": [
-        "repository_published_ascent_record",
-        "route_specific_source_reference"
-      ]
+      "missingEvidence": []
     },
     {
       "id": "summit-97fd9b4e9d2df6d3",

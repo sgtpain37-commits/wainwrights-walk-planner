@@ -31,7 +31,7 @@ test('all associations and published statistics agree with planner data and expl
   assert.deepEqual(s.ascents.map(a=>{const {statisticsSource,...r}=a.published;return r;}),expected);
   assert.equal(s.association.status,current.length?'associated':mappings[s.name]?'naming_mismatch':'missing_route_record');
  }
- assert.deepEqual(audit.summary,{summits:214,associated:199,namingMismatches:0,missingRouteRecords:15,publishedAscents:243,unresolvedCollisionPairs:0});
+ assert.deepEqual(audit.summary,{summits:214,associated:201,namingMismatches:0,missingRouteRecords:13,publishedAscents:245,unresolvedCollisionPairs:0});
  assert.deepEqual(audit.unassociatedRouteKeys,[]);
 });
 test('restored catalogue associations and absent repository records remain distinct',()=>{
@@ -53,7 +53,7 @@ test('qualified mountains cannot inherit the other mountain route',()=>{
   assert.equal(summit(missing).association.routeKey,null);
   assert.deepEqual(summit(missing).ascents,[]);
  }
- for(const n of ['Red Pike (Buttermere)','Red Pike (Wasdale)','High Raise (High Street)','High Raise (High Raise (High White Stones))'])assert.deepEqual(summit(n).ascents,[]);
+ for(const n of ['High Raise (High Street)','High Raise (High Raise (High White Stones))'])assert.deepEqual(summit(n).ascents,[]);
 });
 test('remaining unresolved pairs match live audit output and link to the correct ascents',()=>{
  const expected=JSON.parse(execFileSync(process.execPath,['scripts/audit-route-locations.cjs'],{encoding:'utf8'}));
@@ -67,7 +67,7 @@ test('remaining unresolved pairs match live audit output and link to the correct
  }
 });
 test('coordinates, ordered guides and source evidence are exported verbatim without promoting walking lines',()=>{
- const {run}=loadRouting();const fixtures=[...require('./coniston-guide-sources.json'),...require('./other-guide-sources.json'),...require('./collision-guide-sources.json')];
+ const {run}=loadRouting();const fixtures=[...require('./coniston-guide-sources.json'),...require('./other-guide-sources.json'),...require('./collision-guide-sources.json'),...require('./red-pike-sources.json')];
  for(const s of audit.summits)for(const a of s.ascents){
   const route=JSON.stringify(a.published.route);
   const start=plain(run(`embeddedStartFor(${route},${JSON.stringify(s.association.routeKey)})`));

@@ -6,7 +6,7 @@ const {execFileSync}=require('node:child_process');
 const {loadRouting}=require('../tests/load-routing.cjs');
 const ROOT=path.resolve(__dirname,'..');
 const OUTPUT='docs/wainwrights-audit.v1.json';
-const INPUTS=['docs/route-mapping.md','index.html','data/audit/wainwrights.csv','data/audit/catalogue-source.json','data/audit/associations.json','tests/coniston-guide-sources.json','tests/other-guide-sources.json','tests/collision-guide-sources.json','scripts/audit-route-locations.cjs','tests/load-routing.cjs','scripts/export-route-audit.cjs'];
+const INPUTS=['docs/route-mapping.md','index.html','data/audit/wainwrights.csv','data/audit/catalogue-source.json','data/audit/associations.json','tests/coniston-guide-sources.json','tests/other-guide-sources.json','tests/collision-guide-sources.json','tests/red-pike-sources.json','scripts/audit-route-locations.cjs','tests/load-routing.cjs','scripts/export-route-audit.cjs'];
 const read=p=>fs.readFileSync(path.join(ROOT,p),'utf8');
 const json=p=>JSON.parse(read(p));
 const plain=x=>JSON.parse(JSON.stringify(x));
@@ -33,7 +33,7 @@ function buildAudit(){
  const keys=plain(run('Object.keys({...ROUTE_STATS,...ROUTE_VARIANTS})'));
  const aliases=plain(run('ROUTE_ALIASES'));
  const associations=json('data/audit/associations.json');
- const fixtures=['tests/coniston-guide-sources.json','tests/other-guide-sources.json','tests/collision-guide-sources.json'].flatMap(fixture=>json(fixture).map(f=>({...f,fixture})));
+ const fixtures=['tests/coniston-guide-sources.json','tests/other-guide-sources.json','tests/collision-guide-sources.json','tests/red-pike-sources.json'].flatMap(fixture=>json(fixture).map(f=>({...f,fixture})));
  const collisions=JSON.parse(execFileSync(process.execPath,[path.join(ROOT,'scripts/audit-route-locations.cjs'),path.join(ROOT,'index.html')],{cwd:ROOT,encoding:'utf8'})).map(g=>({...g,id:'collision-'+id(g.fell+'\n'+g.routes.join('\n')),status:'unresolved'}));
  for(const [name,a] of Object.entries(associations)){
   if(!catalogue.some(r=>r.name===name)||!keys.includes(a.routeKey))throw Error('Invalid explicit association: '+name);
@@ -61,7 +61,7 @@ function buildAudit(){
    if(!evidence)missingEvidence.push('route_specific_source_reference');
    missingEvidence.push('independent_full_walking_line_verification');
    return {
-    id:'ascent-'+id(summitId+'\n'+r.route),published:{...r,statisticsSource:{attribution:'Wainwright Routes (planner attribution)',url:'https://www.wainwrightroutes.co.uk/',scope:'general attribution; not route-specific statistics verification'}},
+    id:'ascent-'+id(summitId+'\n'+r.route),published:{...r,statisticsSource:evidence?.statisticsSource?{attribution:'Wainwright Routes',url:evidence.statisticsSource,scope:'route-specific published ascent statistics; checked '+evidence.retrieved}:{attribution:'Wainwright Routes (planner attribution)',url:'https://www.wainwrightroutes.co.uk/',scope:'general attribution; not route-specific statistics verification'}},
     start:{text:evaluate('routeStartText',r.route),coordinates:start?{lat:start.lat,lon:start.lon}:null,resolution:start?start.source:'unresolved_place_name_fallback',fallbackQuery:start?null:evaluate('routeStartText',r.route)+', Lake District, Cumbria, UK',normalizedFallbackKey:start?null:evaluate('normPlace',evaluate('routeStartText',r.route)),verification:sourcedStart?'source_backed_coordinates':start?'embedded_coordinates_without_source_evidence':'unresolved',source:sourcedStart?evidence.source:null},
     guideWaypoints:guides.map((p,i)=>({...p,order:i+1,verification:evidence?'source_backed_coordinates':'embedded_coordinates_without_source_evidence',source:evidence?.source||null,sampleIndex:evidence?.guides[i].index??null})),
     sourceReferences:evidence?[{url:evidence.source,retrieved:evidence.retrieved,scope:'sampled guide coordinates; not full walking line verification',fixture:evidence.fixture}]:[],
