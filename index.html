@@ -288,7 +288,32 @@ const ROUTE_ALIASES={
  "The Old Man of Coniston (Coniston Old Man)":"Coniston Old Man",
  "Harter Fell (Eskdale)":"Harter Fell",
  "High Pike (Scandale)":"High Pike",
- "Tarn Crag (Easedale)":"Tarn Crag"
+ "Tarn Crag (Easedale)":"Tarn Crag",
+ "Angletarn Pikes (Angletarn Pikes North Top)":"Angletarn Pikes",
+ "Baystones (Wansfell)":"Wansfell",
+ "Beda Fell (Beda Head)":"Beda Fell",
+ "Blencathra — Hallsfell Top":"Blencathra",
+ "Crag Hill (Eel Crag)":"Eel Crag",
+ "Crinkle Crags-Long Top (Second Crinkle)":"Crinkle Crags",
+ "Dodd (Skiddaw)":"Dodd",
+ "Fellbarrow-Mosser Fell":"Fellbarrow",
+ "Grange Fell (Brund Fell)":"Grange Fell",
+ "Great Crag (Stonethwaite)":"Great Crag",
+ "Hartsop Above How (Gill Crag-Hartsop Above How)":"Hartsop above How",
+ "Heron Pike (Rydal)":"Heron Pike",
+ "High Crag (Buttermere)":"High Crag",
+ "High Rigg (Naddle Fell)":"High Rigg",
+ "Lingmoor Fell (Lingmoor Fell-Brown How)":"Lingmoor Fell",
+ "Little Hart Crag (Little Hart Crag-West Top)":"Little Hart Crag",
+ "Mellbreak (Mellbreak South Top)":"Mellbreak",
+ "Rosthwaite Fell-Bessyboot":"Rosthwaite Fell",
+ "Steel Fell (Dead Pike-Steel Fell)":"Steel Fell",
+ "Steel Knotts (Pikeawassa-Steel Knotts)":"Steel Knotts",
+ "Stony Cove Pike (Caudale Moor)":"Caudale Moor",
+ "The Knott (High Street)":"The Knott",
+ "Whin Rigg (Wasdale)":"Whin Rigg",
+ "Whinlatter (Brown How-Whinlatter)":"Whinlatter",
+ "Whiteside (Whiteside West Top)":"Whiteside"
 };
 function routeStatsFor(f){const n=routeKey(f.name),k=ROUTE_ALIASES[n]||n;return ROUTE_STATS[k]||null}
 function routeVariantsFor(f){const n=routeKey(f.name),k=ROUTE_ALIASES[n]||n;if(ROUTE_VARIANTS[k])return ROUTE_VARIANTS[k];const one=ROUTE_STATS[k];return one?[one]:[]}
