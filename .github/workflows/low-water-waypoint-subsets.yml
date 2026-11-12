@@ -1,0 +1,25 @@
+name: Diagnose Low Water waypoint subsets
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  subsets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Request all 16 waypoint combinations
+        run: |
+          mkdir -p diagnostic-output
+          node scripts/isolate-coniston-low-water-subsets.cjs > diagnostic-output/low-water-subsets.jsonl
+      - name: Upload research-only results
+        uses: actions/upload-artifact@v4
+        with:
+          name: low-water-waypoint-subsets
+          path: diagnostic-output/
+          retention-days: 7
+          if-no-files-found: error
