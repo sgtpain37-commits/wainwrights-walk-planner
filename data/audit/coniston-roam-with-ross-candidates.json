@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "title": "Old Man of Coniston",
+    "publisher": "Roam with Ross",
+    "url": "https://www.roamwithross.com/guides/lake-district/old-man-of-coniston-hike-guide",
+    "reviewed": "2026-11-12"
+  },
+  "status": "source_review_only",
+  "notes": [
+    "Publisher distances describe walking itineraries and must not be substituted for the planner's one-way ascent distances.",
+    "The page's introductory parking description and Low Water subsection differ; retain route-specific text and verify GPX start and endpoints.",
+    "GPX links were visible but track bytes could not be retrieved; geometry, route classification and live guidance remain unverified.",
+    "No changes to ROUTE_STATS, ROUTE_VARIANTS, or navigation eligibility."
+  ],
+  "routes": [
+    {
+      "id": "ross-coniston-low-water",
+      "name": "Via Low Water",
+      "publishedDistanceKm": 8,
+      "durationHours": "3-4",
+      "startDescription": "Coniston village (route subsection; verify against GPX)",
+      "gpxUrl": "https://www.roamwithross.com/s/OldManofConistonviaLowWater.gpx",
+      "walkType": "unconfirmed",
+      "difficulty": "ungraded",
+      "geometryStatus": "not_retrieved"
+    },
+    {
+      "id": "ross-coniston-brown-pike-swirl-how",
+      "name": "Via Brown Pike and Swirl How",
+      "publishedDistanceKm": 15,
+      "durationHours": "5-6",
+      "startDescription": "Walna Scar car park",
+      "gpxUrl": "https://www.roamwithross.com/s/OldManofConistonviaBrownPikeandSwirlHowbyRoamwithRoss.gpx",
+      "walkType": "multi_summit_itinerary",
+      "difficulty": "ungraded",
+      "geometryStatus": "not_retrieved"
+    },
+    {
+      "id": "ross-coniston-goats-water-swirl-how",
+      "name": "Via Goat's Water and Swirl How",
+      "publishedDistanceKm": 13,
+      "durationHours": "5-6",
+      "startDescription": "Walna Scar car park",
+      "gpxUrl": null,
+      "walkType": "multi_summit_itinerary",
+      "difficulty": "ungraded",
+      "hazardNote": "Publisher describes rocky climb towards Dow Crag and advises against poor weather",
+      "geometryStatus": "not_retrieved"
+    },
+    {
+      "id": "ross-coniston-levers-water",
+      "name": "Via Lever's Water",
+      "publishedDistanceKm": 9,
+      "durationHours": "3-4",
+      "startDescription": "Walna Scar car park",
+      "gpxUrl": null,
+      "walkType": "return_itinerary_described",
+      "difficulty": "ungraded",
+      "geometryStatus": "not_retrieved"
+    },
+    {
+      "id": "ross-coniston-round",
+      "name": "Coniston Round",
+      "publishedDistanceKm": 21,
+      "durationHours": "7",
+      "startDescription": "Coniston village",
+      "gpxUrl": null,
+      "walkType": "circular_multi_summit_itinerary",
+      "difficulty": "ungraded",
+      "geometryStatus": "not_retrieved"
+    }
+  ]
+}
