@@ -9,6 +9,10 @@
   },
   "inputs": [
     {
+      "path": "data/audit/route-candidates.json",
+      "sha256": "207bf3082511e0136e321aabb482482c88643da1c91db54514380827f07a9b10"
+    },
+    {
       "path": "docs/route-mapping.md",
       "sha256": "3d6ea63886df2138ef42a1f4f39830c1c07eed6193fc001d64b425755f3ea313"
     },
@@ -54,7 +58,7 @@
     },
     {
       "path": "scripts/export-route-audit.cjs",
-      "sha256": "4a2411c9cb98ae01ba4b3cfbd2ec80670e4f4684c8661d443e96637a120448d3"
+      "sha256": "ae2917d11c59d596907ece8b10a49867872056cc86708ad3e9926e949343133f"
     }
   ],
   "summary": {
@@ -5386,6 +5390,79 @@
       "missingEvidence": []
     },
     {
+      "routeInvestigation": {
+        "status": "needs_source_resolution",
+        "route": "Gatesgarth Farm via Fleetwith Edge",
+        "checked": "2026-11-12",
+        "summitGridReference": "NY205141",
+        "description": "From Gatesgarth Farm take the Honister road to the signed path beyond the last house, pass left of Low Raven Crag, then climb the zigzags and rocky ridge to Fleetwith Pike. Minor scrambling is described by WalkLakes.",
+        "descriptionSource": "https://www.walklakes.co.uk/walk_266.html",
+        "acceptedStart": {
+          "place": "Gatesgarth Farm car park, Buttermere",
+          "coordinates": null,
+          "reason": "Place supported by multiple descriptions; precise start unresolved. WalkLakes gives NY194149; independent walked accounts give NY194150; Peakify gives NY194151."
+        },
+        "sourceComparisons": [
+          {
+            "publisher": "Upfell",
+            "url": "https://www.upfell.app/wainwrights/fleetwith-pike",
+            "scope": "one-way mapped-path ascent; explicitly not a guided line",
+            "distanceKm": 1.8,
+            "ascentMetres": 553,
+            "timeUpMinutes": 75,
+            "timeMethod": "Naismith with Langmuir corrections",
+            "startGridReference": null,
+            "startCoordinates": null
+          },
+          {
+            "publisher": "Peakify",
+            "url": "https://peakify.ai/mountain/fleetwith-pike/routes/gatesgarth-via-fleetwith-edge",
+            "scope": "one-way published estimate; no plotted track or GPX",
+            "distanceKm": 2.1,
+            "ascentMetres": 531,
+            "timeUpMinutes": 80,
+            "timeMethod": "Naismith",
+            "startGridReference": "NY194151",
+            "startCoordinates": {
+              "lat": 54.52489,
+              "lon": -3.24554
+            }
+          },
+          {
+            "publisher": "WalkLakes / Elizabeth Oldham",
+            "url": "https://www.walklakes.co.uk/walk_266.html",
+            "scope": "complete circular walk including Honister Crag, Dubs Hut and Warnscale; not one-way ascent statistics",
+            "distanceKm": 7.4,
+            "ascentMetres": 589,
+            "minimumTimeMinutes": 147,
+            "startGridReference": "NY194149",
+            "startCoordinates": null
+          },
+          {
+            "publisher": "My Pennines / Matt",
+            "url": "https://www.mypennines.co.uk/lake-district/walks/080814.html",
+            "scope": "walked circular account including Haystacks; supports starting place and ridge, not ascent-only measurements",
+            "startGridReference": "NY194150"
+          }
+        ],
+        "discrepancies": [
+          "One-way published distances differ by 0.3 km and climbs by 22 m; no evidence establishes an identical measured line.",
+          "Estimated ascent times differ by 5 minutes and use different stated methods; neither is a measured walking time.",
+          "Published start references differ by 100-200 m northing; no precise routing coordinate is accepted.",
+          "WalkLakes circular totals must not be substituted for one-way ascent statistics."
+        ],
+        "decision": "Retain missing_route_record and no selectable ascent until a reproducible ascent line and start can be reconciled with attributed one-way statistics. Do not average figures or fabricate guide points.",
+        "missingEvidence": [
+          "reconciled_exact_start",
+          "reproducible_ascent_line",
+          "resolved_one_way_statistics"
+        ],
+        "navigation": {
+          "liveGuidanceAllowed": false,
+          "geometry": null,
+          "verification": "unverified"
+        }
+      },
       "id": "summit-2ce1605ecd46e1ff",
       "name": "Fleetwith Pike",
       "alternativeNames": [],
