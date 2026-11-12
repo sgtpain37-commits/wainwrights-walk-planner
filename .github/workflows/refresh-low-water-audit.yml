@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '22'
       - name: Regenerate deterministic audit
-        run: node scripts/export-route-audit.cjs
+        run: node scripts/export-route-audit.cjs --write
       - name: Commit generated audit if changed
         run: |
           git config user.name "github-actions[bot]"
