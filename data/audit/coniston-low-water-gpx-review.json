@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "publisher": "Roam with Ross",
+    "guideUrl": "https://www.roamwithross.com/guides/lake-district/old-man-of-coniston-hike-guide",
+    "fileName": "OldManofConistonviaLowWater.gpx",
+    "sha256": "87d18550b53179427d9b299997dcce3efc45242e61d365ec967d316f060ed9a8",
+    "reviewed": "2026-11-12"
+  },
+  "track": {
+    "points": 319,
+    "segments": 1,
+    "distanceMetres": 7901,
+    "start": [
+      54.36738,
+      -3.07348
+    ],
+    "finish": [
+      54.36714,
+      -3.07298
+    ],
+    "startFinishSeparationMetres": 42,
+    "hasElevation": false,
+    "boundingBox": {
+      "south": 54.364,
+      "north": 54.37479,
+      "west": -3.11805,
+      "east": -3.07298
+    }
+  },
+  "comparison": {
+    "plannerSummit": [
+      54.37066,
+      -3.12145
+    ],
+    "summitReference": "https://openfell.co.uk/peaks/the-old-man-of-coniston/",
+    "nearestSummitTrackPointIndex": 155,
+    "nearestSummitTrackPoint": [
+      54.37289,
+      -3.11805
+    ],
+    "nearestSummitTrackPointMetres": 332,
+    "plannerLowWaterStart": [
+      54.3636831,
+      -3.0961275
+    ],
+    "nearestStartTrackPointIndex": 263,
+    "nearestStartTrackPointMetres": 48,
+    "nearestSummitTrackSegmentMetres": 332,
+    "nearestSummitTrackSegmentStartIndex": 154,
+    "nearestSummitTrackSegmentEndIndex": 155
+  },
+  "status": "research_only_not_summit_verified",
+  "notes": [
+    "The planner summit coordinates agree with independent summit references; do not relocate the summit to match this GPX.",
+    "GPX forms a near-closed itinerary and is not interchangeable with the planner's one-way 2.0-mile ascent.",
+    "Do not use this track for live guidance until route intent and summit approach are independently verified.",
+    "Raw third-party GPX is not committed; audit records its SHA-256 for reproducibility.",
+    "Complete track-segment nearest approach is 331.65 m, effectively the same as the nearest-vertex distance; the summit lies west of the GPX bounding box.",
+    "The GPX westernmost longitude is -3.11805, whereas the summit reference longitude is -3.12145; the track never reaches the summit longitude."
+  ]
+}
