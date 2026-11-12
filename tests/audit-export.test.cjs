@@ -31,7 +31,7 @@ test('all associations and published statistics agree with planner data and expl
   assert.deepEqual(s.ascents.map(a=>{const {statisticsSource,...r}=a.published;return r;}),expected);
   assert.equal(s.association.status,current.length?'associated':mappings[s.name]?'naming_mismatch':'missing_route_record');
  }
- assert.deepEqual(audit.summary,{summits:214,associated:199,namingMismatches:0,missingRouteRecords:15,publishedAscents:243,unresolvedCollisionPairs:10});
+ assert.deepEqual(audit.summary,{summits:214,associated:199,namingMismatches:0,missingRouteRecords:15,publishedAscents:243,unresolvedCollisionPairs:0});
  assert.deepEqual(audit.unassociatedRouteKeys,[]);
 });
 test('restored catalogue associations and absent repository records remain distinct',()=>{
@@ -55,11 +55,11 @@ test('qualified mountains cannot inherit the other mountain route',()=>{
  }
  for(const n of ['Red Pike (Buttermere)','Red Pike (Wasdale)','High Raise (High Street)','High Raise (High Raise (High White Stones))'])assert.deepEqual(summit(n).ascents,[]);
 });
-test('ten unresolved pairs match live audit output and link to the correct ascents',()=>{
+test('remaining unresolved pairs match live audit output and link to the correct ascents',()=>{
  const expected=JSON.parse(execFileSync(process.execPath,['scripts/audit-route-locations.cjs'],{encoding:'utf8'}));
  assert.deepEqual(audit.routingInputCollisions.map(({id,status,...g})=>g),expected);
- assert.equal(expected.length,10);
- assert.equal(expected.filter(g=>g.resolution==='embedded coordinates').length,5);
+ assert.equal(expected.length,0);
+ assert.equal(expected.filter(g=>g.resolution==='embedded coordinates').length,0);
  for(const g of audit.routingInputCollisions){
   const s=audit.summits.find(s=>s.association.routeKey===g.fell);
   assert.ok(s.collisionIds.includes(g.id));
@@ -67,17 +67,17 @@ test('ten unresolved pairs match live audit output and link to the correct ascen
  }
 });
 test('coordinates, ordered guides and source evidence are exported verbatim without promoting walking lines',()=>{
- const {run}=loadRouting();const fixtures=[...require('./coniston-guide-sources.json'),...require('./other-guide-sources.json')];
+ const {run}=loadRouting();const fixtures=[...require('./coniston-guide-sources.json'),...require('./other-guide-sources.json'),...require('./collision-guide-sources.json')];
  for(const s of audit.summits)for(const a of s.ascents){
   const route=JSON.stringify(a.published.route);
-  const start=plain(run(`embeddedStartFor(${route})`));
+  const start=plain(run(`embeddedStartFor(${route},${JSON.stringify(s.association.routeKey)})`));
   assert.deepEqual(a.start.coordinates,start?{lat:start.lat,lon:start.lon}:null);
-  const guides=plain(run(`routeViaPoints(${route})`));
+  const guides=plain(run(`routeViaPoints(${route},${JSON.stringify(s.association.routeKey)})`));
   assert.deepEqual(a.guideWaypoints.map(({lat,lon})=>({lat,lon})),guides.map(({lat,lon})=>({lat,lon})));
   if(!start){assert.equal(a.start.verification,'unresolved');assert.ok(a.missingEvidence.includes('resolved_start_coordinates'));}
   for(const p of a.guideWaypoints){
    if(p.verification==='source_backed_coordinates'){
-    const f=fixtures.find(f=>f.route===a.published.route&&f.source===p.source);
+    const f=fixtures.find(f=>(!f.fell||f.fell===s.association.routeKey)&&f.route===a.published.route&&f.source===p.source);
     assert.ok(f);assert.deepEqual({lat:p.lat,lon:p.lon,index:p.sampleIndex},f.guides[p.order-1]);
    }else {assert.equal(p.source,null);assert.ok(a.missingEvidence.includes('guide_coordinate_provenance'));}
   }

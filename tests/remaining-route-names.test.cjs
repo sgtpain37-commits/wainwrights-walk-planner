@@ -35,5 +35,5 @@ test('remaining missing records and neighbouring or alternative tops never inher
  for(const name of ['Brown How','Angletarn Pikes (South Top)','Whiteside (East Top)','Whinlatter (Other)','Wansfell Pike','High Crag (Other)','The Knott (Other)'])assert.deepEqual(routes(name),[],name);
  assert.notDeepEqual(routes('The Knott (High Street)'),routes('Knott'));
  assert.equal(new Set(audit.summits.map(s=>s.id)).size,214);
- assert.deepEqual(audit.summary,{summits:214,associated:199,namingMismatches:0,missingRouteRecords:15,publishedAscents:243,unresolvedCollisionPairs:10});
+ assert.deepEqual(audit.summary,{summits:214,associated:199,namingMismatches:0,missingRouteRecords:15,publishedAscents:243,unresolvedCollisionPairs:0});
 });

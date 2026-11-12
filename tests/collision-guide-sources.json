@@ -1,0 +1,857 @@
+[
+  {
+    "fell": "Fairfield",
+    "route": "From Bridgend via Deepdale Hause",
+    "source": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/fairfield_r2.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "bd47ff536b32a977d20921d4512a7b1279c5da825ea2ae02296da20749ca6729",
+    "trackPointCount": 101,
+    "start": [
+      54.52148,
+      -2.9297018
+    ],
+    "guides": [
+      {
+        "index": 20,
+        "lat": 54.5139322,
+        "lon": -2.9413319
+      },
+      {
+        "index": 40,
+        "lat": 54.5072053,
+        "lon": -2.9528761
+      },
+      {
+        "index": 60,
+        "lat": 54.5050624,
+        "lon": -2.9657507
+      },
+      {
+        "index": 80,
+        "lat": 54.5035174,
+        "lon": -2.9818869
+      },
+      {
+        "index": 85,
+        "lat": 54.5030689,
+        "lon": -2.9866934
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 85,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Fairfield",
+    "route": "From Bridgend via Greenhow End",
+    "source": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/fairfield_r3.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "42b8b5d5d4ed0b8f129ddffdb73dc17392e6f7ce2466b08f4aeb8388273d8323",
+    "trackPointCount": 104,
+    "start": [
+      54.52148,
+      -2.9297018
+    ],
+    "guides": [
+      {
+        "index": 21,
+        "lat": 54.5133094,
+        "lon": -2.9419756
+      },
+      {
+        "index": 41,
+        "lat": 54.5068813,
+        "lon": -2.9540348
+      },
+      {
+        "index": 62,
+        "lat": 54.504863,
+        "lon": -2.967124
+      },
+      {
+        "index": 82,
+        "lat": 54.4995551,
+        "lon": -2.9744625
+      },
+      {
+        "index": 91,
+        "lat": 54.4967638,
+        "lon": -2.9804707
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 91,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Seat Sandal",
+    "route": "From Mill Bridge via Grisedale Hause",
+    "source": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/seatsandal_r2.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "48691aa1081a171fc952565242479f09398fa27a2a5021599a71d443c6181b89",
+    "trackPointCount": 100,
+    "start": [
+      54.473504,
+      -3.0261111
+    ],
+    "guides": [
+      {
+        "index": 20,
+        "lat": 54.4803363,
+        "lon": -3.0204463
+      },
+      {
+        "index": 40,
+        "lat": 54.4875537,
+        "lon": -3.0171418
+      },
+      {
+        "index": 54,
+        "lat": 54.4901836,
+        "lon": -3.0103612
+      },
+      {
+        "index": 59,
+        "lat": 54.4915172,
+        "lon": -3.0077219
+      },
+      {
+        "index": 79,
+        "lat": 54.4961158,
+        "lon": -3.0074215
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 54,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Seat Sandal",
+    "route": "From Mill Bridge via the south ridge",
+    "source": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/seatsandal_r3.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "f87668e23bf13b80468d150feabc6a4373ae77c9064bc196437e7c163cb42068",
+    "trackPointCount": 76,
+    "start": [
+      54.4735664,
+      -3.0261755
+    ],
+    "guides": [
+      {
+        "index": 15,
+        "lat": 54.479127,
+        "lon": -3.0234075
+      },
+      {
+        "index": 30,
+        "lat": 54.4847492,
+        "lon": -3.0245447
+      },
+      {
+        "index": 44,
+        "lat": 54.4889871,
+        "lon": -3.0240297
+      },
+      {
+        "index": 45,
+        "lat": 54.4891367,
+        "lon": -3.0238795
+      },
+      {
+        "index": 60,
+        "lat": 54.4921528,
+        "lon": -3.0207896
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 44,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Dow Crag",
+    "route": "From Torver via the Walna Scar Pass",
+    "source": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/dowcrag_r1.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "2c0e54b41f9c872b20a3fb35e4add5cefec74ec6539b60d25434830bbfe8a6cf",
+    "trackPointCount": 104,
+    "start": [
+      54.340923,
+      -3.1012344
+    ],
+    "guides": [
+      {
+        "index": 21,
+        "lat": 54.3496784,
+        "lon": -3.1051826
+      },
+      {
+        "index": 41,
+        "lat": 54.3550307,
+        "lon": -3.1139374
+      },
+      {
+        "index": 62,
+        "lat": 54.3582318,
+        "lon": -3.1259537
+      },
+      {
+        "index": 82,
+        "lat": 54.3578567,
+        "lon": -3.140974
+      },
+      {
+        "index": 84,
+        "lat": 54.3582568,
+        "lon": -3.1428623
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 84,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Dow Crag",
+    "route": "From Torver via the south rake",
+    "source": "https://www.wainwrightroutes.co.uk/dowcrag-2_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/dowcrag_r2.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "11a27b3188cb7030d3841627cf1578c93a12bfbaaa911259d96838c19f20fd0c",
+    "trackPointCount": 88,
+    "start": [
+      54.340973,
+      -3.1012774
+    ],
+    "guides": [
+      {
+        "index": 17,
+        "lat": 54.347127,
+        "lon": -3.1037235
+      },
+      {
+        "index": 35,
+        "lat": 54.3530799,
+        "lon": -3.1089163
+      },
+      {
+        "index": 52,
+        "lat": 54.3583068,
+        "lon": -3.1171131
+      },
+      {
+        "index": 70,
+        "lat": 54.3649082,
+        "lon": -3.1262112
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 70,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Scafell",
+    "route": "From Wasdale via the West Wall Traverse",
+    "source": "https://www.wainwrightroutes.co.uk/scafell-1_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/scafell_r1.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "5af67b32cff8c029404d30579e13aecb07617ed4fc8d49bd19b21571e5888b2d",
+    "trackPointCount": 65,
+    "start": [
+      54.4558946,
+      -3.2628965
+    ],
+    "guides": [
+      {
+        "index": 13,
+        "lat": 54.4548218,
+        "lon": -3.2484341
+      },
+      {
+        "index": 26,
+        "lat": 54.4541981,
+        "lon": -3.2345724
+      },
+      {
+        "index": 38,
+        "lat": 54.4520774,
+        "lon": -3.2238221
+      },
+      {
+        "index": 51,
+        "lat": 54.4499565,
+        "lon": -3.2227063
+      },
+      {
+        "index": 52,
+        "lat": 54.4499316,
+        "lon": -3.2224488
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 52,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Scafell",
+    "route": "From Wasdale via Lord's Rake",
+    "source": "https://www.wainwrightroutes.co.uk/scafell-2_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/scafell_r2.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "11c0783ef46c0a19a59ca993aeb4b27a9e74e6e1af206b4659a96a73a555a5d7",
+    "trackPointCount": 101,
+    "start": [
+      54.4558946,
+      -3.262639
+    ],
+    "guides": [
+      {
+        "index": 20,
+        "lat": 54.454248,
+        "lon": -3.2508588
+      },
+      {
+        "index": 40,
+        "lat": 54.4552584,
+        "lon": -3.2393575
+      },
+      {
+        "index": 60,
+        "lat": 54.4531876,
+        "lon": -3.2288647
+      },
+      {
+        "index": 80,
+        "lat": 54.4508173,
+        "lon": -3.2247877
+      },
+      {
+        "index": 86,
+        "lat": 54.4503557,
+        "lon": -3.2270622
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 86,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Bannerdale Crags",
+    "route": "From Mungrisdale via the east ridge",
+    "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/bannerdalecrags_r1.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "9fee95ed3c17c7e0f65a6604e4ad66f4990e7dc1aa0620f3806909d33c247f8a",
+    "trackPointCount": 36,
+    "start": [
+      54.6638045,
+      -2.9906845
+    ],
+    "guides": [
+      {
+        "index": 7,
+        "lat": 54.6623648,
+        "lon": -2.9999542
+      },
+      {
+        "index": 14,
+        "lat": 54.6575987,
+        "lon": -3.0051041
+      },
+      {
+        "index": 21,
+        "lat": 54.654421,
+        "lon": -3.0140305
+      },
+      {
+        "index": 24,
+        "lat": 54.6535769,
+        "lon": -3.0194378
+      },
+      {
+        "index": 28,
+        "lat": 54.6529811,
+        "lon": -3.0242443
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 24,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Bannerdale Crags",
+    "route": "From Mungrisdale via Bannerdale",
+    "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/bannerdalecrags_r2.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "10d14ea52f1f3cbaa7c73c18ccb3abc3d4887140e50841c2e03cef5a30b7cb08",
+    "trackPointCount": 104,
+    "start": [
+      54.6638541,
+      -2.9908133
+    ],
+    "guides": [
+      {
+        "index": 21,
+        "lat": 54.662973,
+        "lon": -2.9994822
+      },
+      {
+        "index": 41,
+        "lat": 54.6595971,
+        "lon": -3.0090737
+      },
+      {
+        "index": 62,
+        "lat": 54.6614092,
+        "lon": -3.0291152
+      },
+      {
+        "index": 66,
+        "lat": 54.6620546,
+        "lon": -3.0332565
+      },
+      {
+        "index": 82,
+        "lat": 54.6577601,
+        "lon": -3.0374622
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 66,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Bowscale Fell",
+    "route": "From Mungrisdale via Bannerdale",
+    "source": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/bowscalefell_r2.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "2009c0744a2e79a9f3de751d16e90685e2c2cad11942731d6c27f4beb930bbef",
+    "trackPointCount": 86,
+    "start": [
+      54.6638417,
+      -2.9908776
+    ],
+    "guides": [
+      {
+        "index": 17,
+        "lat": 54.6634322,
+        "lon": -2.9996753
+      },
+      {
+        "index": 34,
+        "lat": 54.6608755,
+        "lon": -3.0046749
+      },
+      {
+        "index": 44,
+        "lat": 54.6592744,
+        "lon": -3.0107474
+      },
+      {
+        "index": 51,
+        "lat": 54.6594233,
+        "lon": -3.0155325
+      },
+      {
+        "index": 68,
+        "lat": 54.6619677,
+        "lon": -3.033042
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 44,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Bowscale Fell",
+    "route": "From Mungrisdale via the east ridge",
+    "source": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/bowscalefell_r3.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "a44606a4ac5490dbffc610548a854e54dbc150e705adfc76cf79d47d810ef35e",
+    "trackPointCount": 104,
+    "start": [
+      54.6638293,
+      -2.990942
+    ],
+    "guides": [
+      {
+        "index": 21,
+        "lat": 54.667453,
+        "lon": -2.9922938
+      },
+      {
+        "index": 41,
+        "lat": 54.6699224,
+        "lon": -2.9999757
+      },
+      {
+        "index": 62,
+        "lat": 54.6706545,
+        "lon": -3.0110693
+      },
+      {
+        "index": 68,
+        "lat": 54.6704436,
+        "lon": -3.0144382
+      },
+      {
+        "index": 82,
+        "lat": 54.6701582,
+        "lon": -3.0233431
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 68,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Knott",
+    "route": "From Mosedale via Coomb Height",
+    "source": "https://www.wainwrightroutes.co.uk/knott_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/knott_r1.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "7b185d7a509654e1fc496588098e0da925f6c9f53ef0c71a76eedd1aaf26e9d4",
+    "trackPointCount": 90,
+    "start": [
+      54.6783967,
+      -2.9983234
+    ],
+    "guides": [
+      {
+        "index": 18,
+        "lat": 54.6813244,
+        "lon": -3.0158329
+      },
+      {
+        "index": 36,
+        "lat": 54.6841527,
+        "lon": -3.0391788
+      },
+      {
+        "index": 53,
+        "lat": 54.6765605,
+        "lon": -3.0596924
+      },
+      {
+        "index": 58,
+        "lat": 54.6731858,
+        "lon": -3.0655289
+      },
+      {
+        "index": 71,
+        "lat": 54.6835076,
+        "lon": -3.0726528
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 58,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Knott",
+    "route": "From Mosedale via Grainsgill Beck",
+    "source": "https://www.wainwrightroutes.co.uk/knott-2_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/knott_r2.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "b9f6821c96ecf1637ccdc312c98b08bd0b5d43f485929842a936f9490e254efd",
+    "trackPointCount": 192,
+    "start": [
+      54.6784215,
+      -2.9984307
+    ],
+    "guides": [
+      {
+        "index": 38,
+        "lat": 54.6815353,
+        "lon": -3.0171418
+      },
+      {
+        "index": 76,
+        "lat": 54.6842891,
+        "lon": -3.0406165
+      },
+      {
+        "index": 113,
+        "lat": 54.6887544,
+        "lon": -3.0587697
+      },
+      {
+        "index": 115,
+        "lat": 54.6888412,
+        "lon": -3.0602288
+      },
+      {
+        "index": 153,
+        "lat": 54.6888412,
+        "lon": -3.0728674
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 113,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Barf",
+    "route": "From Powter How via Beckstones Gill",
+    "source": "https://www.wainwrightroutes.co.uk/barf_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/barf_r1.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "2e33f4d80a594c07792c977c109dc5417c5e346c0e430a64b00edf062fae8563",
+    "trackPointCount": 38,
+    "start": [
+      54.6266055,
+      -3.2094669
+    ],
+    "guides": [
+      {
+        "index": 7,
+        "lat": 54.6257856,
+        "lon": -3.2122135
+      },
+      {
+        "index": 15,
+        "lat": 54.6263074,
+        "lon": -3.2178354
+      },
+      {
+        "index": 22,
+        "lat": 54.6267297,
+        "lon": -3.2206678
+      },
+      {
+        "index": 25,
+        "lat": 54.627152,
+        "lon": -3.2218695
+      },
+      {
+        "index": 30,
+        "lat": 54.62827,
+        "lon": -3.2199383
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 25,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Barf",
+    "route": "Direct from Powter How",
+    "source": "https://www.wainwrightroutes.co.uk/barf2_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/barf_r2.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "9f10e710f64ea82d38aee46965a9576ce91b326c2af12c747a18c716391d4667",
+    "trackPointCount": 27,
+    "start": [
+      54.6266552,
+      -3.2090807
+    ],
+    "guides": [
+      {
+        "index": 5,
+        "lat": 54.6264067,
+        "lon": -3.2108831
+      },
+      {
+        "index": 10,
+        "lat": 54.6269285,
+        "lon": -3.212471
+      },
+      {
+        "index": 14,
+        "lat": 54.6280712,
+        "lon": -3.2144022
+      },
+      {
+        "index": 16,
+        "lat": 54.628419,
+        "lon": -3.2146597
+      },
+      {
+        "index": 21,
+        "lat": 54.6291146,
+        "lon": -3.2168484
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 14,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Sale Fell",
+    "route": "From St. Margaret's Church via the west ridge",
+    "source": "https://www.wainwrightroutes.co.uk/salefell-1_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/salefell_r1.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "09d4ed627f5a58f8f339daa1629d616bfb507f178ddfa9f964708d5f1b3ccdbd",
+    "trackPointCount": 38,
+    "start": [
+      54.6604287,
+      -3.2544422
+    ],
+    "guides": [
+      {
+        "index": 7,
+        "lat": 54.6573753,
+        "lon": -3.2582402
+      },
+      {
+        "index": 15,
+        "lat": 54.6546321,
+        "lon": -3.2626605
+      },
+      {
+        "index": 16,
+        "lat": 54.6543714,
+        "lon": -3.2623172
+      },
+      {
+        "index": 22,
+        "lat": 54.6545824,
+        "lon": -3.2586479
+      },
+      {
+        "index": 30,
+        "lat": 54.6551907,
+        "lon": -3.2529616
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 16,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Sale Fell",
+    "route": "From St. Margaret's Church",
+    "source": "https://www.wainwrightroutes.co.uk/salefell-3_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/salefell_r3.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "e8a62d45cc2c69f6a66384d795b38eb29f65f4f620306db3e3d2b6eca377c280",
+    "trackPointCount": 64,
+    "start": [
+      54.6604225,
+      -3.2545388
+    ],
+    "guides": [
+      {
+        "index": 13,
+        "lat": 54.6583807,
+        "lon": -3.2558584
+      },
+      {
+        "index": 25,
+        "lat": 54.6591441,
+        "lon": -3.2519424
+      },
+      {
+        "index": 33,
+        "lat": 54.6596281,
+        "lon": -3.2482731
+      },
+      {
+        "index": 38,
+        "lat": 54.6586352,
+        "lon": -3.2467389
+      },
+      {
+        "index": 50,
+        "lat": 54.6555693,
+        "lon": -3.2473397
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 33,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Blake Fell",
+    "route": "From Felldyke via High Pen",
+    "source": "https://www.wainwrightroutes.co.uk/blakefell_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/blakefell_r1.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "e09efb2b7ad8c13816319cebd606b1ee5b34c394b3fb8c1e8375091104fb7663",
+    "trackPointCount": 57,
+    "start": [
+      54.5653194,
+      -3.4168339
+    ],
+    "guides": [
+      {
+        "index": 11,
+        "lat": 54.5625077,
+        "lon": -3.4057188
+      },
+      {
+        "index": 22,
+        "lat": 54.5594719,
+        "lon": -3.3956766
+      },
+      {
+        "index": 33,
+        "lat": 54.5563861,
+        "lon": -3.3897114
+      },
+      {
+        "index": 34,
+        "lat": 54.5567843,
+        "lon": -3.3885956
+      },
+      {
+        "index": 45,
+        "lat": 54.5585014,
+        "lon": -3.3739614
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 33,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Blake Fell",
+    "route": "From Felldyke via Sharp Knott",
+    "source": "https://www.wainwrightroutes.co.uk/blakefell2_map.html",
+    "descriptionSource": "https://www.wainwrightroutes.co.uk/blakefell_r2.htm",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "70e5d6fa353dd0d476432a5a15a7e361de7daeb4dc9a1bfb8c84a6935d734226",
+    "trackPointCount": 61,
+    "start": [
+      54.5652696,
+      -3.4167051
+    ],
+    "guides": [
+      {
+        "index": 12,
+        "lat": 54.5632293,
+        "lon": -3.4053755
+      },
+      {
+        "index": 24,
+        "lat": 54.5661654,
+        "lon": -3.3975649
+      },
+      {
+        "index": 36,
+        "lat": 54.567285,
+        "lon": -3.3917284
+      },
+      {
+        "index": 40,
+        "lat": 54.5698973,
+        "lon": -3.390398
+      },
+      {
+        "index": 48,
+        "lat": 54.5693748,
+        "lon": -3.3816862
+      }
+    ],
+    "selection": "Ordered original vertices near 20%, 40%, 60%, 80% of segment index, plus the vertex with greatest separation from the paired published map vertices; duplicates removed. No interpolation.",
+    "branchSampleIndex": 40,
+    "previewOnlyReason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+  }
+]

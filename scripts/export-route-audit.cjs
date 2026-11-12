@@ -6,7 +6,7 @@ const {execFileSync}=require('node:child_process');
 const {loadRouting}=require('../tests/load-routing.cjs');
 const ROOT=path.resolve(__dirname,'..');
 const OUTPUT='docs/wainwrights-audit.v1.json';
-const INPUTS=['docs/route-mapping.md','index.html','data/audit/wainwrights.csv','data/audit/catalogue-source.json','data/audit/associations.json','tests/coniston-guide-sources.json','tests/other-guide-sources.json','scripts/audit-route-locations.cjs','tests/load-routing.cjs','scripts/export-route-audit.cjs'];
+const INPUTS=['docs/route-mapping.md','index.html','data/audit/wainwrights.csv','data/audit/catalogue-source.json','data/audit/associations.json','tests/coniston-guide-sources.json','tests/other-guide-sources.json','tests/collision-guide-sources.json','scripts/audit-route-locations.cjs','tests/load-routing.cjs','scripts/export-route-audit.cjs'];
 const read=p=>fs.readFileSync(path.join(ROOT,p),'utf8');
 const json=p=>JSON.parse(read(p));
 const plain=x=>JSON.parse(JSON.stringify(x));
@@ -33,7 +33,7 @@ function buildAudit(){
  const keys=plain(run('Object.keys({...ROUTE_STATS,...ROUTE_VARIANTS})'));
  const aliases=plain(run('ROUTE_ALIASES'));
  const associations=json('data/audit/associations.json');
- const fixtures=[...json('tests/coniston-guide-sources.json'),...json('tests/other-guide-sources.json')];
+ const fixtures=['tests/coniston-guide-sources.json','tests/other-guide-sources.json','tests/collision-guide-sources.json'].flatMap(fixture=>json(fixture).map(f=>({...f,fixture})));
  const collisions=JSON.parse(execFileSync(process.execPath,[path.join(ROOT,'scripts/audit-route-locations.cjs'),path.join(ROOT,'index.html')],{cwd:ROOT,encoding:'utf8'})).map(g=>({...g,id:'collision-'+id(g.fell+'\n'+g.routes.join('\n')),status:'unresolved'}));
  for(const [name,a] of Object.entries(associations)){
   if(!catalogue.some(r=>r.name===name)||!keys.includes(a.routeKey))throw Error('Invalid explicit association: '+name);
@@ -47,11 +47,11 @@ function buildAudit(){
   const records=key?evaluate('routeVariantsFor',{name:key}):[];
   const collisionIds=collisions.filter(g=>g.fell===key).map(g=>g.id);
   const ascents=records.map(r=>{
-   const start=evaluate('embeddedStartFor',r.route);
-   const guides=evaluate('routeViaPoints',r.route);
-   const declaredSource=plain(run(`ROUTE_GUIDE_SOURCES[${JSON.stringify(r.route)}]||null`));
+   const start=plain(run(`embeddedStartFor(${JSON.stringify(r.route)},${JSON.stringify(key)})`));
+   const guides=plain(run(`routeViaPoints(${JSON.stringify(r.route)},${JSON.stringify(key)})`));
+   const declaredSource=plain(run(`routeGuideSource(${JSON.stringify(r.route)},${JSON.stringify(key)})`));
    // A shared route string is not sufficient provenance: match the coordinates too.
-   const evidence=fixtures.find(f=>f.route===r.route&&f.source===declaredSource?.source&&JSON.stringify(f.guides.map(p=>[p.lat,p.lon]))===JSON.stringify(guides.map(p=>[p.lat,p.lon])));
+   const evidence=fixtures.find(f=>(!f.fell||f.fell===key)&&f.route===r.route&&f.source===declaredSource?.source&&JSON.stringify(f.guides.map(p=>[p.lat,p.lon]))===JSON.stringify(guides.map(p=>[p.lat,p.lon])));
    const sourcedStart=!!(start&&evidence?.start&&JSON.stringify(evidence.start)===JSON.stringify([start.lat,start.lon]));
    const missingEvidence=[];
    if(!guides.length)missingEvidence.push('route_specific_guide_coordinates');
@@ -64,9 +64,9 @@ function buildAudit(){
     id:'ascent-'+id(summitId+'\n'+r.route),published:{...r,statisticsSource:{attribution:'Wainwright Routes (planner attribution)',url:'https://www.wainwrightroutes.co.uk/',scope:'general attribution; not route-specific statistics verification'}},
     start:{text:evaluate('routeStartText',r.route),coordinates:start?{lat:start.lat,lon:start.lon}:null,resolution:start?start.source:'unresolved_place_name_fallback',fallbackQuery:start?null:evaluate('routeStartText',r.route)+', Lake District, Cumbria, UK',normalizedFallbackKey:start?null:evaluate('normPlace',evaluate('routeStartText',r.route)),verification:sourcedStart?'source_backed_coordinates':start?'embedded_coordinates_without_source_evidence':'unresolved',source:sourcedStart?evidence.source:null},
     guideWaypoints:guides.map((p,i)=>({...p,order:i+1,verification:evidence?'source_backed_coordinates':'embedded_coordinates_without_source_evidence',source:evidence?.source||null,sampleIndex:evidence?.guides[i].index??null})),
-    sourceReferences:evidence?[{url:evidence.source,retrieved:evidence.retrieved,scope:'sampled guide coordinates; not full walking line verification',fixture:fixtures.indexOf(evidence)<3?'tests/coniston-guide-sources.json':'tests/other-guide-sources.json'}]:[],
+    sourceReferences:evidence?[{url:evidence.source,retrieved:evidence.retrieved,scope:'sampled guide coordinates; not full walking line verification',fixture:evidence.fixture}]:[],
     declaredGuideSource:declaredSource?.source||null,
-    generatedWalkingLine:{verification:'unverified',geometry:null,reason:'Generated on demand by the planner; guide provenance does not verify the connecting walking line.'},
+    generatedWalkingLine:{verification:'unverified',geometry:null,reason:declaredSource?.previewOnlyReason||'Generated on demand by the planner; guide provenance does not verify the connecting walking line.'},
     collisionIds:collisions.filter(g=>g.fell===key&&g.routes.includes(r.route)).map(g=>g.id),missingEvidence
    };
   });
