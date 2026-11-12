@@ -10,11 +10,11 @@
   "inputs": [
     {
       "path": "docs/route-mapping.md",
-      "sha256": "a891999216dae7a4ebaecc1d22bb1f04337a70d30a67de9659bea3d5afd2e632"
+      "sha256": "3d6ea63886df2138ef42a1f4f39830c1c07eed6193fc001d64b425755f3ea313"
     },
     {
       "path": "index.html",
-      "sha256": "8decfaa2e558d8db18553f86413d32151a91d7b37e38a4afedb6334d6f545c62"
+      "sha256": "c42f54a67f455e44db1c4e455c2e0702feef69aae9a2cb80f1490bc9d8283d88"
     },
     {
       "path": "data/audit/wainwrights.csv",
@@ -37,8 +37,12 @@
       "sha256": "5280b6be8f05b05bbe76a5fd448b744e9fd2075b8440b9d4a18ca6db40e4e2b4"
     },
     {
+      "path": "tests/collision-guide-sources.json",
+      "sha256": "ec2d521ae74d6a2ee79a929ae3bad17469fa71779f4e78c99fd65b36d442be31"
+    },
+    {
       "path": "scripts/audit-route-locations.cjs",
-      "sha256": "16e8fce398b330b2f321d79dd1582d67c3dd90fc24e2dc495df4315c34aee8e6"
+      "sha256": "ebf8dbd1e63524a629367bb66f6ae5382497a0af6e302e993b5bc9cf254f5814"
     },
     {
       "path": "tests/load-routing.cjs",
@@ -46,7 +50,7 @@
     },
     {
       "path": "scripts/export-route-audit.cjs",
-      "sha256": "b17f96eccc9cebad1464656a3adde4d9660501c998d2849456ac7589e006d3e0"
+      "sha256": "bf68abe3c8b562cdbfa9a1015abd6d659b4d5c9fa2c50837f73570f2b28cb019"
     }
   ],
   "summary": {
@@ -55,7 +59,7 @@
     "namingMismatches": 0,
     "missingRouteRecords": 15,
     "publishedAscents": 243,
-    "unresolvedCollisionPairs": 10
+    "unresolvedCollisionPairs": 0
   },
   "repositorySourceReferences": [
     {
@@ -145,6 +149,206 @@
     },
     {
       "url": "https://www.wainwrightroutes.co.uk/greatend_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/fairfield_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/fairfield_r3.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/seatsandal_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/seatsandal_r3.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/dowcrag_r1.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/dowcrag_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/dowcrag-2_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/scafell_r1.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/scafell-1_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/scafell_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/scafell-2_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/bannerdalecrags_r1.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/bannerdalecrags_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/bowscalefell_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/bowscalefell_r3.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/knott_r1.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/knott_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/knott_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/knott-2_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/barf_r1.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/barf_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/barf_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/barf2_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/salefell_r1.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/salefell-1_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/salefell_r3.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/salefell-3_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/blakefell_r1.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/blakefell_map.html",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/blakefell_r2.htm",
+      "recordedIn": "docs/route-mapping.md",
+      "scope": "Existing documentation reference; no new retrieval or full-line verification"
+    },
+    {
+      "url": "https://www.wainwrightroutes.co.uk/blakefell2_map.html",
       "recordedIn": "docs/route-mapping.md",
       "scope": "Existing documentation reference; no new retrieval or full-line verification"
     }
@@ -777,30 +981,78 @@
           "start": {
             "text": "Mungrisdale",
             "coordinates": {
-              "lat": 54.6643,
-              "lon": -2.9877
+              "lat": 54.6638045,
+              "lon": -2.9906845
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Bannerdale Crags guide 1",
+              "lat": 54.6623648,
+              "lon": -2.9999542,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html",
+              "sampleIndex": 7
+            },
+            {
+              "name": "Published Bannerdale Crags guide 2",
+              "lat": 54.6575987,
+              "lon": -3.0051041,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html",
+              "sampleIndex": 14
+            },
+            {
+              "name": "Published Bannerdale Crags guide 3",
+              "lat": 54.654421,
+              "lon": -3.0140305,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html",
+              "sampleIndex": 21
+            },
+            {
+              "name": "Published Bannerdale Crags guide 4",
+              "lat": 54.6535769,
+              "lon": -3.0194378,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html",
+              "sampleIndex": 24
+            },
+            {
+              "name": "Published Bannerdale Crags guide 5",
+              "lat": 54.6529811,
+              "lon": -3.0242443,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html",
+              "sampleIndex": 28
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/bannerdalecrags_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-77ab1823cf24f823"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -820,37 +1072,83 @@
           "start": {
             "text": "Mungrisdale",
             "coordinates": {
-              "lat": 54.6643,
-              "lon": -2.9877
+              "lat": 54.6638541,
+              "lon": -2.9908133
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Bannerdale Crags guide 1",
+              "lat": 54.662973,
+              "lon": -2.9994822,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html",
+              "sampleIndex": 21
+            },
+            {
+              "name": "Published Bannerdale Crags guide 2",
+              "lat": 54.6595971,
+              "lon": -3.0090737,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html",
+              "sampleIndex": 41
+            },
+            {
+              "name": "Published Bannerdale Crags guide 3",
+              "lat": 54.6614092,
+              "lon": -3.0291152,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html",
+              "sampleIndex": 62
+            },
+            {
+              "name": "Published Bannerdale Crags guide 4",
+              "lat": 54.6620546,
+              "lon": -3.0332565,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html",
+              "sampleIndex": 66
+            },
+            {
+              "name": "Published Bannerdale Crags guide 5",
+              "lat": 54.6577601,
+              "lon": -3.0374622,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html",
+              "sampleIndex": 82
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/bannerdalecrags-2_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-77ab1823cf24f823"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         }
       ],
-      "collisionIds": [
-        "collision-77ab1823cf24f823"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -891,28 +1189,79 @@
           },
           "start": {
             "text": "Powter How",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "Powter How, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "powter how",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.6266055,
+              "lon": -3.2094669
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/barf_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Barf guide 1",
+              "lat": 54.6257856,
+              "lon": -3.2122135,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf_map.html",
+              "sampleIndex": 7
+            },
+            {
+              "name": "Published Barf guide 2",
+              "lat": 54.6263074,
+              "lon": -3.2178354,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf_map.html",
+              "sampleIndex": 15
+            },
+            {
+              "name": "Published Barf guide 3",
+              "lat": 54.6267297,
+              "lon": -3.2206678,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf_map.html",
+              "sampleIndex": 22
+            },
+            {
+              "name": "Published Barf guide 4",
+              "lat": 54.627152,
+              "lon": -3.2218695,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf_map.html",
+              "sampleIndex": 25
+            },
+            {
+              "name": "Published Barf guide 5",
+              "lat": 54.62827,
+              "lon": -3.2199383,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf_map.html",
+              "sampleIndex": 30
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/barf_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/barf_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-3e4fa4a287b4645a"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -931,35 +1280,84 @@
           },
           "start": {
             "text": "Powter How",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "Powter How, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "powter how",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.6266552,
+              "lon": -3.2090807
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/barf2_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Barf guide 1",
+              "lat": 54.6264067,
+              "lon": -3.2108831,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf2_map.html",
+              "sampleIndex": 5
+            },
+            {
+              "name": "Published Barf guide 2",
+              "lat": 54.6269285,
+              "lon": -3.212471,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf2_map.html",
+              "sampleIndex": 10
+            },
+            {
+              "name": "Published Barf guide 3",
+              "lat": 54.6280712,
+              "lon": -3.2144022,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf2_map.html",
+              "sampleIndex": 14
+            },
+            {
+              "name": "Published Barf guide 4",
+              "lat": 54.628419,
+              "lon": -3.2146597,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf2_map.html",
+              "sampleIndex": 16
+            },
+            {
+              "name": "Published Barf guide 5",
+              "lat": 54.6291146,
+              "lon": -3.2168484,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/barf2_map.html",
+              "sampleIndex": 21
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/barf2_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/barf2_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-3e4fa4a287b4645a"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         }
       ],
-      "collisionIds": [
-        "collision-3e4fa4a287b4645a"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -1648,28 +2046,79 @@
           },
           "start": {
             "text": "Felldyke",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "Felldyke, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "felldyke",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.5653194,
+              "lon": -3.4168339
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/blakefell_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Blake Fell guide 1",
+              "lat": 54.5625077,
+              "lon": -3.4057188,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell_map.html",
+              "sampleIndex": 11
+            },
+            {
+              "name": "Published Blake Fell guide 2",
+              "lat": 54.5594719,
+              "lon": -3.3956766,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell_map.html",
+              "sampleIndex": 22
+            },
+            {
+              "name": "Published Blake Fell guide 3",
+              "lat": 54.5563861,
+              "lon": -3.3897114,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell_map.html",
+              "sampleIndex": 33
+            },
+            {
+              "name": "Published Blake Fell guide 4",
+              "lat": 54.5567843,
+              "lon": -3.3885956,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell_map.html",
+              "sampleIndex": 34
+            },
+            {
+              "name": "Published Blake Fell guide 5",
+              "lat": 54.5585014,
+              "lon": -3.3739614,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell_map.html",
+              "sampleIndex": 45
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/blakefell_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/blakefell_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-5ad97166153be325"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -1688,35 +2137,84 @@
           },
           "start": {
             "text": "Felldyke",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "Felldyke, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "felldyke",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.5652696,
+              "lon": -3.4167051
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/blakefell2_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Blake Fell guide 1",
+              "lat": 54.5632293,
+              "lon": -3.4053755,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell2_map.html",
+              "sampleIndex": 12
+            },
+            {
+              "name": "Published Blake Fell guide 2",
+              "lat": 54.5661654,
+              "lon": -3.3975649,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell2_map.html",
+              "sampleIndex": 24
+            },
+            {
+              "name": "Published Blake Fell guide 3",
+              "lat": 54.567285,
+              "lon": -3.3917284,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell2_map.html",
+              "sampleIndex": 36
+            },
+            {
+              "name": "Published Blake Fell guide 4",
+              "lat": 54.5698973,
+              "lon": -3.390398,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell2_map.html",
+              "sampleIndex": 40
+            },
+            {
+              "name": "Published Blake Fell guide 5",
+              "lat": 54.5693748,
+              "lon": -3.3816862,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/blakefell2_map.html",
+              "sampleIndex": 48
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/blakefell2_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/blakefell2_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-5ad97166153be325"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         }
       ],
-      "collisionIds": [
-        "collision-5ad97166153be325"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -2127,30 +2625,78 @@
           "start": {
             "text": "Mungrisdale",
             "coordinates": {
-              "lat": 54.6643,
-              "lon": -2.9877
+              "lat": 54.6638417,
+              "lon": -2.9908776
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Bowscale Fell guide 1",
+              "lat": 54.6634322,
+              "lon": -2.9996753,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html",
+              "sampleIndex": 17
+            },
+            {
+              "name": "Published Bowscale Fell guide 2",
+              "lat": 54.6608755,
+              "lon": -3.0046749,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html",
+              "sampleIndex": 34
+            },
+            {
+              "name": "Published Bowscale Fell guide 3",
+              "lat": 54.6592744,
+              "lon": -3.0107474,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html",
+              "sampleIndex": 44
+            },
+            {
+              "name": "Published Bowscale Fell guide 4",
+              "lat": 54.6594233,
+              "lon": -3.0155325,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html",
+              "sampleIndex": 51
+            },
+            {
+              "name": "Published Bowscale Fell guide 5",
+              "lat": 54.6619677,
+              "lon": -3.033042,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html",
+              "sampleIndex": 68
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/bowscalefell-2_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-b69e5f66a18d520b"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -2170,37 +2716,83 @@
           "start": {
             "text": "Mungrisdale",
             "coordinates": {
-              "lat": 54.6643,
-              "lon": -2.9877
+              "lat": 54.6638293,
+              "lon": -2.990942
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Bowscale Fell guide 1",
+              "lat": 54.667453,
+              "lon": -2.9922938,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html",
+              "sampleIndex": 21
+            },
+            {
+              "name": "Published Bowscale Fell guide 2",
+              "lat": 54.6699224,
+              "lon": -2.9999757,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html",
+              "sampleIndex": 41
+            },
+            {
+              "name": "Published Bowscale Fell guide 3",
+              "lat": 54.6706545,
+              "lon": -3.0110693,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html",
+              "sampleIndex": 62
+            },
+            {
+              "name": "Published Bowscale Fell guide 4",
+              "lat": 54.6704436,
+              "lon": -3.0144382,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html",
+              "sampleIndex": 68
+            },
+            {
+              "name": "Published Bowscale Fell guide 5",
+              "lat": 54.6701582,
+              "lon": -3.0233431,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html",
+              "sampleIndex": 82
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/bowscalefell-3_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-b69e5f66a18d520b"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         }
       ],
-      "collisionIds": [
-        "collision-b69e5f66a18d520b"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -4059,30 +4651,78 @@
           "start": {
             "text": "Torver",
             "coordinates": {
-              "lat": 54.3375,
-              "lon": -3.1008
+              "lat": 54.340923,
+              "lon": -3.1012344
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Dow Crag guide 1",
+              "lat": 54.3496784,
+              "lon": -3.1051826,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html",
+              "sampleIndex": 21
+            },
+            {
+              "name": "Published Dow Crag guide 2",
+              "lat": 54.3550307,
+              "lon": -3.1139374,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html",
+              "sampleIndex": 41
+            },
+            {
+              "name": "Published Dow Crag guide 3",
+              "lat": 54.3582318,
+              "lon": -3.1259537,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html",
+              "sampleIndex": 62
+            },
+            {
+              "name": "Published Dow Crag guide 4",
+              "lat": 54.3578567,
+              "lon": -3.140974,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html",
+              "sampleIndex": 82
+            },
+            {
+              "name": "Published Dow Crag guide 5",
+              "lat": 54.3582568,
+              "lon": -3.1428623,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html",
+              "sampleIndex": 84
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/dowcrag-1_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-56ca2b0b4e73be02"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -4103,30 +4743,69 @@
           "start": {
             "text": "Torver",
             "coordinates": {
-              "lat": 54.3375,
-              "lon": -3.1008
+              "lat": 54.340973,
+              "lon": -3.1012774
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/dowcrag-2_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Dow Crag guide 1",
+              "lat": 54.347127,
+              "lon": -3.1037235,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/dowcrag-2_map.html",
+              "sampleIndex": 17
+            },
+            {
+              "name": "Published Dow Crag guide 2",
+              "lat": 54.3530799,
+              "lon": -3.1089163,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/dowcrag-2_map.html",
+              "sampleIndex": 35
+            },
+            {
+              "name": "Published Dow Crag guide 3",
+              "lat": 54.3583068,
+              "lon": -3.1171131,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/dowcrag-2_map.html",
+              "sampleIndex": 52
+            },
+            {
+              "name": "Published Dow Crag guide 4",
+              "lat": 54.3649082,
+              "lon": -3.1262112,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/dowcrag-2_map.html",
+              "sampleIndex": 70
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/dowcrag-2_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/dowcrag-2_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-56ca2b0b4e73be02"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -4210,9 +4889,7 @@
           ]
         }
       ],
-      "collisionIds": [
-        "collision-56ca2b0b4e73be02"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -4466,28 +5143,79 @@
           },
           "start": {
             "text": "Bridgend",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "Bridgend, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "bridgend",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.52148,
+              "lon": -2.9297018
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Fairfield guide 1",
+              "lat": 54.5139322,
+              "lon": -2.9413319,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html",
+              "sampleIndex": 20
+            },
+            {
+              "name": "Published Fairfield guide 2",
+              "lat": 54.5072053,
+              "lon": -2.9528761,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html",
+              "sampleIndex": 40
+            },
+            {
+              "name": "Published Fairfield guide 3",
+              "lat": 54.5050624,
+              "lon": -2.9657507,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html",
+              "sampleIndex": 60
+            },
+            {
+              "name": "Published Fairfield guide 4",
+              "lat": 54.5035174,
+              "lon": -2.9818869,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html",
+              "sampleIndex": 80
+            },
+            {
+              "name": "Published Fairfield guide 5",
+              "lat": 54.5030689,
+              "lon": -2.9866934,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html",
+              "sampleIndex": 85
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/fairfield-2_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-d9a7f68f7f4d80f7"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -4506,35 +5234,84 @@
           },
           "start": {
             "text": "Bridgend",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "Bridgend, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "bridgend",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.52148,
+              "lon": -2.9297018
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Fairfield guide 1",
+              "lat": 54.5133094,
+              "lon": -2.9419756,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html",
+              "sampleIndex": 21
+            },
+            {
+              "name": "Published Fairfield guide 2",
+              "lat": 54.5068813,
+              "lon": -2.9540348,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html",
+              "sampleIndex": 41
+            },
+            {
+              "name": "Published Fairfield guide 3",
+              "lat": 54.504863,
+              "lon": -2.967124,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html",
+              "sampleIndex": 62
+            },
+            {
+              "name": "Published Fairfield guide 4",
+              "lat": 54.4995551,
+              "lon": -2.9744625,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html",
+              "sampleIndex": 82
+            },
+            {
+              "name": "Published Fairfield guide 5",
+              "lat": 54.4967638,
+              "lon": -2.9804707,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html",
+              "sampleIndex": 91
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/fairfield-3_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-d9a7f68f7f4d80f7"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         }
       ],
-      "collisionIds": [
-        "collision-d9a7f68f7f4d80f7"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -9125,30 +9902,78 @@
           "start": {
             "text": "Mosedale",
             "coordinates": {
-              "lat": 54.6787,
-              "lon": -3.0273
+              "lat": 54.6783967,
+              "lon": -2.9983234
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/knott_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Knott guide 1",
+              "lat": 54.6813244,
+              "lon": -3.0158329,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott_map.html",
+              "sampleIndex": 18
+            },
+            {
+              "name": "Published Knott guide 2",
+              "lat": 54.6841527,
+              "lon": -3.0391788,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott_map.html",
+              "sampleIndex": 36
+            },
+            {
+              "name": "Published Knott guide 3",
+              "lat": 54.6765605,
+              "lon": -3.0596924,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott_map.html",
+              "sampleIndex": 53
+            },
+            {
+              "name": "Published Knott guide 4",
+              "lat": 54.6731858,
+              "lon": -3.0655289,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott_map.html",
+              "sampleIndex": 58
+            },
+            {
+              "name": "Published Knott guide 5",
+              "lat": 54.6835076,
+              "lon": -3.0726528,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott_map.html",
+              "sampleIndex": 71
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/knott_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/knott_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-1f5c11effce4db71"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -9168,37 +9993,83 @@
           "start": {
             "text": "Mosedale",
             "coordinates": {
-              "lat": 54.6787,
-              "lon": -3.0273
+              "lat": 54.6784215,
+              "lon": -2.9984307
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/knott-2_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Knott guide 1",
+              "lat": 54.6815353,
+              "lon": -3.0171418,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott-2_map.html",
+              "sampleIndex": 38
+            },
+            {
+              "name": "Published Knott guide 2",
+              "lat": 54.6842891,
+              "lon": -3.0406165,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott-2_map.html",
+              "sampleIndex": 76
+            },
+            {
+              "name": "Published Knott guide 3",
+              "lat": 54.6887544,
+              "lon": -3.0587697,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott-2_map.html",
+              "sampleIndex": 113
+            },
+            {
+              "name": "Published Knott guide 4",
+              "lat": 54.6888412,
+              "lon": -3.0602288,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott-2_map.html",
+              "sampleIndex": 115
+            },
+            {
+              "name": "Published Knott guide 5",
+              "lat": 54.6888412,
+              "lon": -3.0728674,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/knott-2_map.html",
+              "sampleIndex": 153
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/knott-2_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/knott-2_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-1f5c11effce4db71"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         }
       ],
-      "collisionIds": [
-        "collision-1f5c11effce4db71"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -12301,28 +13172,79 @@
           },
           "start": {
             "text": "St. Margaret's Church",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "St. Margaret's Church, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "st. margaret's church",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.6604287,
+              "lon": -3.2544422
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/salefell-1_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Sale Fell guide 1",
+              "lat": 54.6573753,
+              "lon": -3.2582402,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-1_map.html",
+              "sampleIndex": 7
+            },
+            {
+              "name": "Published Sale Fell guide 2",
+              "lat": 54.6546321,
+              "lon": -3.2626605,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-1_map.html",
+              "sampleIndex": 15
+            },
+            {
+              "name": "Published Sale Fell guide 3",
+              "lat": 54.6543714,
+              "lon": -3.2623172,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-1_map.html",
+              "sampleIndex": 16
+            },
+            {
+              "name": "Published Sale Fell guide 4",
+              "lat": 54.6545824,
+              "lon": -3.2586479,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-1_map.html",
+              "sampleIndex": 22
+            },
+            {
+              "name": "Published Sale Fell guide 5",
+              "lat": 54.6551907,
+              "lon": -3.2529616,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-1_map.html",
+              "sampleIndex": 30
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/salefell-1_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/salefell-1_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-13c524aaeb236351"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -12379,35 +13301,84 @@
           },
           "start": {
             "text": "St. Margaret's Church",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "St. Margaret's Church, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "st. margaret's church",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.6604225,
+              "lon": -3.2545388
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/salefell-3_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Sale Fell guide 1",
+              "lat": 54.6583807,
+              "lon": -3.2558584,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-3_map.html",
+              "sampleIndex": 13
+            },
+            {
+              "name": "Published Sale Fell guide 2",
+              "lat": 54.6591441,
+              "lon": -3.2519424,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-3_map.html",
+              "sampleIndex": 25
+            },
+            {
+              "name": "Published Sale Fell guide 3",
+              "lat": 54.6596281,
+              "lon": -3.2482731,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-3_map.html",
+              "sampleIndex": 33
+            },
+            {
+              "name": "Published Sale Fell guide 4",
+              "lat": 54.6586352,
+              "lon": -3.2467389,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-3_map.html",
+              "sampleIndex": 38
+            },
+            {
+              "name": "Published Sale Fell guide 5",
+              "lat": 54.6555693,
+              "lon": -3.2473397,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/salefell-3_map.html",
+              "sampleIndex": 50
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/salefell-3_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/salefell-3_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-13c524aaeb236351"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         }
       ],
-      "collisionIds": [
-        "collision-13c524aaeb236351"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -12515,30 +13486,78 @@
           "start": {
             "text": "Wasdale",
             "coordinates": {
-              "lat": 54.4668,
-              "lon": -3.2563
+              "lat": 54.4558946,
+              "lon": -3.2628965
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/scafell-1_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Scafell guide 1",
+              "lat": 54.4548218,
+              "lon": -3.2484341,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-1_map.html",
+              "sampleIndex": 13
+            },
+            {
+              "name": "Published Scafell guide 2",
+              "lat": 54.4541981,
+              "lon": -3.2345724,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-1_map.html",
+              "sampleIndex": 26
+            },
+            {
+              "name": "Published Scafell guide 3",
+              "lat": 54.4520774,
+              "lon": -3.2238221,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-1_map.html",
+              "sampleIndex": 38
+            },
+            {
+              "name": "Published Scafell guide 4",
+              "lat": 54.4499565,
+              "lon": -3.2227063,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-1_map.html",
+              "sampleIndex": 51
+            },
+            {
+              "name": "Published Scafell guide 5",
+              "lat": 54.4499316,
+              "lon": -3.2224488,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-1_map.html",
+              "sampleIndex": 52
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/scafell-1_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/scafell-1_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-83c79868343ea30c"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -12559,37 +13578,83 @@
           "start": {
             "text": "Wasdale",
             "coordinates": {
-              "lat": 54.4668,
-              "lon": -3.2563
+              "lat": 54.4558946,
+              "lon": -3.262639
             },
-            "resolution": "embedded start point",
+            "resolution": "embedded route start",
             "fallbackQuery": null,
             "normalizedFallbackKey": null,
-            "verification": "embedded_coordinates_without_source_evidence",
-            "source": null
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/scafell-2_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Scafell guide 1",
+              "lat": 54.454248,
+              "lon": -3.2508588,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-2_map.html",
+              "sampleIndex": 20
+            },
+            {
+              "name": "Published Scafell guide 2",
+              "lat": 54.4552584,
+              "lon": -3.2393575,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-2_map.html",
+              "sampleIndex": 40
+            },
+            {
+              "name": "Published Scafell guide 3",
+              "lat": 54.4531876,
+              "lon": -3.2288647,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-2_map.html",
+              "sampleIndex": 60
+            },
+            {
+              "name": "Published Scafell guide 4",
+              "lat": 54.4508173,
+              "lon": -3.2247877,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-2_map.html",
+              "sampleIndex": 80
+            },
+            {
+              "name": "Published Scafell guide 5",
+              "lat": 54.4503557,
+              "lon": -3.2270622,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/scafell-2_map.html",
+              "sampleIndex": 86
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/scafell-2_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/scafell-2_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-83c79868343ea30c"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "start_coordinate_provenance",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         }
       ],
-      "collisionIds": [
-        "collision-83c79868343ea30c"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -12939,28 +14004,79 @@
           },
           "start": {
             "text": "Mill Bridge",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "Mill Bridge, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "mill bridge",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.473504,
+              "lon": -3.0261111
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Seat Sandal guide 1",
+              "lat": 54.4803363,
+              "lon": -3.0204463,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html",
+              "sampleIndex": 20
+            },
+            {
+              "name": "Published Seat Sandal guide 2",
+              "lat": 54.4875537,
+              "lon": -3.0171418,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html",
+              "sampleIndex": 40
+            },
+            {
+              "name": "Published Seat Sandal guide 3",
+              "lat": 54.4901836,
+              "lon": -3.0103612,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html",
+              "sampleIndex": 54
+            },
+            {
+              "name": "Published Seat Sandal guide 4",
+              "lat": 54.4915172,
+              "lon": -3.0077219,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html",
+              "sampleIndex": 59
+            },
+            {
+              "name": "Published Seat Sandal guide 5",
+              "lat": 54.4961158,
+              "lon": -3.0074215,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html",
+              "sampleIndex": 79
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/seatsandal-2_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-911127c2b0b3023e"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         },
@@ -12979,35 +14095,84 @@
           },
           "start": {
             "text": "Mill Bridge",
-            "coordinates": null,
-            "resolution": "unresolved_place_name_fallback",
-            "fallbackQuery": "Mill Bridge, Lake District, Cumbria, UK",
-            "normalizedFallbackKey": "mill bridge",
-            "verification": "unresolved",
-            "source": null
+            "coordinates": {
+              "lat": 54.4735664,
+              "lon": -3.0261755
+            },
+            "resolution": "embedded route start",
+            "fallbackQuery": null,
+            "normalizedFallbackKey": null,
+            "verification": "source_backed_coordinates",
+            "source": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html"
           },
-          "guideWaypoints": [],
-          "sourceReferences": [],
-          "declaredGuideSource": null,
+          "guideWaypoints": [
+            {
+              "name": "Published Seat Sandal guide 1",
+              "lat": 54.479127,
+              "lon": -3.0234075,
+              "order": 1,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html",
+              "sampleIndex": 15
+            },
+            {
+              "name": "Published Seat Sandal guide 2",
+              "lat": 54.4847492,
+              "lon": -3.0245447,
+              "order": 2,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html",
+              "sampleIndex": 30
+            },
+            {
+              "name": "Published Seat Sandal guide 3",
+              "lat": 54.4889871,
+              "lon": -3.0240297,
+              "order": 3,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html",
+              "sampleIndex": 44
+            },
+            {
+              "name": "Published Seat Sandal guide 4",
+              "lat": 54.4891367,
+              "lon": -3.0238795,
+              "order": 4,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html",
+              "sampleIndex": 45
+            },
+            {
+              "name": "Published Seat Sandal guide 5",
+              "lat": 54.4921528,
+              "lon": -3.0207896,
+              "order": 5,
+              "verification": "source_backed_coordinates",
+              "source": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html",
+              "sampleIndex": 60
+            }
+          ],
+          "sourceReferences": [
+            {
+              "url": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html",
+              "retrieved": "2026-11-12",
+              "scope": "sampled guide coordinates; not full walking line verification",
+              "fixture": "tests/collision-guide-sources.json"
+            }
+          ],
+          "declaredGuideSource": "https://www.wainwrightroutes.co.uk/seatsandal-3_map.html",
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
           },
-          "collisionIds": [
-            "collision-911127c2b0b3023e"
-          ],
+          "collisionIds": [],
           "missingEvidence": [
-            "route_specific_guide_coordinates",
-            "resolved_start_coordinates",
-            "route_specific_source_reference",
             "independent_full_walking_line_verification"
           ]
         }
       ],
-      "collisionIds": [
-        "collision-911127c2b0b3023e"
-      ],
+      "collisionIds": [],
       "missingEvidence": []
     },
     {
@@ -16154,142 +17319,6 @@
       "missingEvidence": []
     }
   ],
-  "routingInputCollisions": [
-    {
-      "fell": "Fairfield",
-      "start": "Bridgend",
-      "resolution": "same fallback geocode query",
-      "guides": 0,
-      "routes": [
-        "From Bridgend via Deepdale Hause",
-        "From Bridgend via Greenhow End"
-      ],
-      "id": "collision-d9a7f68f7f4d80f7",
-      "status": "unresolved"
-    },
-    {
-      "fell": "Seat Sandal",
-      "start": "Mill Bridge",
-      "resolution": "same fallback geocode query",
-      "guides": 0,
-      "routes": [
-        "From Mill Bridge via Grisedale Hause",
-        "From Mill Bridge via the south ridge"
-      ],
-      "id": "collision-911127c2b0b3023e",
-      "status": "unresolved"
-    },
-    {
-      "fell": "Dow Crag",
-      "start": [
-        54.3375,
-        -3.1008
-      ],
-      "resolution": "embedded coordinates",
-      "guides": 0,
-      "routes": [
-        "From Torver via the Walna Scar Pass",
-        "From Torver via the south rake"
-      ],
-      "id": "collision-56ca2b0b4e73be02",
-      "status": "unresolved"
-    },
-    {
-      "fell": "Scafell",
-      "start": [
-        54.4668,
-        -3.2563
-      ],
-      "resolution": "embedded coordinates",
-      "guides": 0,
-      "routes": [
-        "From Wasdale via the West Wall Traverse",
-        "From Wasdale via Lord's Rake"
-      ],
-      "id": "collision-83c79868343ea30c",
-      "status": "unresolved"
-    },
-    {
-      "fell": "Bannerdale Crags",
-      "start": [
-        54.6643,
-        -2.9877
-      ],
-      "resolution": "embedded coordinates",
-      "guides": 0,
-      "routes": [
-        "From Mungrisdale via the east ridge",
-        "From Mungrisdale via Bannerdale"
-      ],
-      "id": "collision-77ab1823cf24f823",
-      "status": "unresolved"
-    },
-    {
-      "fell": "Bowscale Fell",
-      "start": [
-        54.6643,
-        -2.9877
-      ],
-      "resolution": "embedded coordinates",
-      "guides": 0,
-      "routes": [
-        "From Mungrisdale via Bannerdale",
-        "From Mungrisdale via the east ridge"
-      ],
-      "id": "collision-b69e5f66a18d520b",
-      "status": "unresolved"
-    },
-    {
-      "fell": "Knott",
-      "start": [
-        54.6787,
-        -3.0273
-      ],
-      "resolution": "embedded coordinates",
-      "guides": 0,
-      "routes": [
-        "From Mosedale via Coomb Height",
-        "From Mosedale via Grainsgill Beck"
-      ],
-      "id": "collision-1f5c11effce4db71",
-      "status": "unresolved"
-    },
-    {
-      "fell": "Barf",
-      "start": "Powter How",
-      "resolution": "same fallback geocode query",
-      "guides": 0,
-      "routes": [
-        "From Powter How via Beckstones Gill",
-        "Direct from Powter How"
-      ],
-      "id": "collision-3e4fa4a287b4645a",
-      "status": "unresolved"
-    },
-    {
-      "fell": "Sale Fell",
-      "start": "St. Margaret's Church",
-      "resolution": "same fallback geocode query",
-      "guides": 0,
-      "routes": [
-        "From St. Margaret's Church via the west ridge",
-        "From St. Margaret's Church"
-      ],
-      "id": "collision-13c524aaeb236351",
-      "status": "unresolved"
-    },
-    {
-      "fell": "Blake Fell",
-      "start": "Felldyke",
-      "resolution": "same fallback geocode query",
-      "guides": 0,
-      "routes": [
-        "From Felldyke via High Pen",
-        "From Felldyke via Sharp Knott"
-      ],
-      "id": "collision-5ad97166153be325",
-      "status": "unresolved"
-    }
-  ],
+  "routingInputCollisions": [],
   "unassociatedRouteKeys": []
 }

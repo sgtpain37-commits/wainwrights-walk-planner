@@ -40,7 +40,7 @@ IDs depend on the qualified name and, for ascents, the route text; they do not c
 
 ## Current findings
 
-All 214 catalogue summits are present: 199 currently resolve, none have unresolved naming mismatches, and 15 have no identified route record. There are 243 associated published ascent choices. All 10 unresolved collision pairs are retained (five embedded-coordinate pairs and five fallback-query pairs).
+All 214 catalogue summits are present: 199 currently resolve, none have unresolved naming mismatches, and 15 have no identified route record. There are 243 associated published ascent choices. No identical-input collision pairs remain after the 12 November summit-specific input correction. The ten original pairs and their source-backed correction history are retained in `docs/collision-review.v1.json`; all 20 affected ascents remain preview-only. This does not independently verify generated walking lines.
 
 `data/audit/associations.json` uses exact complete catalogue names, never fuzzy matching or stripping qualifiers. Birks Bridge/Duddon identifies the existing Harter Fell record as Eskdale; Mardale remains missing. Similarly the Ambleside/High Sweden Bridge High Pike is associated only with Scandale, and the Grasmere Tarn Crag only with Easedale. Caldbeck and Sleddale remain missing. Existing Red Pike aliases point to absent records, so neither Red Pike is assigned an invented ascent. Haystacks now resolves through an explicit catalogue-name alias; Fleetwith Pike has no repository route record. All 34 original catalogue-name corrections are documented in `docs/route-name-corrections.md`.
 
@@ -48,4 +48,6 @@ Source snapshots establish provenance for sampled guide coordinates only, not cu
 
 ## Validation
 
-Tests verify exact catalogue coverage, original summit coordinates, unique IDs, every association and ascent against current planner lookup or explicit mappings, distinct mountains, source fixture equality and order, missing evidence labels, all ten collisions and their ascent links, deterministic bytes and execution outside the repository directory. Existing route/navigation tests run unchanged. `Summit audit export` adds a read-only CI job to reject inconsistent exports; it has no deployment step.
+Tests verify exact catalogue coverage, original summit coordinates, unique IDs, every association and ascent against current planner lookup or explicit mappings, distinct mountains, source fixture equality and order, missing evidence labels, the current collision snapshot and its ascent links, deterministic bytes and execution outside the repository directory. Existing route/navigation tests run unchanged. `Summit audit export` adds a read-only CI job to reject inconsistent exports; it has no deployment step.
+
+The new source snapshots are in `tests/collision-guide-sources.json`. Guide provenance is matched by summit identity as well as route text and coordinates. The export preserves all summit/ascent IDs while reflecting updated starts, guides and preview-only reasons. Historical collision IDs no longer in the current export remain in the review-history file and browser-local annotations; reconcile those records deliberately.

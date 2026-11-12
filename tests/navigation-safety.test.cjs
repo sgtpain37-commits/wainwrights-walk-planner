@@ -30,7 +30,7 @@ function setup(fetch=async()=>({ok:true,json:async()=>response()})){
  run('geocodeStart=async()=>points[0]');
  function install(data=response(),card=c.card,route=JSON.parse(card.dataset.routes)[0]){
   context.data=data;context.c=card;context.route=route;
-  run('clearRouteOverlay(false);activeRouteContext={card:c,route,points,generation:routePreviewGeneration,routeKey:JSON.stringify(route),safety:assessRouteGuidance(route,data,points)};valhallaRouteToGeo(data);renderDirections(c,data.trip.summary)');
+  run('clearRouteOverlay(false);activeRouteContext={card:c,route,points,generation:routePreviewGeneration,routeKey:JSON.stringify(route),safety:assessRouteGuidance(route,data,points,true,c.dataset.fell)};valhallaRouteToGeo(data);renderDirections(c,data.trip.summary)');
  }
  return {c,calls,callbacks,run,context,install};
 }
@@ -143,4 +143,14 @@ test('disconnected legs remain separate map lines without an invented connecting
  assert.equal(h.run('assessRouteGuidance(route,data,points).allowed'),false);
  const geometry=plain(h.run('valhallaRouteToGeo(data).features[0].geometry'));assert.equal(geometry.type,'MultiLineString');assert.equal(geometry.coordinates.length,2);
  assert.deepEqual(geometry.coordinates[1],points.slice(0,2).map(p=>[p.lon,p.lat]));
+});
+
+test('new collision inputs remain preview-only even with otherwise eligible geometry and a forced Start click',async()=>{
+ for(const f of require('./collision-guide-sources.json')){
+  const h=setup(),route={route:f.route,miles:2.125,ascentFt:1000,time:'1h'},c=cardFor([route]);
+  c.card.dataset.fell=f.fell;
+  h.install(response(),c.card,route);assert.equal(c.nav.disabled,true);assert.match(c.live.textContent,/awaiting generated-line review/);
+  c.nav.disabled=false;h.context.window.startNavigation(c.btn);assert.equal(h.calls.watch,0);assert.equal(c.nav.disabled,true);
+  await h.context.window.drawRouteFromPopup(c.btn);assert.doesNotMatch(c.status.textContent,/No route-specific guide points/);assert.match(c.status.textContent,/awaiting generated-line review/);assert.equal(c.nav.disabled,true);
+ }
 });

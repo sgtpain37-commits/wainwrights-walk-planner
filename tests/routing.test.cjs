@@ -40,7 +40,7 @@ test('Coniston source coordinates are used verbatim, ordered and route-specific'
 });
 test('unknown guide coverage is explicit and invalid coordinates are rejected',()=>{
  const {run}=loadRouting();
- assert.match(run(`routeMappingNotice("From Mosedale via Coomb Height")`),/No route-specific guide points/);
+ assert.match(run(`routeMappingNotice("From Mungrisdale via the east ridge")`),/No route-specific guide points/);
  assert.match(run(`routeDetailHTML({route:"From Mosedale via Coomb Height",miles:3.3,ascentFt:2570,time:"2h 40m"})`),/Published ascent:[\s\S]*Unverified generated walking line/);
  assert.throws(()=>run('buildWalkingRequest({lat:NaN,lon:0},[],{lat:54,lon:-3})'),/invalid routing coordinate/);
 });
@@ -106,16 +106,16 @@ test('audit snapshot distinguishes fixed and unresolved route choices',()=>{
  const {execFileSync}=require('node:child_process');
  const output=JSON.parse(execFileSync(process.execPath,['scripts/audit-route-locations.cjs'],{encoding:'utf8'}));
  assert.deepEqual(output,JSON.parse(fs.readFileSync('docs/route-location-collisions.json','utf8')));
- assert.equal(output.length,10);
+ assert.equal(output.length,0);
  for(const fell of ['Coniston Old Man','Catstycam','Allen Crags','Great End'])assert.ok(!output.some(g=>g.fell===fell));
- assert.equal(output.filter(g=>g.resolution==='embedded coordinates').length,5);
+ assert.equal(output.filter(g=>g.resolution==='embedded coordinates').length,0);
 });
 test('route-start directions use corrected fell-gate coordinates',()=>{
  const {run}=loadRouting();
  for(const f of require('./coniston-guide-sources.json')){
   assert.equal(decodeURIComponent(run(`startDirectionsUrl(${JSON.stringify(f.route)})`)).split('query=')[1],f.start.join(','));
  }
- assert.match(decodeURIComponent(run('startDirectionsUrl("From Bridgend via Greenhow End")')),/Bridgend, Lake District, UK/);
+ assert.equal(decodeURIComponent(run('startDirectionsUrl("From Bridgend via Greenhow End","Fairfield")')).split('query=')[1],require('./collision-guide-sources.json').find(f=>f.route==='From Bridgend via Greenhow End').start.join(','));
 });
 test('observed live detours receive an explicit published-versus-generated warning',()=>{
  const {run}=loadRouting();

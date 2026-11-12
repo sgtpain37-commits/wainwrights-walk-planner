@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewed": "2026-11-12",
+  "baseCommit": "987f3174d98db413d5348843e02cf448314d0899",
+  "scope": "Routing-input distinctions only; no independently verified walking tracks.",
+  "records": [
+    {
+      "collisionId": "collision-d9a7f68f7f4d80f7",
+      "fell": "Fairfield",
+      "routes": [
+        "From Bridgend via Deepdale Hause",
+        "From Bridgend via Greenhow End"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    },
+    {
+      "collisionId": "collision-911127c2b0b3023e",
+      "fell": "Seat Sandal",
+      "routes": [
+        "From Mill Bridge via Grisedale Hause",
+        "From Mill Bridge via the south ridge"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    },
+    {
+      "collisionId": "collision-56ca2b0b4e73be02",
+      "fell": "Dow Crag",
+      "routes": [
+        "From Torver via the Walna Scar Pass",
+        "From Torver via the south rake"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    },
+    {
+      "collisionId": "collision-83c79868343ea30c",
+      "fell": "Scafell",
+      "routes": [
+        "From Wasdale via the West Wall Traverse",
+        "From Wasdale via Lord's Rake"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    },
+    {
+      "collisionId": "collision-77ab1823cf24f823",
+      "fell": "Bannerdale Crags",
+      "routes": [
+        "From Mungrisdale via the east ridge",
+        "From Mungrisdale via Bannerdale"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    },
+    {
+      "collisionId": "collision-b69e5f66a18d520b",
+      "fell": "Bowscale Fell",
+      "routes": [
+        "From Mungrisdale via Bannerdale",
+        "From Mungrisdale via the east ridge"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    },
+    {
+      "collisionId": "collision-1f5c11effce4db71",
+      "fell": "Knott",
+      "routes": [
+        "From Mosedale via Coomb Height",
+        "From Mosedale via Grainsgill Beck"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    },
+    {
+      "collisionId": "collision-3e4fa4a287b4645a",
+      "fell": "Barf",
+      "routes": [
+        "From Powter How via Beckstones Gill",
+        "Direct from Powter How"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    },
+    {
+      "collisionId": "collision-13c524aaeb236351",
+      "fell": "Sale Fell",
+      "routes": [
+        "From St. Margaret's Church via the west ridge",
+        "From St. Margaret's Church"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    },
+    {
+      "collisionId": "collision-5ad97166153be325",
+      "fell": "Blake Fell",
+      "routes": [
+        "From Felldyke via High Pen",
+        "From Felldyke via Sharp Knott"
+      ],
+      "status": "routing_inputs_distinct_preview_only",
+      "fixture": "tests/collision-guide-sources.json",
+      "reason": "Unverified generated walking line. Routing-input correction awaiting generated-line review. Live guidance is restricted for this ascent; inspect the published route and an appropriate map."
+    }
+  ]
+}
