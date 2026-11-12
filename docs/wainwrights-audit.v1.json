@@ -14,7 +14,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "d0b115d5e560b51fe805ba78742214a2b66352230403a0e1a5d0e2b07612e76b"
+      "sha256": "1f60d206bb626512a6244944436f1bcc91d087b398c5a4aca03c0ec626186132"
     },
     {
       "path": "data/audit/wainwrights.csv",
@@ -51,8 +51,8 @@
   ],
   "summary": {
     "summits": 214,
-    "associated": 171,
-    "namingMismatches": 28,
+    "associated": 174,
+    "namingMismatches": 25,
     "missingRouteRecords": 15,
     "publishedAscents": 243,
     "unresolvedCollisionPairs": 10
@@ -7065,15 +7065,11 @@
         "longitude": -3.204538
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Harter Fell",
-        "basis": "Birks Bridge / Duddon start identifies the Eskdale fell; never associate with Mardale.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Harter Fell"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -8091,15 +8087,11 @@
         "longitude": -2.966791
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "High Pike",
-        "basis": "Ambleside via High Sweden Bridge identifies Scandale; never associate with Caldbeck.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "High Pike"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -14549,15 +14541,11 @@
         "longitude": -3.076006
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Tarn Crag",
-        "basis": "Grasmere via east ridge identifies Easedale; never associate with Sleddale.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Tarn Crag"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
