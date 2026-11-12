@@ -40,9 +40,9 @@ IDs depend on the qualified name and, for ascents, the route text; they do not c
 
 ## Current findings
 
-All 214 catalogue summits are present: 165 currently resolve, 34 have explicit naming mismatches, and 15 have no identified route record. There are 243 associated published ascent choices. All 10 unresolved collision pairs are retained (five embedded-coordinate pairs and five fallback-query pairs).
+All 214 catalogue summits are present: 171 currently resolve, 28 have explicit naming mismatches, and 15 have no identified route record. There are 243 associated published ascent choices. All 10 unresolved collision pairs are retained (five embedded-coordinate pairs and five fallback-query pairs).
 
-`data/audit/associations.json` uses exact complete catalogue names, never fuzzy matching or stripping qualifiers. Birks Bridge/Duddon identifies the existing Harter Fell record as Eskdale; Mardale remains missing. Similarly the Ambleside/High Sweden Bridge High Pike is associated only with Scandale, and the Grasmere Tarn Crag only with Easedale. Caldbeck and Sleddale remain missing. Existing Red Pike aliases point to absent records, so neither Red Pike is assigned an invented ascent. Haystacks is a name mismatch; Fleetwith Pike has no repository route record.
+`data/audit/associations.json` uses exact complete catalogue names, never fuzzy matching or stripping qualifiers. Birks Bridge/Duddon identifies the existing Harter Fell record as Eskdale; Mardale remains missing. Similarly the Ambleside/High Sweden Bridge High Pike is associated only with Scandale, and the Grasmere Tarn Crag only with Easedale. Caldbeck and Sleddale remain missing. Existing Red Pike aliases point to absent records, so neither Red Pike is assigned an invented ascent. Haystacks now resolves through an explicit catalogue-name alias; Fleetwith Pike has no repository route record. Six catalogue-name corrections are documented in `docs/route-name-corrections.md`.
 
 Source snapshots establish provenance for sampled guide coordinates only, not current path conditions or the complete generated line. The existing navigation restrictions and distance discrepancy handling remain unchanged. This report is an audit input, not a verified navigation dataset.
 

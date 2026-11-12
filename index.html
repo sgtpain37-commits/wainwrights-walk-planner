@@ -273,7 +273,20 @@ const ROUTE_VARIANTS={
 ]
 };
 function routeKey(name){return cleanName(name).replace(/\s+/g,' ').trim()}
-const ROUTE_ALIASES={"Old Man of Coniston":"Coniston Old Man","The Old Man of Coniston":"Coniston Old Man","Red Pike - Buttermere":"Red Pike (B)","Red Pike - Wasdale":"Red Pike (W)"};
+// Exact qualified catalogue names only; never strip location or summit qualifiers.
+// Evidence and scope: docs/route-name-corrections.md.
+const ROUTE_ALIASES={
+ "Old Man of Coniston":"Coniston Old Man",
+ "The Old Man of Coniston":"Coniston Old Man",
+ "Red Pike - Buttermere":"Red Pike (B)",
+ "Red Pike - Wasdale":"Red Pike (W)",
+ "Catstye Cam":"Catstycam",
+ "Haystacks (Buttermere)":"Haystacks",
+ "Pike of Blisco":"Pike o' Blisco",
+ "Pike of Stickle":"Pike o' Stickle",
+ "St Sunday Crag":"St. Sunday Crag",
+ "The Old Man of Coniston (Coniston Old Man)":"Coniston Old Man"
+};
 function routeStatsFor(f){const n=routeKey(f.name),k=ROUTE_ALIASES[n]||n;return ROUTE_STATS[k]||null}
 function routeVariantsFor(f){const n=routeKey(f.name),k=ROUTE_ALIASES[n]||n;if(ROUTE_VARIANTS[k])return ROUTE_VARIANTS[k];const one=ROUTE_STATS[k];return one?[one]:[]}
 function metresFromFeet(ft){return Math.round(ft*0.3048)}
