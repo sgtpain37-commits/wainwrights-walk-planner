@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "publisher": "Roam with Ross",
+    "guideUrl": "https://www.roamwithross.com/guides/lake-district/old-man-of-coniston-hike-guide",
+    "fileName": "OldManofConistonviaLowWater.gpx",
+    "sha256": "87d18550b53179427d9b299997dcce3efc45242e61d365ec967d316f060ed9a8",
+    "reviewed": "2026-11-12"
+  },
+  "track": {
+    "points": 319,
+    "segments": 1,
+    "distanceMetres": 7901,
+    "start": [
+      54.36738,
+      -3.07348
+    ],
+    "finish": [
+      54.36714,
+      -3.07298
+    ],
+    "startFinishSeparationMetres": 42,
+    "hasElevation": false
+  },
+  "comparison": {
+    "plannerSummit": [
+      54.37066,
+      -3.12145
+    ],
+    "summitReference": "https://openfell.co.uk/peaks/the-old-man-of-coniston/",
+    "nearestSummitTrackPointIndex": 155,
+    "nearestSummitTrackPoint": [
+      54.37289,
+      -3.11805
+    ],
+    "nearestSummitTrackPointMetres": 332,
+    "plannerLowWaterStart": [
+      54.3636831,
+      -3.0961275
+    ],
+    "nearestStartTrackPointIndex": 263,
+    "nearestStartTrackPointMetres": 48
+  },
+  "status": "research_only_not_summit_verified",
+  "notes": [
+    "The planner summit coordinates agree with independent summit references; do not relocate the summit to match this GPX.",
+    "GPX forms a near-closed itinerary and is not interchangeable with the planner's one-way 2.0-mile ascent.",
+    "A nearest-vertex 332 m summit miss is not proof of route geometry error; inspect complete segments and source map.",
+    "Do not use this track for live guidance until route intent and summit approach are independently verified.",
+    "Raw third-party GPX is not committed; audit records its SHA-256 for reproducibility."
+  ]
+}
