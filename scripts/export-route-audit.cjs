@@ -6,7 +6,7 @@ const {execFileSync}=require('node:child_process');
 const {loadRouting}=require('../tests/load-routing.cjs');
 const ROOT=path.resolve(__dirname,'..');
 const OUTPUT='docs/wainwrights-audit.v1.json';
-const INPUTS=['docs/route-mapping.md','index.html','data/audit/wainwrights.csv','data/audit/catalogue-source.json','data/audit/associations.json','tests/coniston-guide-sources.json','tests/other-guide-sources.json','tests/collision-guide-sources.json','tests/red-pike-sources.json','scripts/audit-route-locations.cjs','tests/load-routing.cjs','scripts/export-route-audit.cjs'];
+const INPUTS=['data/audit/route-candidates.json','docs/route-mapping.md','index.html','data/audit/wainwrights.csv','data/audit/catalogue-source.json','data/audit/associations.json','tests/coniston-guide-sources.json','tests/other-guide-sources.json','tests/collision-guide-sources.json','tests/red-pike-sources.json','scripts/audit-route-locations.cjs','tests/load-routing.cjs','scripts/export-route-audit.cjs'];
 const read=p=>fs.readFileSync(path.join(ROOT,p),'utf8');
 const json=p=>JSON.parse(read(p));
 const plain=x=>JSON.parse(JSON.stringify(x));
@@ -33,6 +33,8 @@ function buildAudit(){
  const keys=plain(run('Object.keys({...ROUTE_STATS,...ROUTE_VARIANTS})'));
  const aliases=plain(run('ROUTE_ALIASES'));
  const associations=json('data/audit/associations.json');
+ const candidates=json('data/audit/route-candidates.json');
+ for(const name of Object.keys(candidates))if(!catalogue.some(c=>c.name===name))throw Error('Unknown candidate summit: '+name);
  const fixtures=['tests/coniston-guide-sources.json','tests/other-guide-sources.json','tests/collision-guide-sources.json','tests/red-pike-sources.json'].flatMap(fixture=>json(fixture).map(f=>({...f,fixture})));
  const collisions=JSON.parse(execFileSync(process.execPath,[path.join(ROOT,'scripts/audit-route-locations.cjs'),path.join(ROOT,'index.html')],{cwd:ROOT,encoding:'utf8'})).map(g=>({...g,id:'collision-'+id(g.fell+'\n'+g.routes.join('\n')),status:'unresolved'}));
  for(const [name,a] of Object.entries(associations)){
@@ -70,7 +72,7 @@ function buildAudit(){
     collisionIds:collisions.filter(g=>g.fell===key&&g.routes.includes(r.route)).map(g=>g.id),missingEvidence
    };
   });
-  return {id:summitId,name:c.name,alternativeNames:[...new Set([key,...Object.keys(aliases).filter(a=>aliases[a]===key)].filter(n=>n&&n!==c.name))],catalogue:{...c,heightMetres:Number(c.heightMetres),heightFt:Number(c.heightFt),latitude:Number(c.latitude),longitude:Number(c.longitude)},
+  return {...(candidates[c.name]?{routeInvestigation:candidates[c.name]}:{}),id:summitId,name:c.name,alternativeNames:[...new Set([key,...Object.keys(aliases).filter(a=>aliases[a]===key)].filter(n=>n&&n!==c.name))],catalogue:{...c,heightMetres:Number(c.heightMetres),heightFt:Number(c.heightFt),latitude:Number(c.latitude),longitude:Number(c.longitude)},
    association:{status:current.length?'associated':mapping?'naming_mismatch':'missing_route_record',plannerResolves:!!current.length,routeKey:key,basis:current.length?'Existing planner lookup':mapping?.basis||'No route record identified in this repository; does not claim no real-world route exists.',proposedCorrection:!current.length&&mapping?{type:'explicit_name_association',status:'proposed',routeKey:key}:null},ascents,collisionIds,missingEvidence:records.length?[]:['repository_published_ascent_record','route_specific_source_reference']};
  });
  const used=new Set(summits.map(s=>s.association.routeKey));
