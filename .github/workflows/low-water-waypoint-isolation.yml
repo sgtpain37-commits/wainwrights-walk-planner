@@ -1,0 +1,25 @@
+name: Diagnose Low Water guide waypoint detours
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare all guides, no guides, and each omitted guide
+        run: |
+          mkdir -p diagnostic-output
+          node scripts/isolate-coniston-low-water.cjs > diagnostic-output/low-water-variants.jsonl
+      - name: Upload research-only comparison
+        uses: actions/upload-artifact@v4
+        with:
+          name: low-water-waypoint-isolation
+          path: diagnostic-output/
+          retention-days: 7
+          if-no-files-found: error
