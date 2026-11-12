@@ -18,7 +18,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "0cd1fa4e2625de551af99481dfa9c6f789b28690f60f1dcd6ab7e8df7ef8b8e1"
+      "sha256": "725fb2e76e63a506b8bf5334d3a68c2bda7b3d2c3af3e74f16e7fd87cc152403"
     },
     {
       "path": "data/audit/wainwrights.csv",
@@ -16265,7 +16265,7 @@
           "generatedWalkingLine": {
             "verification": "unverified",
             "geometry": null,
-            "reason": "Generated on demand by the planner; guide provenance does not verify the connecting walking line."
+            "reason": "Unverified Low Water ascent. Large distance discrepancy: Valhalla generated about 9.91 miles against the published 2.0-mile ascent. Guide snapping and path connectivity remain under investigation. Use the published walking map, not this generated line, for route planning."
           },
           "collisionIds": [],
           "missingEvidence": [
