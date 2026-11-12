@@ -30,10 +30,10 @@ test('only the 25 reviewed catalogue lookups change; existing route constants ar
  for(const constant of ['ROUTE_STATS','ROUTE_VARIANTS','ROUTE_STARTS','ROUTE_WAYPOINTS','ROUTE_GUIDE_SOURCES'])assert.deepEqual(plain(run(constant)),plain(old.run(constant)));
 });
 test('remaining missing records and neighbouring or alternative tops never inherit an invented route',()=>{
- const missing=audit.summits.filter(s=>s.association.status==='missing_route_record');assert.equal(missing.length,15);
+ const missing=audit.summits.filter(s=>s.association.status==='missing_route_record');assert.equal(missing.length,13);
  for(const s of missing)assert.deepEqual(routes(s.name),[],s.name);
  for(const name of ['Brown How','Angletarn Pikes (South Top)','Whiteside (East Top)','Whinlatter (Other)','Wansfell Pike','High Crag (Other)','The Knott (Other)'])assert.deepEqual(routes(name),[],name);
  assert.notDeepEqual(routes('The Knott (High Street)'),routes('Knott'));
  assert.equal(new Set(audit.summits.map(s=>s.id)).size,214);
- assert.deepEqual(audit.summary,{summits:214,associated:199,namingMismatches:0,missingRouteRecords:15,publishedAscents:243,unresolvedCollisionPairs:0});
+ assert.deepEqual(audit.summary,{summits:214,associated:201,namingMismatches:0,missingRouteRecords:13,publishedAscents:245,unresolvedCollisionPairs:0});
 });

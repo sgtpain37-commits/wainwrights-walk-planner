@@ -1,0 +1,84 @@
+[
+  {
+    "fell": "Red Pike (Buttermere)",
+    "route": "From Buttermere via Lingcomb Edge",
+    "miles": 3.4,
+    "ascentFt": 2255,
+    "time": "2h 25m",
+    "statisticsSource": "https://www.wainwrightroutes.co.uk/redpike_r1.htm",
+    "startGridReference": "NY 174 169",
+    "description": "Fish Hotel; Scale Bridge; Scale Force approach; Blea Crag; Lingcomb Edge; summit.",
+    "source": "https://www.wainwrightroutes.co.uk/redpike-b_map.html",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "8e998a9379bd8fecea8cd11358543b9c8406e0f0b509e9160d7f76ae283f03d6",
+    "trackPointCount": 142,
+    "start": [
+      54.541358,
+      -3.2765651
+    ],
+    "guides": [
+      {
+        "index": 28,
+        "lat": 54.5387003,
+        "lon": -3.2903731
+      },
+      {
+        "index": 56,
+        "lat": 54.542136,
+        "lon": -3.3039021
+      },
+      {
+        "index": 84,
+        "lat": 54.5417003,
+        "lon": -3.3142662
+      },
+      {
+        "index": 112,
+        "lat": 54.5359365,
+        "lon": -3.3060265
+      }
+    ],
+    "previewOnlyReason": "Unverified generated walking line. Published map samples are planning inputs only. Live guidance is restricted for this ascent pending independent line review; inspect the published route and an appropriate map."
+  },
+  {
+    "fell": "Red Pike (Wasdale)",
+    "route": "From Overbeck Bridge via Dore Head",
+    "miles": 3.25,
+    "ascentFt": 2590,
+    "time": "2h 35m",
+    "statisticsSource": "https://www.wainwrightroutes.co.uk/red_pike_r1.htm",
+    "startGridReference": "NY 167 068",
+    "description": "National Trust car park at Overbeck Bridge; Over Beck; Brimfull Beck; Gosforth Crag Moss; Dore Head; south-east ridge; summit escarpment.",
+    "source": "https://www.wainwrightroutes.co.uk/redpike-w_map.html",
+    "retrieved": "2026-11-12",
+    "sourceSha256": "fbea04225f1e794e19e7dfa298a626eeefdcbb6cd8322f88a771ae2e44524b42",
+    "trackPointCount": 118,
+    "start": [
+      54.4500189,
+      -3.2850194
+    ],
+    "guides": [
+      {
+        "index": 23,
+        "lat": 54.4581523,
+        "lon": -3.2883453
+      },
+      {
+        "index": 46,
+        "lat": 54.4677307,
+        "lon": -3.2862425
+      },
+      {
+        "index": 70,
+        "lat": 54.4758605,
+        "lon": -3.2777882
+      },
+      {
+        "index": 93,
+        "lat": 54.4773567,
+        "lon": -3.2853842
+      }
+    ],
+    "previewOnlyReason": "Unverified generated walking line. Published map samples are planning inputs only. Live guidance is restricted for this ascent pending independent line review; inspect the published route and an appropriate map."
+  }
+]

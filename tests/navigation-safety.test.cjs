@@ -154,3 +154,10 @@ test('new collision inputs remain preview-only even with otherwise eligible geom
   await h.context.window.drawRouteFromPopup(c.btn);assert.doesNotMatch(c.status.textContent,/No route-specific guide points/);assert.match(c.status.textContent,/awaiting generated-line review/);assert.equal(c.nav.disabled,true);
  }
 });
+test('both Red Pike previews block guidance at the button and direct entry point',()=>{
+ for(const f of require('./red-pike-sources.json')){
+  const h=setup(),route={route:f.route,miles:f.miles,ascentFt:f.ascentFt,time:f.time},c=cardFor([route]);c.card.dataset.fell=f.fell;
+  h.install(response(f.miles*1.609344),c.card,route);assert.equal(c.nav.disabled,true);assert.match(c.live.textContent,/Live guidance is restricted/);
+  c.nav.disabled=false;h.context.window.startNavigation(c.btn);assert.equal(h.calls.watch,0);assert.equal(c.nav.disabled,true);
+ }
+});

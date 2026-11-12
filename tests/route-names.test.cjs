@@ -34,7 +34,7 @@ test('alias-only correction changes lookup for exactly six catalogue identities,
  for(const name of ['Coniston Old Man','Old Man of Coniston','The Old Man of Coniston'])assert.deepEqual(routes(name),routes(fixes[5][0]));
 });
 test('qualified mountains and unreviewed spellings never inherit an ascent by fuzzy matching',()=>{
- for(const name of ['Harter Fell (Mardale)','High Pike (Caldbeck)','Tarn Crag (Sleddale)','Red Pike (Buttermere)','Red Pike (Wasdale)','Haystacks (Other)','Catstye Cam (Other)','Pike of Blisco (Other)']) assert.deepEqual(routes(name),[],name);
+ for(const name of ['Harter Fell (Mardale)','High Pike (Caldbeck)','Tarn Crag (Sleddale)','Haystacks (Other)','Catstye Cam (Other)','Pike of Blisco (Other)']) assert.deepEqual(routes(name),[],name);
  const identities=audit.summits.filter(s=>/^(Harter Fell|High Pike|Tarn Crag|Red Pike) \(/.test(s.name));
  assert.equal(new Set(identities.map(s=>s.id)).size,identities.length);
 });
