@@ -14,7 +14,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "67a6c717483a72f309788e63365a36902e1ab1174f148df1e3a5b9f137f1f7e3"
+      "sha256": "d0b115d5e560b51fe805ba78742214a2b66352230403a0e1a5d0e2b07612e76b"
     },
     {
       "path": "data/audit/wainwrights.csv",
@@ -51,8 +51,8 @@
   ],
   "summary": {
     "summits": 214,
-    "associated": 165,
-    "namingMismatches": 34,
+    "associated": 171,
+    "namingMismatches": 28,
     "missingRouteRecords": 15,
     "publishedAscents": 243,
     "unresolvedCollisionPairs": 10
@@ -3134,15 +3134,11 @@
         "longitude": -3.008928
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Catstycam",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Catstycam"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -7370,15 +7366,11 @@
         "longitude": -3.247321
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Haystacks",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Haystacks"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -11255,15 +11247,11 @@
         "longitude": -3.124925
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Pike o' Blisco",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Pike o' Blisco"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -11326,15 +11314,11 @@
         "longitude": -3.121366
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Pike o' Stickle",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Pike o' Stickle"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -13987,15 +13971,11 @@
         "longitude": -2.975867
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "St. Sunday Crag",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "St. Sunday Crag"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
@@ -14810,15 +14790,11 @@
         "longitude": -3.121445
       },
       "association": {
-        "status": "naming_mismatch",
-        "plannerResolves": false,
+        "status": "associated",
+        "plannerResolves": true,
         "routeKey": "Coniston Old Man",
-        "basis": "Explicit catalogue name/alternative spelling matched to repository route key; audit-only association.",
-        "proposedCorrection": {
-          "type": "explicit_name_association",
-          "status": "proposed",
-          "routeKey": "Coniston Old Man"
-        }
+        "basis": "Existing planner lookup",
+        "proposedCorrection": null
       },
       "ascents": [
         {
