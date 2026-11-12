@@ -1,0 +1,28 @@
+name: Capture Coniston Valhalla diagnostic
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Request current unverified Valhalla routes
+        run: |
+          mkdir -p diagnostic-output
+          node scripts/check-live-routing.cjs > diagnostic-output/coniston-valhalla.jsonl
+      - name: Decode Valhalla polylines
+        run: |
+          node scripts/normalize-coniston-valhalla.cjs diagnostic-output/coniston-valhalla.jsonl > diagnostic-output/coniston-generated.json
+      - name: Upload temporary diagnostic results
+        uses: actions/upload-artifact@v4
+        with:
+          name: coniston-valhalla-unverified
+          path: diagnostic-output/
+          retention-days: 7
+          if-no-files-found: error
