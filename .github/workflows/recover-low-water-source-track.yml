@@ -1,0 +1,23 @@
+name: Recover published Low Water source track
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download and extract original source coordinates
+        run: node scripts/recover-low-water-source-track.cjs
+      - name: Save source evidence even if extraction fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: low-water-publisher-source-track
+          path: artifacts/
+          retention-days: 14
