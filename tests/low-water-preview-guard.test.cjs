@@ -46,7 +46,7 @@ test('guard blocks before any Valhalla fetch and retains warning and navigation 
   const guardAt = body.indexOf(guard);
   const fetchAt = body.indexOf("fetch('https://valhalla1.openstreetmap.de/route'");
   assert.ok(guardAt >= 0 && fetchAt > guardAt, 'guard precedes router request');
-  const guarded = body.slice(guardAt, body.indexOf('\n  }', guardAt) + 4);
+  const guarded = body.slice(guardAt, body.indexOf('let requestId=routePreviewGeneration', guardAt));
   assert.match(guarded, /clearRouteOverlay\(false\)/);
   assert.match(guarded, /Low Water generated preview withheld/);
   assert.match(guarded, /live guidance is disabled/);
