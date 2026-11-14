@@ -63,20 +63,31 @@ test('draw sends selected route guide points to Valhalla and labels the returned
  });
  run('valhallaRouteToGeo=()=>({});renderDirections=()=>{};formatKmPreferred=x=>x+" km";formatDuration=()=>"1h"');
  const routes=plain(run('routeVariantsFor({name:"Coniston Old Man"})'));
- for(const i of [0,1,3]){
+ for(const i of [0,3]){
   const c=cardFor(routes,i);context.card=c.card;
   const btn={closest:()=>c.card,disabled:false};await context.window.drawRouteFromPopup(btn);
   assert.equal(btn.disabled,false);assert.match(c.status.textContent,/Unverified generated walking line shown/);
   const expected=plain(run(`buildWalkingRequest(embeddedStartFor(${JSON.stringify(routes[i].route)}),routeViaPoints(${JSON.stringify(routes[i].route)}),{lat:54.37066,lon:-3.12145})`));
   assert.deepEqual(sent.at(-1).payload,expected);assert.equal(sent.at(-1).url,'https://valhalla1.openstreetmap.de/route');
  }
- assert.equal(new Set(sent.map(x=>JSON.stringify(x.payload.locations))).size,3);
+ assert.equal(new Set(sent.map(x=>JSON.stringify(x.payload.locations))).size,2);
 });
 test('failed routing restores the button and keeps published information available',async()=>{
  const {run,context}=loadRouting({fetch:async()=>({ok:false,status:503}),console:{warn(){}}});
- const c=cardFor(plain(run('routeVariantsFor({name:"Coniston Old Man"})')),1);
+ const c=cardFor(plain(run('routeVariantsFor({name:"Coniston Old Man"})')),0);
  const btn={closest:()=>c.card,disabled:false};await context.window.drawRouteFromPopup(btn);
  assert.equal(btn.disabled,false);assert.match(c.status.textContent,/HTTP 503/);assert.match(c.status.textContent,/GPX links are still available/);
+});
+test('full catalogue Low Water selection withholds Valhalla preview and live guidance',async()=>{
+ const sent=[];
+ const {run,context}=loadRouting({fetch:async(...args)=>{sent.push(args);throw Error('Low Water must not request Valhalla')}});
+ const routes=plain(run('routeVariantsFor({name:"The Old Man of Coniston (Coniston Old Man)"})'));
+ const c=cardFor(routes,1);c.card.dataset.fell='The Old Man of Coniston (Coniston Old Man)';context.card=c.card;
+ const btn={closest:()=>c.card,disabled:false};await context.window.drawRouteFromPopup(btn);
+ assert.equal(sent.length,0);
+ assert.match(c.status.textContent,/Low Water generated preview withheld/);
+ assert.match(c.status.textContent,/live guidance is disabled/);
+ assert.equal(btn.disabled,false);
 });
 test('additional sourced choices have distinct guide locations for the same start and summit',()=>{
  const {run}=loadRouting();const fixtures=require('./other-guide-sources.json');
