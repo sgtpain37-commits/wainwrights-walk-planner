@@ -1,0 +1,28 @@
+name: Refresh review-branch audit snapshot
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  refresh:
+    if: github.ref == 'refs/heads/fix/low-water-catalogue-preview-guard'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/export-route-audit.cjs --write
+      - run: node --test tests/*.test.cjs
+      - run: node scripts/export-route-audit.cjs --check
+      - name: Commit regenerated audit on review branch only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/wainwrights-audit.v1.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh deterministic audit snapshot for Low Water safeguard'
+            git push origin HEAD:fix/low-water-catalogue-preview-guard
+          fi
