@@ -651,7 +651,7 @@ window.drawRouteFromPopup=async(btn)=>{
  if(!route){setRouteStatus(card,'No published route option is loaded for this fell.','warn');return}
  // The Valhalla-generated Low Water alternatives all miss the tarn and/or detour severely.
  // Do not render them as a walking preview while permission and independent verification are pending.
- if(card.dataset.fell==='Coniston Old Man'&&route.route==='From Coniston (fell gate) via Low Water'){
+ if((ROUTE_ALIASES[routeKey(card.dataset.fell)]||routeKey(card.dataset.fell))==='Coniston Old Man'&&route.route==='From Coniston (fell gate) via Low Water'){
   clearRouteOverlay(false);
   setRouteStatus(card,'Low Water generated preview withheld: Valhalla alternatives miss Low Water tarn or make major detours. The published ascent is about 2.0 miles, but no verified map line is available here yet. Consult the original Wainwright Routes description and an appropriate walking map; live guidance is disabled.','error');
   updateGuidanceAvailability(card);
