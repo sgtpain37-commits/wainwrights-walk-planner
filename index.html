@@ -44,6 +44,7 @@
 .leaflet-popup{position:absolute;text-align:center;margin-bottom:20px}.leaflet-popup-content-wrapper{padding:1px;text-align:left;border-radius:12px}.leaflet-popup-content{margin:13px 24px 13px 20px;line-height:1.3;font-size:13px;min-height:1px}.leaflet-popup-content p{margin:1.3em 0}.leaflet-popup-tip-container{width:40px;height:20px;position:absolute;left:50%;margin-top:-1px;margin-left:-20px;overflow:hidden;pointer-events:none}.leaflet-popup-tip{width:17px;height:17px;padding:1px;margin:-10px auto 0;pointer-events:auto;transform:rotate(45deg)}.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:white;color:#333;box-shadow:0 3px 14px rgba(0,0,0,.4)}.leaflet-container a.leaflet-popup-close-button{position:absolute;top:0;right:0;border:none;text-align:center;width:24px;height:24px;font:16px/24px Tahoma,Verdana,sans-serif;color:#757575;text-decoration:none;background:transparent;z-index:2}.leaflet-container a.leaflet-popup-close-button:hover,.leaflet-container a.leaflet-popup-close-button:focus{color:#585858}.leaflet-popup-scrolled{overflow:auto;border-bottom:1px solid #ddd;border-top:1px solid #ddd}.leaflet-oldie .leaflet-popup-content-wrapper{-ms-zoom:1}.leaflet-oldie .leaflet-popup-tip{width:24px;margin:0 auto;filter:progid:DXImageTransform.Microsoft.Matrix(M11=.70710678,M12=.70710678,M21=-.70710678,M22=.70710678)}
 .leaflet-div-icon{background:#fff;border:1px solid #666}
 .leaflet-tooltip{position:absolute;padding:6px;background-color:#fff;border:1px solid #fff;border-radius:3px;color:#222;white-space:nowrap;user-select:none;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.4)}.leaflet-tooltip.leaflet-interactive{cursor:pointer;pointer-events:auto}
+.progress-controls{margin-top:12px}.progress-controls summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700}.progress-controls p,.progress-message{font-size:12px;line-height:1.5}.progress-controls .actions{grid-template-columns:1fr 1fr}.progress-controls button,.progress-dialog button{min-height:44px}.progress-dialog{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:14px;width:calc(100% - 32px);max-width:460px;max-height:85dvh;overflow:auto;padding:18px;box-sizing:border-box}.progress-dialog::backdrop{background:rgba(0,0,0,.7)}.progress-dialog ul{padding-left:20px}.progress-dialog .actions{display:flex;flex-wrap:wrap;gap:8px}.progress-dialog button{flex:1}.progress-message:empty{display:none}
 </style>
 <style>
 :root{--bg:#0c1513;--panel:#13211e;--panel2:#192a26;--text:#eef7f2;--muted:#a9bdb5;--line:#294039;--accent:#d7ff73;--easy:#57c785;--moderate:#f3bd4b;--hard:#ed6a5a;--shadow:0 10px 30px rgba(0,0,0,.28)}
@@ -84,6 +85,7 @@
       <div class="chips" id="gradeChips"><button class="chip active" data-grade="all">All</button><button class="chip" data-grade="easy">Easy</button><button class="chip" data-grade="moderate">Moderate</button><button class="chip" data-grade="hard">Hard</button></div>
       <div class="filter-row"><select id="heightFilter"><option value="all">Any height</option><option value="under500">Under 500m</option><option value="500to749">500–749m</option><option value="750plus">750m+</option></select><select id="sort"><option value="name">Sort: A–Z</option><option value="heightDesc">Height: high–low</option><option value="heightAsc">Height: low–high</option></select></div>
       <div class="actions"><button class="btn" id="nearestBtn">📍 Nearest summit</button><button class="btn" id="randomBtn">🎲 Random fell</button></div><button class="btn install-btn" id="installBtn">⬇ Install app</button><div class="secure-note" id="secureNote"><strong>GPS:</strong> live guidance works when this app is served over HTTPS and location permission is allowed.</div>
+      <details class="progress-controls"><summary>Back up or restore progress</summary><p>Save your completed summits before changing phones or clearing browser data. Keep the downloaded file somewhere safe.</p><div class="actions"><button class="btn" id="exportProgress" type="button">Download backup</button><button class="btn" id="importProgress" type="button">Restore backup</button></div><input type="file" id="progressFile" accept=".json,application/json" hidden><p class="progress-message" id="progressMessage" role="status" aria-live="polite"></p></details>
     </div>
     <div class="list" id="fellList"><div class="empty">Loading all 214 summits…</div></div>
   </aside>
@@ -96,6 +98,8 @@
     <div class="source">Summit data: Wainwright Peaks / Database of British and Irish Hills (CC BY 4.0). Route statistics and route variants: Wainwright Routes (published ascent figures). Route links: Wainwright Routes / Wainroutes. Suggested starts are planning aids, not live parking availability. Basemap © Esri and contributors. Routing/directions: Valhalla + OpenStreetMap. Live navigation includes off-route detection and rerouting. Installable PWA: app shell is available offline after first load; fresh routing and map tiles still require a data connection.</div>
   </main>
 </div>
+<dialog class="progress-dialog" id="progressDialog" aria-labelledby="progressTitle"><h2 id="progressTitle">Review restored progress</h2><p>This will replace your completed-summit list. Download a backup of your current progress first if you want to keep it.</p><div id="progressPreview"></div><div class="actions"><button class="btn" id="cancelProgress" type="button">Cancel</button><button class="btn" id="confirmProgress" type="button">Replace progress</button></div></dialog>
+<script src="./progress.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 const DATA_URL='https://raw.githubusercontent.com/thomaswilsonxyz/wainwright-peaks/main/wainwrights.csv';
@@ -108,7 +112,8 @@ const FALLBACK=[
 {name:'Latrigg',heightMetres:368,gridReference:'NY279246',latitude:54.612291,longitude:-3.117565}
 ];
 let fells=[], filtered=[], markers=new Map(), currentGrade='all';
-const climbed=new Set(JSON.parse(localStorage.getItem('wainwrights-climbed')||'[]'));
+let progressReadError=null;
+const climbed=new Set((()=>{try{return WainwrightProgress.read(localStorage)}catch(e){progressReadError=e;return []}})());
 const map=L.map('map',{zoomControl:true}).setView([54.51,-3.08],10);
 setTimeout(()=>map.invalidateSize(),50); window.addEventListener('resize',()=>map.invalidateSize());
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:17,attribution:'Tiles &copy; Esri &mdash; Sources: Esri, HERE, Garmin, FAO, NOAA, USGS, and contributors'}).addTo(map);
@@ -760,7 +765,8 @@ function renderList(){const list=document.getElementById('fellList');if(!filtere
 }
 function applyFilters(){const q=document.getElementById('search').value.trim().toLowerCase(),hf=document.getElementById('heightFilter').value,sort=document.getElementById('sort').value;filtered=fells.filter(f=>{const h=f.heightMetres;return (!q||f.name.toLowerCase().includes(q)||cleanName(f.name).toLowerCase().includes(q)||(f.gridReference||'').toLowerCase().includes(q))&&(currentGrade==='all'||grade(f)===currentGrade)&&(hf==='all'||(hf==='under500'&&h<500)||(hf==='500to749'&&h>=500&&h<750)||(hf==='750plus'&&h>=750))});filtered.sort((a,b)=>sort==='heightDesc'?b.heightMetres-a.heightMetres:sort==='heightAsc'?a.heightMetres-b.heightMetres:a.name.localeCompare(b.name));document.getElementById('shownCount').textContent=filtered.length;renderMarkers();renderList();updateStats();}
 function focusFell(name){const f=fells.find(x=>x.name===name);if(!f)return;map.setView([f.latitude,f.longitude],14,{animate:true});const m=markers.get(name);if(m)m.openPopup();if(window.innerWidth<821)document.getElementById('sidebar').classList.remove('open')}
-function setClimbed(name,on){on?climbed.add(name):climbed.delete(name);localStorage.setItem('wainwrights-climbed',JSON.stringify([...climbed]));applyFilters();}
+function setClimbed(name,on){try{if(progressReadError)throw progressReadError;const next=new Set(climbed);on?next.add(name):next.delete(name);replaceProgress(next);}catch(e){progressMessage.textContent='Could not save progress: '+e.message;applyFilters();}}
+function replaceProgress(values){const saved=WainwrightProgress.save(localStorage,values);climbed.clear();saved.forEach(n=>climbed.add(n));applyFilters();}
 window.toggleClimbed=(name)=>setClimbed(name,!climbed.has(name));
 window.copyCoords=async(text,btn)=>{try{await navigator.clipboard.writeText(text);const old=btn.textContent;btn.textContent='Copied ✓';setTimeout(()=>btn.textContent=old,1300)}catch{prompt('Copy coordinates:',text)}};
 function updateStats(){document.getElementById('climbedCount').textContent=climbed.size;document.getElementById('progressPct').textContent=`${Math.round(climbed.size/214*100)}%`}
@@ -768,6 +774,51 @@ function nearest(){if(!navigator.geolocation){alert('Location is not available i
 function randomFell(){const pool=filtered.length?filtered:fells;if(!pool.length)return;focusFell(pool[Math.floor(Math.random()*pool.length)].name)}
 async function init(){try{const r=await fetch(DATA_URL);if(!r.ok)throw new Error('HTTP '+r.status);fells=parseCSV(await r.text());if(fells.length<200)throw new Error('Incomplete dataset');}catch(e){console.warn(e);fells=FALLBACK;document.getElementById('fellList').innerHTML='<div class="empty">Could not load the full online dataset. A small fallback set is shown; reconnect to the internet and reload for all 214.</div>';}applyFilters();if(fells.length>20)map.fitBounds(L.latLngBounds(fells.map(f=>[f.latitude,f.longitude])),{padding:[25,25]});}
 document.getElementById('search').addEventListener('input',applyFilters);document.getElementById('heightFilter').addEventListener('change',applyFilters);document.getElementById('sort').addEventListener('change',applyFilters);document.getElementById('nearestBtn').addEventListener('click',nearest);document.getElementById('randomBtn').addEventListener('click',randomFell);document.getElementById('mobileToggle').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));c.classList.add('active');currentGrade=c.dataset.grade;applyFilters()}));
+// Progress import never writes until the user confirms the reviewed replacement.
+const progressMessage=document.getElementById('progressMessage');
+const progressDialog=document.getElementById('progressDialog');
+const progressFile=document.getElementById('progressFile');
+let pendingProgress=null;
+if(progressReadError)progressMessage.textContent='Could not read saved progress. Existing browser data has been preserved. '+progressReadError.message;
+document.getElementById('exportProgress').addEventListener('click',()=>{
+ try{
+  if(progressReadError)throw progressReadError;
+  const data=WainwrightProgress.backup(climbed);
+  const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));
+  const link=document.createElement('a');link.href=url;link.download='wainwrights-progress-v1-'+data.exportedAt.slice(0,10)+'.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  progressMessage.textContent='Backup download requested: '+data.completed.length+' completed summits. Keep the file somewhere safe.';
+ }catch(e){progressMessage.textContent='Could not download backup: '+e.message;}
+});
+document.getElementById('importProgress').addEventListener('click',()=>{progressFile.value='';progressFile.click();});
+progressFile.addEventListener('change',async()=>{
+ const file=progressFile.files[0];if(!file)return;
+ pendingProgress=null;
+ try{
+  if(progressReadError)throw progressReadError;
+  if(file.size>1000000)throw new Error('Choose a file smaller than 1 MB.');
+  const incoming=WainwrightProgress.parse(await file.text());
+  const changes=WainwrightProgress.preview(climbed,incoming.names);
+  pendingProgress={...incoming,before:JSON.stringify([...climbed].sort()),stored:localStorage.getItem(WainwrightProgress.KEY)};
+  const target=document.getElementById('progressPreview');target.replaceChildren();
+  const summary=document.createElement('p');summary.textContent=`${incoming.names.length} completed summits after restore. ${changes.added.length} added, ${changes.removed.length} removed, ${changes.kept.length} kept. ${incoming.duplicates} duplicate entries ignored.`;target.append(summary);
+  for(const [label,values] of [['Add',changes.added],['Remove',changes.removed],['Keep',changes.kept]]){
+   if(!values.length)continue;
+   const section=document.createElement('details'),heading=document.createElement('summary'),list=document.createElement('ul');section.open=label!=='Keep';heading.textContent=label+' ('+values.length+')';section.append(heading,list);
+   values.forEach(name=>{const item=document.createElement('li');item.textContent=name;list.append(item)});target.append(section);
+  }
+  progressDialog.showModal();
+ }catch(e){pendingProgress=null;progressMessage.textContent='Restore cancelled: '+e.message;}
+});
+document.getElementById('cancelProgress').addEventListener('click',()=>progressDialog.close());
+progressDialog.addEventListener('close',()=>{pendingProgress=null;});
+document.getElementById('confirmProgress').addEventListener('click',()=>{
+ try{
+  if(!pendingProgress)return;
+  if(pendingProgress.before!==JSON.stringify([...climbed].sort())||pendingProgress.stored!==localStorage.getItem(WainwrightProgress.KEY))throw new Error('Progress changed since this preview. Choose the file again to review the latest changes.');
+  replaceProgress(pendingProgress.names);progressMessage.textContent='Progress restored: '+climbed.size+' completed summits.';
+ }catch(e){progressMessage.textContent='Could not restore progress: '+e.message;}
+ progressDialog.close();
+});
 init();
 </script>
 
