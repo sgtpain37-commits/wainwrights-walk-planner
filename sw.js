@@ -1,7 +1,7 @@
-const VERSION='wainwrights-v16';
+const VERSION='wainwrights-v17';
 const APP_CACHE=`${VERSION}-app`;
 const RUNTIME_CACHE=`${VERSION}-runtime`;
-const APP_SHELL=['./','./index.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'];
+const APP_SHELL=['./','./index.html','./progress.js','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(APP_CACHE).then(c=>c.addAll(APP_SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>!k.startsWith(VERSION)).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',event=>{
