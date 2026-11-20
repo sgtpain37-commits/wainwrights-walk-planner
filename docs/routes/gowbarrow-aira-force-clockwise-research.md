@@ -53,3 +53,18 @@ Candidate URLs:
 - https://www.andrewswalks.co.uk/gowbarrow-fell-3.html
 
 **Current blocker:** Candidate pages were found, but GPX bytes could not be retrieved for comparison in this session. Therefore no geometry has been added and no safety or route-completeness claim is made. Next: retrieve one or more candidate GPX files, inspect coordinate arrays and path topology, compare with the official National Trust map, then write automated route assertions before proposing any live navigation.
+
+## Stage 3: user-supplied Memory-Map GPX inspection (20 November 2026)
+
+Source file supplied in conversation: `Gowbarrow Fell.gpx`. Parsed the XML `gpx/rte/rtept` nodes directly; creator `Memory-Map 5.4.2.1089`, route name `Route321`, 38 route points. No `trk/trkseg/trkpt` recorded walking track is present.
+
+Measured from route points using spherical haversine segments (not snapped to paths):
+- First point: **54.5725233909, -2.9290031807**.
+- Last point: **54.5728609473, -2.9289335233**.
+- First–last gap: **37.8 metres**.
+- Straight segments between 38 points total **3.815 miles**. This is a lower-bound-style polyline estimate, **not** the walked path distance; published official route says 4.5 miles.
+- Nearest route point to the catalogue summit coordinate (54.58811, -2.918201): point **14**, 54.5881944837, -2.9187599009, approximately **37.2 metres** away. It does **not** prove that the route visits the summit trig point.
+- Route point 14 is not explicitly labelled as a summit, and waypoint names are generic (`WP32101` etc.).
+- The route travels generally north from the start, east past the summit area and then south and west back to the start, consistent with the intended clockwise loop; specific junction geometry remains unverified.
+
+**Do not publish as live turn-by-turn guidance.** Still need to: verify the start point against the National Trust main car park entrance; check route against mapped rights of way, the High Cascades bridge crossing and wall/gate junctions; verify whether summit spur is missing; verify Memorial Seat and return junction; and obtain sufficient geometry for turns, distances and off-route alerts. Keep the existing Park Brow route intact. No changes to production `index.html`.
