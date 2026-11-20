@@ -103,3 +103,18 @@ The user supplied a screenshot showing the red GPX line as a polygonal series of
 5. Preserve the existing Park Brow ascent; the Aira Force clockwise route must be a distinct route option.
 
 **Status:** No verified full-line GPX obtained yet. The source GPX is available as a conversation upload but has not been committed to this branch; no production route geometry has been changed.
+
+## Stage 7: Walking Englishman GPX comparison (20 November 2026)
+
+User supplied `lakes21.gpx`, shown on a Walking Englishman map with an elevation profile. The file was parsed directly from the uploaded XML. It is GPX 1.1, creator `GPS Visualizer`, with one `trkseg` containing **98 `trkpt` points**; track name **High Force, Gowbarrow Fell and Aira Force**. This is a track-formatted GPX, but the creator field does not establish that someone recorded it while walking.
+
+- First point: **54.5717521, -2.928582289**; final point **54.571684708, -2.928580759**; closure gap **7.5 m**.
+- Straight segment sum (haversine): **6.906 km / 4.291 mi**. This is longer than the earlier 38-point Memory-Map route (3.815 mi), and nearer the official National Trust 4.5-mi figure. It does not establish identity with the NT trail.
+- Nearest recorded point to catalogue summit (54.58811, -2.918201): **16.4 m**.
+- Longest adjacent track-point chord: approximately **203 m**, compared with **377 m** in the earlier 38-point file; **zero** new segments exceed 250 m.
+- Signed planar loop area is consistent with clockwise point ordering, as for the original.
+- Comparing old 38 points to nearest new track *points* (not segment projections): median approximately **28 m**, maximum approximately **206 m**; the two route files are similar in broad layout but **not identical**.
+
+**Important:** The uploaded screenshot still depicts some long, straight blue lines across the fell. More GPX points and a closed loop are not proof of footpath conformity. Verify actual path alignment, High Cascades bridge, summit trig-point spur, eastern descent, Memorial Seat, car-park access and whether this file follows the desired circuit before use for navigation. Do not merge or enable live guidance based on these metrics alone.
+
+The original GPX remains a comparison source. Neither raw GPX has been added to the GitHub branch in this update; this is a documented inspection, not an implemented route.
