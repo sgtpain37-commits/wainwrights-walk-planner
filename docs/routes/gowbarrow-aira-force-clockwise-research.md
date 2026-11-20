@@ -135,3 +135,9 @@ Reopened the actual user-supplied `lakes21.gpx` and computed spherical great-cir
 Nearest recorded point to summit catalogue coordinate (54.58811, -2.918201) is **point 39** at (54.588167330, -2.917967275), **16.35 m** away. The route then continues eastwards; verify whether the true summit trig point requires a spur or this is within ordinary mapping uncertainty. Do not infer actual path deviations solely from straight chords.
 
 **Result:** Identified precise segments to examine, but no authoritative footpath geometry was available to perform the required point-to-path comparison. The geometry remains **unverified**, and this work does not authorize live navigation. A future test should assert full track is within a justified corridor of verified paths, with separately checked bridge, gate, summit and car-park connections. This PR is research-only.
+
+## Stage 9: local GPX checker smoke test (20 November 2026)
+
+Executed the same parsing and distance calculation logic as `scripts/check-gowbarrow-gpx.cjs` against the user-uploaded `lakes21.gpx` in a local Node.js runtime. Observed **98 points, 6.906 km / 4.291 mi, 7.5 m closure, point 39 16.4 m from summit, five segments >150 m, zero >250 m**. Longest 73→74 at 202.6 m; 35→36 at 175.8 m; 39→40 at 171.3 m. This reproduces the previous GPX measurements.
+
+**Scope:** Local smoke test of equivalent script logic, not a GitHub Actions CI run and not footpath verification. No source GPX or navigable route has been committed. Live guidance must remain unavailable for this proposed ascent until independently verified walking-line geometry is obtained and tested.
