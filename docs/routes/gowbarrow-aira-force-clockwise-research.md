@@ -90,3 +90,16 @@ Consecutive route-point spacing was checked in a local equirectangular projectio
 **Navigation consequence:** A 38-point GPX `rte` cannot be substituted for independently verified, sufficiently dense trail geometry. In particular, do not generate spoken junction directions or off-route thresholds from the long chords, and do not assume they follow rights of way. Confirm the start and end on the car-park access path, the High Cascades crossing, summit spur, old shooting lodge, Memorial Seat and return junction with authoritative mapped paths or a reliable densely recorded track before creating a production route.
 
 **Next dependency:** a licensed detailed footpath map or recorded dense GPX track to check each segment. Until then PR #26 remains draft and research-only; do not enable live guidance.
+
+## Stage 6: user's route-overlay screenshot — critical display warning
+
+The user supplied a screenshot showing the red GPX line as a polygonal series of long straight chords over an OpenStreetMap-style background, with many visible dotted walking paths diverging from the red line. The summit label appears south of the northern red segment. **This is evidence of a coarse route rendering, not evidence that a path-snapping algorithm has run.** No screenshot alone can confirm precise GPS alignment or the existence of any path-snap operation.
+
+**Display and safety requirements for a future implementation:**
+1. Treat the 38-point Memory-Map `rte` as a coarse planning outline only. Never style it or label it as a verified walking track.
+2. Do not silently interpolate straight chords or use them for spoken turn instructions, off-route alarms, distance-to-next-turn, or summit completion.
+3. Obtain a detailed line from an independently checked source, compare with footpaths and the National Trust itinerary, and include the trig-point spur before considering navigation.
+4. Where no verified line is available, show a clear **Unverified route outline — not for navigation** warning and keep Start live guidance disabled for this ascent.
+5. Preserve the existing Park Brow ascent; the Aira Force clockwise route must be a distinct route option.
+
+**Status:** No verified full-line GPX obtained yet. The source GPX is available as a conversation upload but has not been committed to this branch; no production route geometry has been changed.
