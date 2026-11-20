@@ -118,3 +118,20 @@ User supplied `lakes21.gpx`, shown on a Walking Englishman map with an elevation
 **Important:** The uploaded screenshot still depicts some long, straight blue lines across the fell. More GPX points and a closed loop are not proof of footpath conformity. Verify actual path alignment, High Cascades bridge, summit trig-point spur, eastern descent, Memorial Seat, car-park access and whether this file follows the desired circuit before use for navigation. Do not merge or enable live guidance based on these metrics alone.
 
 The original GPX remains a comparison source. Neither raw GPX has been added to the GitHub branch in this update; this is a documented inspection, not an implemented route.
+
+## Stage 8: targeted geometry inspection of 98-point track (20 November 2026)
+
+Reopened the actual user-supplied `lakes21.gpx` and computed spherical great-circle chord lengths between consecutive `trkpt` coordinates. **1-based track-point indices** below refer to the source XML sequence:
+
+| Track segment | Chord | From (lat, lon) | To (lat, lon) | Priority |
+| --- | ---: | --- | --- | --- |
+| 73→74 | 203 m | 54.576725062, -2.918754708 | 54.576118382, -2.921719318 | Southern return; longest chord |
+| 35→36 | 176 m | 54.586779858, -2.926099404 | 54.587293844, -2.923518883 | Summit approach |
+| 39→40 | 171 m | 54.588167330, -2.917967275 | 54.587962577, -2.915331777 | Immediately after summit proximity |
+| 69→70 | 159 m | 54.577545486, -2.911269258 | 54.577774254, -2.913711199 | Southern return |
+| 34→35 | 155 m | 54.586335580, -2.928371940 | 54.586779858, -2.926099404 | Summit approach |
+| 71→72 | 150 m | 54.577675061, -2.914946740 | 54.577231579, -2.917141549 | Southern return |
+
+Nearest recorded point to summit catalogue coordinate (54.58811, -2.918201) is **point 39** at (54.588167330, -2.917967275), **16.35 m** away. The route then continues eastwards; verify whether the true summit trig point requires a spur or this is within ordinary mapping uncertainty. Do not infer actual path deviations solely from straight chords.
+
+**Result:** Identified precise segments to examine, but no authoritative footpath geometry was available to perform the required point-to-path comparison. The geometry remains **unverified**, and this work does not authorize live navigation. A future test should assert full track is within a justified corridor of verified paths, with separately checked bridge, gate, summit and car-park connections. This PR is research-only.
