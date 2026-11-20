@@ -35,3 +35,21 @@ Status: **source-backed itinerary; walking-line geometry not independently verif
 - Confirm exact clockwise orientation from mapped line rather than relying on route description.
 - Measure final geometry and check all turn instructions and grade; preserve offline map/GPX and no live guidance until verification.
 - Add separate route entry, tests and audit export in a subsequent PR.
+
+## Stage 2: independent GPX candidates (20 November 2026)
+
+These are **candidate sources only**. The underlying GPX track points have **not** yet been downloaded, compared or independently verified. None may be used for live guidance at this stage.
+
+| Candidate | Reported distance | Evidence | Verification still needed |
+| --- | --- | --- | --- |
+| National Trust official trail | 4.5 mi / 7.2 km | Official eight-stage itinerary, no independently examined GPX | Trace route on walking map; identify all crossings and spur |
+| UK Lake District, Aira Force & Gowbarrow | 4.25 mi / 6.8 km | Website advertises free GPX and interactive OS map | Obtain GPX, check summit and all junctions, orientation, start and end |
+| Walking Country, Aira Force to Gowbarrow | 4.7 mi / 7.64 km | Website says GPS-recorded, GPX download | Obtain GPX, compare actual track to NT path and route orientation |
+| Andrew's Walks, Gowbarrow Fell | Not checked | Author explicitly recommends clockwise route, OS Maps route with GPX for subscribers | Confirm geometry and whether it includes required waterfalls and summit |
+
+Candidate URLs:
+- https://www.uklakedistrict.com/walks/aira-force-and-gowbarrow/
+- https://www.walkingcountry.co.uk/uk-regions/north-west-england/cumbria/gowbarrow-aira-force.htm
+- https://www.andrewswalks.co.uk/gowbarrow-fell-3.html
+
+**Current blocker:** Candidate pages were found, but GPX bytes could not be retrieved for comparison in this session. Therefore no geometry has been added and no safety or route-completeness claim is made. Next: retrieve one or more candidate GPX files, inspect coordinate arrays and path topology, compare with the official National Trust map, then write automated route assertions before proposing any live navigation.
