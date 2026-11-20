@@ -76,3 +76,17 @@ The user supplied a screenshot of a walking-page description headed **Gowbarrow 
 **Comparison with uploaded Memory-Map GPX:** 38-point straight-segment distance 3.815 mi vs page's rounded 4.0 mi, a difference of 0.185 mi (~298 m, ~4.6% of 4 mi). The GPX's general north-east-south-west circuit and near-summit point are consistent with this description, but matching distance and broad direction do **not** prove that the exact route is the same or that every footpath is correct. The separate National Trust trail is published as 4.5 mi, so it must not be conflated with the four-mile variant without line-by-line map comparison.
 
 **Decision:** Retain the 4-mile variant as the leading candidate for the user's supplied GPX. Do not alter the 4.5-mile source-backed itinerary or claim a final match until mapped path alignment, start, bridge, summit spur, and return are checked. This PR remains research-only and does not enable live guidance.
+
+## Stage 5: geometry-quality check of original 38-point GPX
+
+Re-opened the user-supplied `Gowbarrow Fell.gpx` and independently parsed its 38 `rtept` coordinates. The signed planar area of the closed sequence (longitude projected at 54.58° N) is negative, consistent with **clockwise traversal**. This confirms the point ordering, not the actual paths taken between points.
+
+Consecutive route-point spacing was checked in a local equirectangular projection:
+- **6 of the 37 segments exceed 250 metres**; none exceeds 400 metres.
+- Longest gaps are approximately **377 m (WP32109→WP32110)**, **367 m (WP32115→WP32116)**, **308 m (WP32110→WP32111)** and **305 m (WP32114→WP32115)**.
+- These are straight chord lengths, **not** walked trail lengths. The 3.815-mi chord sum can understate the path length and omits a 37.8-m start–finish closure.
+- The route's nearest recorded point to the catalogue summit is still approximately **37 m away**, so the trig-point spur needs explicit examination.
+
+**Navigation consequence:** A 38-point GPX `rte` cannot be substituted for independently verified, sufficiently dense trail geometry. In particular, do not generate spoken junction directions or off-route thresholds from the long chords, and do not assume they follow rights of way. Confirm the start and end on the car-park access path, the High Cascades crossing, summit spur, old shooting lodge, Memorial Seat and return junction with authoritative mapped paths or a reliable densely recorded track before creating a production route.
+
+**Next dependency:** a licensed detailed footpath map or recorded dense GPX track to check each segment. Until then PR #26 remains draft and research-only; do not enable live guidance.
