@@ -68,3 +68,11 @@ Measured from route points using spherical haversine segments (not snapped to pa
 - The route travels generally north from the start, east past the summit area and then south and west back to the start, consistent with the intended clockwise loop; specific junction geometry remains unverified.
 
 **Do not publish as live turn-by-turn guidance.** Still need to: verify the start point against the National Trust main car park entrance; check route against mapped rights of way, the High Cascades bridge crossing and wall/gate junctions; verify whether summit spur is missing; verify Memorial Seat and return junction; and obtain sufficient geometry for turns, distances and off-route alerts. Keep the existing Park Brow route intact. No changes to production `index.html`.
+
+## Stage 4: four-mile published variant comparison
+
+The user supplied a screenshot of a walking-page description headed **Gowbarrow Fell — 4 miles (6.5 km)**. The screenshot describes: Aira Force main car park, path through ancient woodland and the 65-ft waterfall, north towards Dockray, climb to Gowbarrow summit, east towards old shooting-lodge remains, descent to Collier Hagg and Memorial Seat, then west via Bernard Pike and Lyulph's Tower to the car park.
+
+**Comparison with uploaded Memory-Map GPX:** 38-point straight-segment distance 3.815 mi vs page's rounded 4.0 mi, a difference of 0.185 mi (~298 m, ~4.6% of 4 mi). The GPX's general north-east-south-west circuit and near-summit point are consistent with this description, but matching distance and broad direction do **not** prove that the exact route is the same or that every footpath is correct. The separate National Trust trail is published as 4.5 mi, so it must not be conflated with the four-mile variant without line-by-line map comparison.
+
+**Decision:** Retain the 4-mile variant as the leading candidate for the user's supplied GPX. Do not alter the 4.5-mile source-backed itinerary or claim a final match until mapped path alignment, start, bridge, summit spur, and return are checked. This PR remains research-only and does not enable live guidance.
