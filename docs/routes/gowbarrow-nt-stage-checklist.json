@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "routeId": "gowbarrow-aira-force-nt-clockwise",
+  "title": "Aira Force and Gowbarrow Park (National Trust, clockwise)",
+  "status": "research-unverified",
+  "source": {
+    "url": "https://www.nationaltrust.org.uk/visit/lake-district/aira-force-and-gowbarrow-park/aira-force-and-gowbarrow-trail",
+    "publisher": "National Trust",
+    "distanceMiles": 4.5,
+    "stages": 8
+  },
+  "start": {
+    "name": "Aira Force National Trust main car park",
+    "gridReference": "NY400200"
+  },
+  "stages": [
+    {
+      "number": 1,
+      "via": "Welcome Building, picnic field, stone-wall gap, Glade",
+      "check": "Identify main car-park exit and Glade junction"
+    },
+    {
+      "number": 2,
+      "via": "Pinetum, Aira Force upper bridge",
+      "check": "Confirm waterfall bridge and optional lower bridge detour are not confused"
+    },
+    {
+      "number": 3,
+      "via": "Upstream past High Force to High Cascades",
+      "check": "Cross wooden bridge at High Cascades, turn left at junction"
+    },
+    {
+      "number": 4,
+      "via": "Open fell and dry-stone wall",
+      "check": "At summit ascent junction turn right with wall on left"
+    },
+    {
+      "number": 5,
+      "via": "Gowbarrow summit trig point",
+      "check": "Trace summit spur and retrace to junction before continuing"
+    },
+    {
+      "number": 6,
+      "via": "Old shooting lodge, Pooley Bridge junction",
+      "check": "Bear right at lodge and keep right at Pooley Bridge junction"
+    },
+    {
+      "number": 7,
+      "via": "Memorial Seat",
+      "check": "Cross fence stile to seat, return over same stile, turn left"
+    },
+    {
+      "number": 8,
+      "via": "Lyulph's Tower, woodland gate, Glade",
+      "check": "Left fork before woodland, through gate, bear left to car park"
+    }
+  ],
+  "verification": {
+    "footpathAlignedGeometry": false,
+    "bridgeJunctions": false,
+    "summitSpur": false,
+    "memorialSeatDetour": false,
+    "returnToMainCarPark": false,
+    "approvedForLiveNavigation": false
+  },
+  "notes": "Research-only stage manifest. No fabricated coordinates. Walking Englishman lakes21.gpx is a different circuit and must not be silently substituted."
+}
